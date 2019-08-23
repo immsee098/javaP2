@@ -16,6 +16,7 @@ public class OpPrac {
 		int number = sc.nextInt();
 		String ver3 = (number%2 == 0) ? "Â¦¼ö" : "È¦¼ö";
 		System.out.println("num="+number+"=>"+ver3);		
+		
 
 	}
 

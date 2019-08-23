@@ -1,0 +1,20 @@
+package com.day4.Control;
+
+public class condition {
+
+	public static void main(String[] args) {
+		/*
+		 제어문 - 프로그램의 실행 순서나 흐름을 제어할 때 사용
+		 [1] 조건문
+		 	if
+		 	switch
+		 	
+		 [2] 반복문
+		 	for
+		 	while
+		 	do-while
+		*/
+
+	}
+
+}

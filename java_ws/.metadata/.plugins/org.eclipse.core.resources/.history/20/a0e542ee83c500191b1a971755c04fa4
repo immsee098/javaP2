@@ -1,0 +1,10 @@
+package com.day4.Control;
+
+public class Exam1 {
+
+	public static void main(String[] args) {
+		// 0~100 사이의 점수만 입력하는 경우
+
+	}
+
+}

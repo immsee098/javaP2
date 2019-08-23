@@ -1,0 +1,13 @@
+package com.day4;
+
+public class ThreeOp {
+
+	public static void main(String[] args) {
+		// 삼항연산자
+		/* 변수 선언 = (조건식)?값1:값2;
+		 	조건식이 true이면 값1을, faㅣse이면 값2를 변수에 할당
+		 */
+
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.day4;
+import java.util.*;
+
+public class OpPrac {
+
+	public static void main(String[] args) {
+		int num = 45;
+		String ver = (num>0) ? "¾ç¼ö" : "À½¼ö";
+		System.out.println("num="+num + "=>" + ver );
+		
+		int num2 = 3;
+		String ver2 = (num2%2 == 0) ? "Â¦¼ö" : "È¦¼ö";
+		System.out.println("num="+num2+"=>"+ver2);
+		
+		Scanner sc = new Scanner(System.in);  
+		int number = sc.nextInt();
+		String ver3 = (number%2 == 0) ? "Â¦¼ö" : "È¦¼ö";
+		System.out.println("num="+number+"=>"+ver3);		
+
+	}
+
+}

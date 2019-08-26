@@ -1,0 +1,21 @@
+package com.day5;
+
+public class SwitchTest {
+
+	public static void main(String[] args) {
+		int n =2;
+		String result = "";
+		
+		if (n==1) {
+			result = "one";
+		} else if (n==2) {
+			result = "two";
+		} else if (n==3) {
+			result = "three";
+		} else {
+			result = "나머지 수";
+		}
+
+	}
+
+}

@@ -1,0 +1,30 @@
+package com.day5;
+
+public class prac1 {
+
+	public static void main(String[] args) {
+		int i =200;
+		char ch = ' ';
+		boolean powerOn = false;
+		
+		if(i>100&&i<300) {
+			System.out.println("1¹ø"+true);
+		}
+		
+		if(ch != ' ' || ch != '\t') {
+			System.out.println(true);
+		}
+		
+		if(ch=='x' || ch=='X') {
+			System.out.println(true);
+		}
+		
+		if(powerOn==false) {
+			System.out.println(true);
+		}
+		
+		
+
+	}
+
+}

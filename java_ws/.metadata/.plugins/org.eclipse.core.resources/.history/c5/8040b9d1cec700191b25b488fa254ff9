@@ -1,0 +1,15 @@
+package com.day5;
+
+public class SwitchTest4 {
+
+	public static void main(String[] args) {
+		//학점 구하기
+		double avg = 85.7d;
+		
+		switch((int)avg/10) {
+			
+		}
+
+	}
+
+}

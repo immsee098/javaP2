@@ -1,0 +1,14 @@
+package com.day5;
+
+import java.util.Scanner;
+
+public class SwitchTest2 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("산술연산자를 입력하세요(+, -,*, /)");
+		String op = sc.nextLine();
+
+	}
+
+}

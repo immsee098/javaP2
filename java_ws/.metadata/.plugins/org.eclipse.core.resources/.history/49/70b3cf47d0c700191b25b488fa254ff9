@@ -1,0 +1,21 @@
+package com.day5;
+
+import java.io.IOException;
+
+public class SwitchPrac3  {
+
+	public static void main(String[] args) throws IOException {
+		System.out.println("직업을 입력하세요");
+		char job = (char) System.in.read();
+		
+		String result = "";
+		
+		switch(job) {
+			case 'A':
+				result = "회사원이시군요";
+				break;
+			
+		}
+	}
+
+}

@@ -1,0 +1,54 @@
+package com.day5;
+
+public class SwitchTest {
+
+	public static void main(String[] args) {
+		int n =2;
+		String result = "";
+		
+		if (n==1) {
+			result = "one";
+		} else if (n==2) {
+			result = "two";
+		} else if (n==3) {
+			result = "three";
+		} else {
+			result = "나머지 수";
+		}
+		
+		System.out.println(n+"=>"+result);
+		
+		/*
+		 *switch문 - 주로 조건이 여러개인 경우 사용
+		 			단, == 비교인 경우만 사용 가능
+		 			>, < 대소비교인 경우는 불가능
+		 			
+		 switch(제어변수) {
+		 	case 값1:
+		 		문장1;
+		 		break;
+		 	case 값2:
+		 		문장2;
+		 		break;
+		 	default:
+		 		문장3;<<이건 없어도 되고 아니어도 되고
+		 		
+		 }
+		*/
+		
+		switch(n) {
+			case 1:
+				result = "one";
+				break;
+			case 2:
+				result = "two";
+				break;
+			default:
+				result = "other";
+				break;
+		}
+		
+		System.out.println(result);
+	}
+
+}

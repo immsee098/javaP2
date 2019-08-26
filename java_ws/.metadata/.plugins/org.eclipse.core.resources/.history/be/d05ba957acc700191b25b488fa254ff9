@@ -1,0 +1,15 @@
+package com.day5;
+
+public class SwitchTest {
+
+	public static void main(String[] args) {
+		int n =2;
+		String result = "";
+		
+		if (n==1) {
+			
+		}
+
+	}
+
+}

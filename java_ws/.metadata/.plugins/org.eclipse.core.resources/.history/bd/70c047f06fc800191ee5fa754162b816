@@ -1,0 +1,14 @@
+package com.day6;
+
+public class ForPrac2 {
+
+	public static void main(String[] args) {
+		char al;
+		for(int i=97; i<123; i++) {
+			al = (char)i;
+			System.out.print(al+",");
+		}
+
+	}
+
+}

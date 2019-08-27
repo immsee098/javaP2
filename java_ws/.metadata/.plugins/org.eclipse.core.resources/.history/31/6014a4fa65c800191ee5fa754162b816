@@ -1,0 +1,12 @@
+package com.day6;
+
+public class ForTest2 {
+
+	public static void main(String[] args) {
+		//1~3까지 합계 구하기(누적)
+		
+		int sum = 0;
+
+	}
+
+}

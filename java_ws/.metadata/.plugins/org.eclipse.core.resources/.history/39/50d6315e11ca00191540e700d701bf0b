@@ -1,0 +1,18 @@
+package com.day8;
+
+public class MethodTest4 {
+	public static int plus(int a, int b) {
+		int c = a+b;
+		return c;
+	}
+	
+	public static float minus(float a, int b) {
+		float c = a-b;
+		return c;
+	}
+	public static void main(String[] args) {
+
+
+	}
+
+}

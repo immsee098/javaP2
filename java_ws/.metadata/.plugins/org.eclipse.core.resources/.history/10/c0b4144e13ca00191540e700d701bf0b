@@ -1,0 +1,26 @@
+package com.day8;
+
+import java.util.Scanner;
+
+public class MethodPrac2_3_25 {
+
+	public static int numCalc(int a, int b) {
+		while(true) {
+			int result = 0;
+			if(a>=b) {
+				result = a%b;
+			} else {
+				result = b%a;
+			}
+			return result;
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		while
+
+	}
+
+}

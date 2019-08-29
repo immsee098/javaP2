@@ -1,0 +1,13 @@
+package com.day8;
+
+public class MethodPrac1_3_22 {
+	//[1]
+	public static void func() {
+		System.out.println("Hello java");
+	}
+
+	public static void main(String[] args) {
+		func();
+	}
+
+}

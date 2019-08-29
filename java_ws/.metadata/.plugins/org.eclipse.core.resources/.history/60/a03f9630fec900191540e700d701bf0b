@@ -1,0 +1,16 @@
+package com.day8;
+
+public class MethodTest2 {
+	public static double calcInterest(int money) {
+		double interest = money*0.016;
+		return interest;
+		
+	}
+
+	public static void main(String[] args) {
+		inb m =10000;
+		double d = MethodTest2.calcInterest(m);
+		System.out.println(d);
+	}
+
+}

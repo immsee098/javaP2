@@ -1,0 +1,12 @@
+package com.day8;
+
+public class MethodTest3_3_17 {
+	public static void func() {
+		System.out.println("***********");
+	}
+	public static void main(String[] args) {
+	
+
+	}
+
+}

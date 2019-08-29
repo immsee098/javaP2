@@ -1,0 +1,14 @@
+package com.day8;
+
+public class MethodPrac4_3_27 {
+	
+	public static int yearVer(int year) {
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

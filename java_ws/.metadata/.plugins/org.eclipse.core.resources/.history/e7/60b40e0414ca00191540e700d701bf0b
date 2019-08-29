@@ -1,0 +1,36 @@
+package com.day8;
+
+import java.util.Scanner;
+
+public class MethodPrac2_3_25 {
+
+	public static float numCalc(float a, float b) {
+		while(true) {
+			float result = 0;
+			if(a>=b) {
+				result = a%b;
+			} else {
+				result = b%a;
+			}
+			return result;
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		while(true) {
+			System.out.println("정수를 입력하세요");
+			float x = sc.nextFloat();
+			float y = sc.nextFloat();
+			
+			if(x==0 || y==0) {
+				break;
+			} else {
+				System.out.println(numCalc(x, y));
+			}
+		}
+
+	}
+
+}

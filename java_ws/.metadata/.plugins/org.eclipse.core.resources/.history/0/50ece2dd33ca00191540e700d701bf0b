@@ -1,0 +1,52 @@
+package com.day8;
+
+import java.util.Scanner;
+
+public class MethodPrac4_3_27 {
+	
+	public static boolean yearVer(int year) {
+		boolean call = false;
+		if(year %400==0 || (year%4 == 0 && year%100 != 0)){
+			call = true;
+		}
+		return call;
+	}
+	
+	public static String oddeven(int num) {
+		String result = "";
+		if(num%2 ==0) {
+			result = "짝수";
+		} else {
+			result = "홀수";
+		}
+		
+		return result;
+		
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("연도 입력");
+		int year = sc.nextInt();
+		boolean k = yearVer(year);
+		
+		if(k) {
+			System.out.println("윤년입니다");
+		} else {
+			System.out.println("평년입니다.");
+		}
+		
+		System.out.println("=====");
+		
+		int num = sc.nextInt();
+		String l = oddeven(num);
+		
+		if(l.equals("짝수")) {
+			System.out.println("짝수입니다");
+		} else {
+			System.out.println("홀수입니다");
+		}
+		
+	}
+
+}

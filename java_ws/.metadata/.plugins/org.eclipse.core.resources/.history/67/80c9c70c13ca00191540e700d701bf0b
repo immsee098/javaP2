@@ -1,0 +1,21 @@
+package com.day8;
+
+public class MethodPrac2_3_25 {
+
+	public static int numCalc(int a, int b) {
+		int result = 0;
+		if(a>=b) {
+			result = a%b;
+		} else {
+			result = b%a;
+		}
+		
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

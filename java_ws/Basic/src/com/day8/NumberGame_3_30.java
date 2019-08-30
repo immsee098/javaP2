@@ -35,7 +35,7 @@ public class NumberGame_3_30 {
 		*/
 		
 		//1. 정답 구하기(1~100사이의 임의의 정수)
-		int answer = (int)(Math.random()*100+1);
+		int answer = getRandom('a', 'z');
 		boolean TF = false;
 		
 		//2. 사용자에게 4번의 기회를 준다 => 반복문에서 처리
@@ -43,6 +43,7 @@ public class NumberGame_3_30 {
 		for(int i=0; i<4; i++) {
 			//사용자로부터 1~100사이 정수 입력 받기
 			System.out.println("1~100사이의 정수를 입력하세요");
+			System.out.println((char)answer);
 			int num = sc.nextInt();
 			
 			if(num==answer) {
@@ -76,5 +77,14 @@ public class NumberGame_3_30 {
 		
 		//정답과 비교 - if
 	}
+	
+	//public static int getRandom() {
+		//return (int)(Math.random()*100+1);
+	//}
 
+	public static int getRandom(int start, int end) {
+		int count = end-start+1;
+		int answer = (int)(Math.random()*count+1);
+		return answer;
+	}
 }

@@ -3,8 +3,13 @@ package com.day8;
 import java.util.Scanner;
 
 public class MethodTest {
+	
+	
 
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+
 		x();
 		
 		System.out.print("java");

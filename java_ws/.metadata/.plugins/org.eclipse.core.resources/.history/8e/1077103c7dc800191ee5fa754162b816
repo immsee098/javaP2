@@ -1,9 +1,0 @@
-package com.day6;
-
-public class OverlapFor {
-
-	public static void main(String[] args) {
-		// 중첩 for문 - for 안에 for가 들어간 것
-	}
-
-}

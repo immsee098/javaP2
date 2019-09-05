@@ -87,7 +87,7 @@ public class PhoneInfoTest {
 				System.out.println("birth: "+p1.setbirth());
 			}
 			
-		}
+		}/// 이부분 중복코드 없애고 이걸 클래스로 옮김
 
 		
 		

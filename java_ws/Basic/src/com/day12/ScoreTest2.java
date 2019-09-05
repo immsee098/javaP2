@@ -13,8 +13,12 @@ class Score {
 		math = p_math;
 	}
 	
+	int total() {
+		return kor+eng+math;
+	}
+	
 	double average() {
-		return (kor+eng+math)/3.0;
+		return total()/3.0;
 	}
 }
 

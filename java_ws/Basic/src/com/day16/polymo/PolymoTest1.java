@@ -45,6 +45,16 @@ class Triangle extends Shape {
 }
 
 public class PolymoTest1 {
+	
+	public static Shape createShape(int type) {
+		Shape sh =null;
+			if(type==1) {
+				sh = new Circle();
+			}else if (type==2) {
+				sh = new Triangle();
+			}
+			return sh;
+	}
 
 	public static void main(String[] args) {
 		Shape sh = new Circle();

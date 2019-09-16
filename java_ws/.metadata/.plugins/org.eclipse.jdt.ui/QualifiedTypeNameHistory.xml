@@ -6,8 +6,9 @@
 <fullyQualifiedTypeName name="com.day14.Parent5"/>
 <fullyQualifiedTypeName name="com.day14.Human"/>
 <fullyQualifiedTypeName name="java.awt.Shape"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="com.day17.Marine"/>
 <fullyQualifiedTypeName name="com.day17.DanceRobot"/>
 <fullyQualifiedTypeName name="com.day17.SingRobot"/>
+<fullyQualifiedTypeName name="java.awt.Desktop.Action"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>

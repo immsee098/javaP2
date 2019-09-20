@@ -11,7 +11,7 @@ public class Test6_13_36 {
 	public static void main(String[] args) {
 		ArrayList<Character> ar = new ArrayList<Character>();
 		
-		for(int i=65; i<91; i++) {
+		for(int i='a'; i<'z'; i++) {
 			char alpha = (char)i;
 			ar.add(new Character(alpha));
 		}
@@ -23,7 +23,7 @@ public class Test6_13_36 {
 		
 		HashMap<Integer, String> hm = new HashMap<Integer, String>();
 
-		for(int i='A'; i<='Z'; i++) {
+		for(int i='a'; i<='z'; i++) {
 			String s = Character.toString((char)i);
 			hm.put(new Integer(i), s);
 		}
@@ -38,7 +38,7 @@ public class Test6_13_36 {
 		
 		HashSet<String> hs = new HashSet<String>();
 		
-		for(int i='A'; i<='Z'; i++) {
+		for(int i='a'; i<='z'; i++) {
 			String s = Character.toString((char)i);
 			hs.add(s);
 		}

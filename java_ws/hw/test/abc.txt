@@ -1,0 +1,3 @@
+name = Hong gil dong
+data = 9,3,6,29,3,7,6,11
+fifa = lose

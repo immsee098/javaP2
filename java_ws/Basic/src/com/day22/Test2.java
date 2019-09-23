@@ -32,19 +32,7 @@ public class Test2 {
 		
 		String ge2 = "";
 		String year2 ="";
-//		
-//		if(ge.equals("1")||ge.equals("3")) {
-//			ge2="³²";
-//		} else if(ge.equals("2")||ge.equals("4")) {
-//			ge2="¿©";
-//		}
-//		
-//		if(ge.equals("1")||ge.equals("2")) {
-//			year2 = "19"+year;
-//		} else if(ge.equals("3")||ge.equals("4")) {
-//			year2 = "20"+year;
-//		}
-//		
+		
 		switch(ge) {
 			case "1":
 				ge2="³²";

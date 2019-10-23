@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import db.DBUtil;
 
@@ -189,12 +190,12 @@ public class PdDAO {
 		}
 	}
 
-	public ArrayList<PdDTO> selectByPdName(String pdName) throws SQLException {
+	public Vector<PdDTO> selectByPdName(String pdName) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		
-		ArrayList<PdDTO> alist = new ArrayList<PdDTO>();
+		Vector<PdDTO> alist = new Vector<PdDTO>();
 		try {
 			//1.
 			//2.

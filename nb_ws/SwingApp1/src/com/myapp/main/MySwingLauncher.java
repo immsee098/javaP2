@@ -1,5 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.myapp.main;
 
+import com.myapp.member.view.LoginGUI;
 import com.myapp.product.view.ProductGUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -38,7 +44,8 @@ public class MySwingLauncher extends JApplet {
                 } catch (Exception e) {
                 }
                 
-                ProductGUI f = new ProductGUI();
+                //ProductGUI f = new ProductGUI();
+                LoginGUI f = new LoginGUI();
                 f.show();
             }
         });

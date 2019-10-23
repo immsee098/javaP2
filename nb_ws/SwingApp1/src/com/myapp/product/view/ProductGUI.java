@@ -5,15 +5,29 @@
 */
 package com.myapp.product.view;
 
+import com.myapp.member.model.MemberService;
+import com.myapp.member.view.MemberFrame;
 import com.myapp.product.model.ProductDAO;
 import com.myapp.product.model.ProductDTO;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,7 +52,6 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         addEvent();
         
         showAll();
-       
     }
     
     /**
@@ -57,6 +70,7 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         btEdit = new javax.swing.JButton();
         btDel = new javax.swing.JButton();
         btExit = new javax.swing.JButton();
+        btMemEdit = new javax.swing.JButton();
         tabbedPane = new javax.swing.JTabbedPane();
         tab1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -115,6 +129,12 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         btExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btExit);
+
+        btMemEdit.setText("회원정보수정");
+        btMemEdit.setFocusable(false);
+        btMemEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btMemEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btMemEdit);
 
         table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -387,6 +407,7 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
     private javax.swing.JButton btDel;
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btExit;
+    private javax.swing.JButton btMemEdit;
     private javax.swing.JButton btSearch;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbPdName;
@@ -424,6 +445,9 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
     private void init() {
         tfNo.setEditable(false);
         tfRegdate.setEditable(false);
+        tfUserid.setEditable(false);
+        
+        tfUserid.setText(MemberService.getUserid());
         
         //comboBox에 항목 추가
         //[1]
@@ -453,6 +477,31 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         btEdit.addActionListener(this);
         btDel.addActionListener(this);
         btExit.addActionListener(this);
+        table1.addMouseListener(new EventHandler());
+        cbPdName.addItemListener(new EventHandler());
+        btMemEdit.addActionListener(this);
+        
+        tabbedPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTabbedPane tpane = (JTabbedPane) e.getSource();
+                int idx=tpane.getSelectedIndex();
+                if(idx==0){
+                    System.out.println("index="+ idx);
+                }else if(idx==1){
+                    System.out.println("index="+ idx); 
+                    
+                    try {
+                        Vector<String> vec=productDao.selectProductName();
+                        DefaultComboBoxModel cbModel=new DefaultComboBoxModel(vec);
+                        cbPdName.setModel(cbModel);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            
+        });
         
     }
     
@@ -461,8 +510,18 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         try{
             if(e.getSource()==btAdd){
                 add();
+            }else if(e.getSource()==btEdit){
+                edit();
+            }else if(e.getSource()==btDel){
+                del();                
+            }else if(e.getSource()==btExit){
+                System.exit(0);
+            }else if(e.getSource()==btMemEdit){
+                //회원정보 수정
+                //회원수정 화면 띄우기
+                MemberFrame f = new MemberFrame(MemberFrame.MEMBER_EDIT);
+                f.setVisible(true);
             }
-            
         }catch(SQLException ex){
             ex.printStackTrace();
         }
@@ -488,35 +547,162 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
             clear_component1();
             showAll();
         }else{
-            JOptionPane.showMessageDialog(this, "상품 등록 실패!");            
+            JOptionPane.showMessageDialog(this, "상품 등록 실패!");
         }
     }
-
-    private void showAll() {
+    
+    private void showAll()  {
         //1
         //2
-        try{
-            ArrayList<ProductDTO> list =productDao.selectAll();
+        DecimalFormat df = new DecimalFormat("#,###");
+        
+        try {
+            ArrayList<ProductDTO> list = productDao.selectAll();
+            
             String[][] data = new String[list.size()][3];
             for(int i=0;i<list.size();i++){
                 ProductDTO dto=list.get(i);
                 data[i][0] = dto.getNo()+"";
                 data[i][1] = dto.getProductName();
-                data[i][2] = dto.getPrice()+"";            
+                
+                String price=df.format(dto.getPrice());                
+                data[i][2] = price;
             }
+            
+            //3
             model.setDataVector(data, colNames);
             table1.setModel(model);
-        } catch(SQLException ex){
+            
+            //
+            //table1.getTableHeader().setBackground(Color.black);
+            //table1.getTableHeader().setForeground(Color.yellow);
+            table1.getTableHeader().setReorderingAllowed(false);
+            table1.setRowHeight(30);
+            
+            //각 컬럼 사이즈 조절
+            table1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            table1.getColumnModel().getColumn(1).setPreferredWidth(120);
+            table1.getColumnModel().getColumn(2).setPreferredWidth(67);
+            
+            //가격 오른쪽 정렬
+            DefaultTableCellRenderer cellRenderer
+                    =new DefaultTableCellRenderer();
+            cellRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+            table1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+            
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        //3
     }
-
-    private void clear_component1() {
+    
+    public void clear_component1(){
         tfNo.setText("");
         tfProductName.setText("");
         tfPrice.setText("");
         tfRegdate.setText("");
         taDescription.setText("");
+        
     }
+
+    private void edit() throws SQLException {
+        //1.
+        String no=tfNo.getText();
+        String pdName=tfProductName.getText();
+        String price=tfPrice.getText();
+        String desc=taDescription.getText();
+        
+        if(no==null || no.isEmpty()){
+            JOptionPane.showMessageDialog(this, "번호가 선택되어야 합니다.");
+            return;
+        }else if(pdName==null || pdName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "상품명을 입력하세요");
+            tfProductName.requestFocus();
+            return;
+        }
+        
+        //2.
+        ProductDTO dto = new ProductDTO();
+        dto.setNo(Integer.parseInt(no));
+        dto.setDescription(desc);
+        dto.setPrice(Integer.parseInt(price));
+        dto.setProductName(pdName);
+        
+        int cnt=productDao.updateProduct(dto);
+        
+        //3.
+        if(cnt>0){
+            JOptionPane.showMessageDialog(this, "상품 수정되었습니다.");
+            clear_component1();
+            showAll();
+        }else{
+            JOptionPane.showMessageDialog(this, "상품 수정 실패!");
+        }
+    }
+
+    private void del() throws SQLException {
+        //1.
+        String no=tfNo.getText();
+        if(no==null || no.isEmpty()){
+            JOptionPane.showMessageDialog(this, "번호가 선택되어야 합니다.");
+            return;
+        }
+        
+        int result=JOptionPane.showConfirmDialog(this, "삭제하시겠습니까?",
+                "삭제", JOptionPane.YES_NO_OPTION);
+        
+        if(result==JOptionPane.YES_OPTION){
+            //2.
+            int cnt=productDao.deleteProduct(Integer.parseInt(no));
+            
+            //3.
+            if(cnt>0){
+                JOptionPane.showMessageDialog(this, "상품 삭제되었습니다.");
+                showAll();
+                clear_component1();
+            }else{
+                JOptionPane.showMessageDialog(this, "상품 삭제 실패.");
+            }
+        }
+        
+    }
+    
+    class EventHandler extends MouseAdapter implements  ItemListener{
+        
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            int row=table1.getSelectedRow();
+            
+            String no=(String) table1.getValueAt(row, 0);
+            
+            try {
+                //번호로 조회
+                ProductDTO dto=productDao.selectByNo(Integer.parseInt(no));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String regdate=sdf.format(dto.getRegDate());
+                
+                tfNo.setText(dto.getNo()+"");
+                tfPrice.setText(dto.getPrice()+"");
+                tfProductName.setText(dto.getProductName());
+                tfRegdate.setText(regdate);
+                taDescription.setText(dto.getDescription());
+                
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getSource()==cbPdName){
+                if(e.getStateChange()==ItemEvent.SELECTED){
+                    rdPdName.setSelected(true);
+                }
+            }//if
+            
+            
+        }
+    }
+    
 }

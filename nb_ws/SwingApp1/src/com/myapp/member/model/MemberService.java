@@ -15,6 +15,10 @@ public class MemberService {
     public static final int ID_NONE=2;    //아이디 존재하지 않음
     public static final int PWD_DISAGREE=3; //비밀번호 불일치
     
+    //아이디 중복확인 관련 상수
+    public static final int USABLE_ID=1;  //사용가능한 아이디
+    public static final int UNUSABLE_ID=2; //이미 존재해서 사용불가능한 아이디
+        
     private static String userid;
 
     public static String getUserid() {

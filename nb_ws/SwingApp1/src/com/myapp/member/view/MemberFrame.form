@@ -197,6 +197,9 @@
     <Component class="javax.swing.JTextField" name="tfName">
     </Component>
     <Component class="javax.swing.JTextField" name="tfUserid">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="tfEmail1">
     </Component>

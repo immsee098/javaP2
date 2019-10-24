@@ -5,31 +5,55 @@
  */
 package com.myapp.member.view;
 
+import com.myapp.member.model.MemberDAO;
+import com.myapp.member.model.MemberDTO;
+import com.myapp.member.model.MemberService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author EZEN
  */
-public class MemberFrame extends javax.swing.JFrame implements ActionListener{
+public class MemberFrame extends javax.swing.JFrame 
+            implements ActionListener, ItemListener{
     public static final int MEMBER_REGISTER=1;  //회원가입 flag
     public static final int MEMBER_EDIT=2; //회원정보수정 flag
     
     private LoginGUI loginGui;
     private int memberFlag; //회원가입인지 수정인지
     
+    private MemberDAO memberDao;
+    
     private String[] emailList
             ={"naver.com","gmail.com","nate.com","daum.net","직접입력"};
-            
+    
+    private boolean dupCheck;  //중복확인 여부
+
+    public boolean isDupCheck() {
+        return dupCheck;
+    }
+
+    public void setDupCheck(boolean dupCheck) {
+        this.dupCheck = dupCheck;
+    }
+    
+    
     /**
      * Creates new form MemberFrame
      */
     public MemberFrame() {
         initComponents();
         
+        memberDao = new MemberDAO();
         init();
         
         addEvent();        
@@ -290,7 +314,7 @@ public class MemberFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField tfHp3;
     private javax.swing.JTextField tfName;
     private javax.swing.JPasswordField tfPwd;
-    private javax.swing.JTextField tfUserid;
+    public javax.swing.JTextField tfUserid;
     private javax.swing.JTextField tfZipcode;
     // End of variables declaration//GEN-END:variables
 
@@ -304,13 +328,15 @@ public class MemberFrame extends javax.swing.JFrame implements ActionListener{
         DefaultComboBoxModel cbmodel2 = new DefaultComboBoxModel(emailList);
         cbEmail2.setModel(cbmodel2);
         
-        
+        tfEmail3.setEnabled(false);
     }
 
     private void addEvent() {
         btRegister.addActionListener(this);
         btCancel.addActionListener(this);
-        
+        cbEmail2.addItemListener(this);
+        btDup.addActionListener(this);
+        btZipcode.addActionListener(this);
     }
 
     private void memberProcess() {
@@ -326,7 +352,7 @@ public class MemberFrame extends javax.swing.JFrame implements ActionListener{
             editingComponent();
             
             //기존 회원정보 조회
-            
+            showMember();
         }
         
     }
@@ -340,23 +366,38 @@ public class MemberFrame extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btRegister){
-            if(memberFlag==MEMBER_REGISTER){
-                //회원가입 처리
-                register();
-            }else if(memberFlag==MEMBER_EDIT){
-                //회원수정 처리
-                edit();
+            try{
+                if(memberFlag==MEMBER_REGISTER){
+                    //회원가입 처리
+                    register();
+                }else if(memberFlag==MEMBER_EDIT){
+                    //회원수정 처리
+                    edit();
+                }
+            }catch(SQLException ex){
+                ex.printStackTrace();
             }
         }else if(e.getSource()==btCancel){
             
+        }else if(e.getSource()==btDup){
+            String userid=tfUserid.getText();
+            SubUserid f= new SubUserid(this, userid);
+            f.setVisible(true);
+        }else if(e.getSource()==btZipcode){
+            //우편번호 찾기
+            SubZipcode f = new SubZipcode(this);
+            f.setVisible(true);
         }
+        
     }
 
-    private void register() {
+    private void register() throws SQLException {
         //1
         String email2=(String) cbEmail2.getSelectedItem();
         System.out.println("email2="+email2+", index="
                 + cbEmail2.getSelectedIndex());
+        
+        String hp1=(String) cbHp1.getSelectedItem();
         
         String address1=tfAddress1.getText();
         String address2=tfAddress2.getText();
@@ -369,13 +410,192 @@ public class MemberFrame extends javax.swing.JFrame implements ActionListener{
         String userid=tfUserid.getText();
         String zipcode=tfZipcode.getText();
         
+        if(name==null || name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "이름을 입력하세요");
+            tfName.requestFocus();
+            return;
+        }else if(userid==null || userid.isEmpty()){
+            JOptionPane.showMessageDialog(this, "아이디를 입력하세요");
+            tfUserid.requestFocus();
+            return;            
+        }else if(pwd==null || pwd.isEmpty()){
+            JOptionPane.showMessageDialog(this, "비밀번호를 입력하세요");
+            tfPwd.requestFocus();
+            return;            
+        }else if(!dupCheck){
+            JOptionPane.showMessageDialog(this, "아이디 중복확인을 하세요");
+            btDup.requestFocus();
+            return;            
+        }
+        
+        String hp="";
+        if(hp2!=null && !hp2.isEmpty() && hp3!=null && !hp3.isEmpty()){
+            hp=hp1+"-"+hp2+"-"+hp3;
+        }
+        
+        String email="";
+        if(email1!=null && !email1.isEmpty()){
+            if(email2.equals("직접입력")){
+                if(email3!=null && !email3.isEmpty()){
+                    email=email1+"@"+email3;                
+                }
+            }else{
+                email=email1+"@"+email2;
+            }
+        }
+        
         //2
+        MemberDTO dto = new MemberDTO();
+        dto.setAddress1(address1);
+        dto.setAddress2(address2);
+        dto.setEmail(email);
+        dto.setHp(hp);
+        dto.setName(name);
+        dto.setPwd(pwd);
+        dto.setUserid(userid);
+        dto.setZipcode(zipcode);
+        
+        int cnt=memberDao.insertMember(dto);
         
         //3
+        if(cnt>0){
+            JOptionPane.showMessageDialog(this, "회원가입되었습니다.");
+            this.dispose();
+            loginGui.tfUserid.setText(tfUserid.getText());
+        }else{
+            JOptionPane.showMessageDialog(this, "회원가입 실패!");            
+        }
+    }
+
+    private void edit() throws SQLException {
+        //1
+        String email2=(String) cbEmail2.getSelectedItem();
+        System.out.println("email2="+email2+", index="
+                + cbEmail2.getSelectedIndex());
+        
+        String hp1=(String) cbHp1.getSelectedItem();
+        
+        String address1=tfAddress1.getText();
+        String address2=tfAddress2.getText();
+        String email1=tfEmail1.getText();
+        String email3=tfEmail3.getText();
+        String hp2=tfHp2.getText();
+        String hp3=tfHp3.getText();
+        String pwd=tfPwd.getText();
+        String zipcode=tfZipcode.getText();
+        
+        String hp="";
+        if(hp2!=null && !hp2.isEmpty() && hp3!=null && !hp3.isEmpty()){
+            hp=hp1+"-"+hp2+"-"+hp3;
+        }
+        
+        String email="";
+        if(email1!=null && !email1.isEmpty()){
+            if(email2.equals("직접입력")){
+                if(email3!=null && !email3.isEmpty()){
+                    email=email1+"@"+email3;                
+                }
+            }else{
+                email=email1+"@"+email2;
+            }
+        }
+        
+        //2
+        MemberDTO dto = new MemberDTO();
+        dto.setAddress1(address1);
+        dto.setAddress2(address2);
+        dto.setEmail(email);
+        dto.setHp(hp);
+        dto.setPwd(pwd);
+        dto.setUserid(MemberService.getUserid());
+        dto.setZipcode(zipcode);
+        
+        int cnt=memberDao.updateMember(dto);
+        
+        //3
+        if(cnt>0){
+            JOptionPane.showMessageDialog(this, "회원정보 수정되었습니다.");            
+        }else{
+            JOptionPane.showMessageDialog(this, "회원정보 수정 실패!");            
+        }
         
     }
 
-    private void edit() {
+    private void showMember() {
+        //1
+        String userid=MemberService.getUserid();
+        
+        try {
+            //2
+            MemberDTO dto=memberDao.selectMember(userid);
+            
+            //3
+            tfAddress1.setText(dto.getAddress1());
+            tfAddress2.setText(dto.getAddress2());
+            tfName.setText(dto.getName());
+            tfUserid.setText(dto.getUserid());
+            tfZipcode.setText(dto.getZipcode());
+            
+            String hp=dto.getHp();
+            String hp1="", hp2="",hp3="";
+            if(hp!=null && !hp.isEmpty()){
+                String[] arr=hp.split("-");
+                hp1=arr[0];
+                hp2=arr[1];
+                hp3=arr[2];                
+            }
+            cbHp1.setSelectedItem(hp1);
+            tfHp2.setText(hp2);
+            tfHp3.setText(hp3);
+            
+            String email=dto.getEmail(); //aa@naver.com, bb@ezen.com, ""
+            String email1="", email2="";
+            boolean existEmail=false;
+            if(email!=null && !email.isEmpty()){
+                String[] arr=email.split("@");
+                email1=arr[0]; //aa, bb
+                email2=arr[1]; //naver.com, ezen.com
+                
+                for(int i=0;i<emailList.length;i++){
+                    if(email2.equals(emailList[i])){
+                        existEmail=true; //이메일 목록에 존재
+                        break;
+                    }
+                }//for
+                
+                tfEmail1.setText(email1);
+                
+                if(existEmail){
+                    cbEmail2.setSelectedItem(email2);
+                }else{
+                    tfEmail3.setText(email2);
+                    cbEmail2.setSelectedItem("직접입력");
+                }
+            }//if            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if(e.getSource()==cbEmail2){
+            if(e.getStateChange()==ItemEvent.SELECTED){
+                System.out.println("e.getItem()="+e.getItem());
+                System.out.println("selItem="+cbEmail2.getSelectedItem());
+                System.out.println("selIndex="+cbEmail2.getSelectedIndex());
+                
+                if(e.getItem().equals("직접입력")){
+                    tfEmail3.setEnabled(true);                    
+                    tfEmail3.requestFocus();
+                }else{
+                    tfEmail3.setEnabled(false);   
+                    tfEmail3.setText("");                 
+                }
+            }
+        }
     }
 
    

@@ -21,10 +21,10 @@ public class ExecuteTest3 {
 			System.out.println("드라이버 로딩 성공!");
 
 			//2. Connection객체 생성
-			String url = "jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:XE";
-			String user ="testuser", pwd="testuser123";
-			con = DriverManager.getConnection(url, user, pwd);
-			System.out.println("db연결 성공");
+			String url="jdbc:oracle:thin:@DESKTOP-BFLLBCO:1521:xe";
+			String user="testuser", upwd="testuser123";
+			con=DriverManager.getConnection(url, user, upwd);
+			System.out.println("db연결 성공!");
 			
 			//3. PreparedStatement 객체 생성
 			String sql="select * from person"

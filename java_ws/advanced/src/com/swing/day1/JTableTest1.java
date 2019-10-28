@@ -14,20 +14,20 @@ public class JTableTest1 extends JFrame{
 			{"4","박길동","대치동"}
 	};
 	
-	
 	public JTableTest1() {
 		super("JTable 연습");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		table = new JTable(data, colNames);
-		scrollPane = new JScrollPane(table);
+		
+		//public JTable(Object[][] rowData, Object[] columnNames)
+		table=new JTable(data, colNames);
+		scrollPane=new JScrollPane(table);
 		
 		add(scrollPane);
 	}
 	
 	public static void main(String[] args) {
 		JTableTest1 f = new JTableTest1();
-		
-		f.setSize(400,300);
+		f.setSize(400, 300);
 		f.setVisible(true);
 	}
 

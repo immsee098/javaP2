@@ -306,7 +306,7 @@ public class MemberFrame extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField tfAddress1;
+    public javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfEmail1;
     private javax.swing.JTextField tfEmail3;
@@ -315,7 +315,7 @@ public class MemberFrame extends javax.swing.JFrame
     private javax.swing.JTextField tfName;
     private javax.swing.JPasswordField tfPwd;
     public javax.swing.JTextField tfUserid;
-    private javax.swing.JTextField tfZipcode;
+    public javax.swing.JTextField tfZipcode;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
@@ -329,6 +329,8 @@ public class MemberFrame extends javax.swing.JFrame
         cbEmail2.setModel(cbmodel2);
         
         tfEmail3.setEnabled(false);
+        tfZipcode.setEditable(false);
+        tfAddress1.setEditable(false);
     }
 
     private void addEvent() {

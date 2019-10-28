@@ -5,10 +5,19 @@
  */
 package com.myapp.member.view;
 
+import com.myapp.zipcode.model.ZipcodeDAO;
+import com.myapp.zipcode.model.ZipcodeDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +26,16 @@ import javax.swing.JOptionPane;
 public class SubZipcode extends javax.swing.JFrame implements ActionListener{
 
     private MemberFrame memberFrame;
+    private ZipcodeDAO zipcodeDao;
+    private String[] colNames={"우편번호","주소"};
+    private DefaultTableModel model=new DefaultTableModel();
+    
     /**
      * Creates new form SubZipcode
      */
     public SubZipcode() {
         initComponents();
+        zipcodeDao=new ZipcodeDAO();
         
         init();
         
@@ -158,27 +172,74 @@ public class SubZipcode extends javax.swing.JFrame implements ActionListener{
     private void addEvent() {
         btSearch.addActionListener(this);
         btClose.addActionListener(this);
+        
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getSource()==table1){
+                    settingData();
+                }
+            }            
+        });
     }
 
+    private void settingData(){
+        int row=table1.getSelectedRow();
+        String zipcode=(String) table1.getValueAt(row, 0);
+        String address=(String) table1.getValueAt(row, 1);
+        
+        memberFrame.tfZipcode.setText(zipcode);
+        memberFrame.tfAddress1.setText(address);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btSearch){
-            
+            search();
         }else if(e.getSource()==btClose){
-            
+            this.dispose();
         }
         
     }
-    
-    private void search(){
+
+    private void search() {
         //1
-        String dong = tfDong.getText();
-        if(dong==null||dong.isEmpty()){
-            JOptionPane.showMessageDialog(this, "지역명 입력");
+        String dong=tfDong.getText();
+        if(dong ==null || dong.isEmpty()){
+            JOptionPane.showMessageDialog(this, "지역명을 입력하세요");
             tfDong.requestFocus();
             return;
         }
         
-        //2
+        try {
+            //2
+            ArrayList<ZipcodeDTO> list=zipcodeDao.selectZipcode(dong);
+            
+            //3
+            String[][] data=new String[list.size()][colNames.length];
+            for(int i=0;i<list.size();i++){
+                ZipcodeDTO dto=list.get(i);
+                data[i][0]=dto.getZipcode();
+                
+                String bunji=dto.getStartbunji();
+                String endbunji=dto.getEndbunji();
+                if(endbunji!=null && !endbunji.isEmpty()){
+                    bunji += " ~ " + endbunji;
+                }
+                
+                String address=dto.getSido()+" "+ dto.getGugun()+" "
+                        + dto.getDong() +" " + bunji;
+                data[i][1]=address;
+            }
+            
+            model.setDataVector(data, colNames);
+            table1.setModel(model);
+            
+            table1.getColumnModel().getColumn(0).setPreferredWidth(20);
+            table1.getColumnModel().getColumn(1).setPreferredWidth(190);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }        
     }
 }

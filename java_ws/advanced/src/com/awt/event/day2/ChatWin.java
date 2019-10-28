@@ -29,7 +29,7 @@ public class ChatWin extends Frame{
 		public void actionPerformed(ActionEvent e) {
 			String str=tf.getText();
 			
-			ta.append("\r\n>>" + str); //엔터친 것처럼 다음줄로 가라
+			ta.append("\r\n>>" + str);
 			tf.setText("");
 		}
 		

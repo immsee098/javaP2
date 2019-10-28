@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/com/pd/model/PdDAO.java</name>
+			<type>1</type>
+			<location>C:/Users/EZEN/AppData/Local/Temp/BNZ.5db64bf557e61226/PdDAO.java</location>
+		</link>
+		<link>
+			<name>src/com/pd/model/PdDTO.java</name>
+			<type>1</type>
+			<location>C:/Users/EZEN/AppData/Local/Temp/BNZ.5db64c0c57e6697e/PdDTO.java</location>
+		</link>
+	</linkedResources>
 </projectDescription>

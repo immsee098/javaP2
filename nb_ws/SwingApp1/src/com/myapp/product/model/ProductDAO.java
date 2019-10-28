@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.Vector;
 
 /**
@@ -19,6 +22,47 @@ import java.util.Vector;
  * @author EZEN
  */
 public class ProductDAO {
+
+    public static ArrayList<ProductDTO> selectTest(String regdate1, String regdate2) throws SQLException, ParseException {
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        ArrayList<ProductDTO> list=new ArrayList<>();
+        
+        try{
+            //1
+            //2
+            con=DBUtil.getConnection();
+            
+            //3
+            String sql="select * from product where regdate>=? and regdate < to_date(?) + 1 order by no desc";
+            ps=con.prepareStatement(sql);            
+
+            ps.setString(1, regdate1);
+            ps.setString(2, regdate2);
+
+            //4
+            rs=ps.executeQuery();
+            while(rs.next()){
+                int no = rs.getInt("no");
+                String pdName=rs.getString("productName");
+                String desc=rs.getString("description");
+                int price = rs.getInt("price");
+                Timestamp regdate=rs.getTimestamp("regdate");
+                
+                ProductDTO dto = new ProductDTO(no, pdName, price, desc, regdate);
+                list.add(dto);
+            }
+            
+            System.out.println("날자 조회 결과 list.size="+list.size());
+            System.out.println("날자 조회 결과 list="+list);
+            
+            return list;
+        }finally{
+            //5
+            DBUtil.dbClose(rs, ps, con);
+        }    
+    }
     
     public int insertProduct(ProductDTO dto) throws SQLException{
         Connection con=null;

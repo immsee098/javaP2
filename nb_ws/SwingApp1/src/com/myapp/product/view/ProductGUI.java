@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -263,6 +264,11 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
         lb.setText("~");
 
         btSearch.setText("검색");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -366,6 +372,19 @@ public class ProductGUI extends javax.swing.JFrame implements  ActionListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        try {
+            ArrayList<ProductDTO> list
+                    =ProductDAO.selectTest(tfPrice1.getText(), tfPrice2.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ProductGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btSearchActionPerformed
     
     /**
      * @param args the command line arguments

@@ -12,8 +12,14 @@ import java.beans.EventHandler;
 public class CardLayoutTest {
 
 	public static void main(String[] args) {
-	
-		Frame f = new Frame("CardLayout");
+		/*
+		 CardLayout - 여러 화면을 슬라이드처럼 바꿔가며 보여줄 수 있음
+			프레임에 카드를 엎어 놓은 듯이 여러 개의 Panel 등과 같은 객체를 
+			포개 놓은 듯한 배치
+			- 여러 개의 컨테이너를 CardLayout에 추가한 다음, 
+			순서대로 또는 임의의 컨테이너를 선택해서 보여줄 수 있음
+		 */
+		Frame f = new Frame("CardLayout연습");
 		
 		CardLayout cardLayout=new CardLayout(10,10);
 		f.setLayout(cardLayout);
@@ -46,12 +52,13 @@ public class CardLayoutTest {
 		f.setSize(400, 300);
 		f.setVisible(true);
 		
-	
+		//지역 클래스
 		class Handler extends MouseAdapter{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getModifiers()==e.BUTTON3_MASK) {
 					cardLayout.next(f);
+					//public void next(Container parent)
 				}else {
 					cardLayout.previous(f);
 				}
@@ -66,3 +73,6 @@ public class CardLayoutTest {
 	}//main	
 	
 }//class
+
+
+

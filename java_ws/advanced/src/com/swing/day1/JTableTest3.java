@@ -11,8 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import pd.model.PdDAO;
-import pd.model.PdDTO;
+import com.pd.model.PdDAO;
+import com.pd.model.PdDTO;
 
 public class JTableTest3 extends JFrame implements ActionListener{
 	JTable table;
@@ -62,32 +62,34 @@ public class JTableTest3 extends JFrame implements ActionListener{
 		if(e.getSource()==bt) {
 			showAll();
 		}
-		
 	}
 
 	private void showAll() {
+		//전체 조회
+		String[] colNames= {"번호","상품명","가격"};
 		
-		String[] colNames = {"번호", "상품명", "가격"};
-		PdDAO dao=new PdDAO();
-		
+		PdDAO dao = new PdDAO();
 		try {
-			ArrayList<PdDTO> alist = dao.selectAll();
+			ArrayList<PdDTO> alist=dao.selectAll();
 			
-			String[][] data  = new String[alist.size()][3];
-			for(int i=0; i<alist.size();i++) {
-				PdDTO dto = alist.get(i);
+			String[][] data=new String[alist.size()][3];
+			
+			for(int i=0;i<alist.size();i++) {
+				PdDTO dto=alist.get(i);
 				
-				data[i][0] = dto.getNo()+"";
-				data[i][1] = dto.getPdName();
-				data[i][2] = dto.getPrice()+"";
+				data[i][0]=dto.getNo()+"";
+				data[i][1]=dto.getPdName();
+				data[i][2]=dto.getPrice()+"";				
 			}
 			
 			model.setDataVector(data, colNames);
 			table.setModel(model);
-		} catch(SQLException e) {
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
+	
+	
 
 }

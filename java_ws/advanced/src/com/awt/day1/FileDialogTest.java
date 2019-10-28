@@ -6,27 +6,27 @@ import java.awt.Frame;
 public class FileDialogTest {
 
 	public static void main(String[] args) {
-		/*
-		  FileDialog - íŒŒì¼ì„ ì—´ê±°ë‚˜ ì €ì¥í•  ë•Œ ì‚¬ìš©ë˜ëŠ”
-			Dialog
-		ï® ìƒì„±ì
-		ï® FileDialog(Frame parent, String title, int mode)
-		ï® mode : FileDialog.LOAD, FileDialog.SAVE ì¤‘ í•˜ë‚˜
-		ï® FileDialog(Frame parent, String title)
-		ï® modeë¥¼ ìƒëµí•˜ë©´ ë””í´íŠ¸ë¡œ LOADê°€ ì‚¬ìš©ë¨
-		 */
+		/*FileDialog - ÆÄÀÏÀ» ¿­°Å³ª ÀúÀåÇÒ ¶§ »ç¿ëµÇ´Â Dialog
+		 * 
+		»ı¼ºÀÚ
+		FileDialog(Frame parent, String title, int mode)
+		mode : FileDialog.LOAD, FileDialog.SAVE Áß ÇÏ³ª
 		
-		Frame f = new Frame("Filedialog ì—°ìŠµ");
-		
-		FileDialog fd = new FileDialog(f, "íŒŒì¼ì—´ê¸°", FileDialog.LOAD);
-		
-		f.setSize(400,300);
-		f.setVisible(true);
-		 fd.setDirectory("d:\\lecture");
-		 fd.setVisible(true);
-		 
-		 System.out.println(fd.getDirectory()+fd.getFiles());
+		FileDialog(Frame parent, String title)
+		mode¸¦ »ı·«ÇÏ¸é µğÆúÆ®·Î LOAD°¡ »ç¿ëµÊ*/
 
+		Frame f = new Frame("FileDialog¿¬½À");
+		
+		FileDialog fd = new FileDialog(f, "ÆÄÀÏ ¿­±â", FileDialog.SAVE);
+		
+		f.setSize(400, 300);
+		f.setVisible(true);
+		
+		fd.setDirectory("d:\\lecture");
+		fd.setVisible(true);
+		
+		System.out.println(fd.getDirectory()+fd.getFile());
+		//Ãë¼Ò¸¦ ´©¸£¸é nullÀ» ¹İÈ¯
 	}
 
 }

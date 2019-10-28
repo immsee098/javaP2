@@ -7,6 +7,9 @@ import java.awt.GridLayout;
 public class GridLayoutTest {
 
 	public static void main(String[] args) {
+		//GridLayout - 컨테이너를 테이블처럼 행과 열로 나누어 컴포넌트를 배치
+		//여기에 추가되는 컴포넌트들은 모두 같은 크기로 나누어짐 
+
 		Frame f = new Frame("GridLayout연습");
 		
 		f.setLayout(new GridLayout(3, 2)); //3행 2열
@@ -18,9 +21,9 @@ public class GridLayoutTest {
 		f.add(new Button("5"));
 		f.add(new Button("6"));
 		
-		f.setSize(400,300);
+		f.setSize(400, 300);
 		f.setVisible(true);
-
+		
 	}
 
 }

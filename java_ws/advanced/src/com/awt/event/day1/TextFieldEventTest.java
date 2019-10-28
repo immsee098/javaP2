@@ -30,6 +30,7 @@ public class TextFieldEventTest extends Frame{
 		this.add(tfId);
 		this.add(lbPwd);
 		this.add(tfPwd);
+		this.add(btOk);
 		
 		this.setSize(500, 200);
 		this.setVisible(true);
@@ -58,7 +59,7 @@ public class TextFieldEventTest extends Frame{
 			}else if(!pwd.equals("1234")) {
 				System.out.println("비밀번호가 잘못되었습니다.");
 				tfPwd.requestFocus();
-				tfPwd.selectAll();
+				//tfPwd.selectAll();
 			}else {
 				System.out.println("로그인 성공!");
 			}

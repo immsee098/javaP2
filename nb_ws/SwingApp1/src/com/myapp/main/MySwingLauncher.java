@@ -43,7 +43,6 @@ public class MySwingLauncher extends JApplet {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
                 } catch (Exception e) {
                 }
-                
                 //ProductGUI f = new ProductGUI();
                 LoginGUI f = new LoginGUI();
                 f.show();

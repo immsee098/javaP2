@@ -52,11 +52,10 @@ public class ItemEventTest extends Frame implements ItemListener{
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		Checkbox ck = (Checkbox) e.getSource();
-		String str = ck.getLabel();
+		Checkbox ck=(Checkbox) e.getSource();
+		String str=ck.getLabel();
 		
-		tf.setText("선택된 항목:" +str);
-		
+		tf.setText("선택된 항목 : "+str);
 	}
 
 }

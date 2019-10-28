@@ -11,6 +11,7 @@ import java.awt.TextArea;
 public class InsetTest extends Frame{
 	Button bt1, bt2;
 	TextArea ta;
+	MyPanel p;
 	
 	public InsetTest(){
 		super("Inset 연습");
@@ -19,8 +20,9 @@ public class InsetTest extends Frame{
 		bt2=new Button("취소");
 		
 		ta=new TextArea();
-		MyPanel p = new MyPanel();
-		p.setLayout(new GridLayout(1, 2,4,4));
+		p=new MyPanel();
+		p.setLayout(new GridLayout(1,2, 4,4));
+		
 		p.setBackground(Color.green);
 		
 		p.add(bt1);
@@ -30,25 +32,34 @@ public class InsetTest extends Frame{
 		this.add(p, "South");
 	}
 	
-	//컨테이너의 바깥여백을 주기 위해서는 클래스의 getInsets()메소드 오버라이딩
+	//컨테이너의 바깥여백을 주기 위해서는 Container 클래스의 getInsets() 
+	//메소드를 오버라이딩
+	@Override
 	public Insets getInsets() {
 		Insets insets = new Insets(100, 20, 30, 40);
+		//public Insets(int top, int left, int bottom, int right)
 		
 		return insets;
 	}
+	
 	
 	public static void main(String[] args) {
 		InsetTest f = new InsetTest();
 		f.setSize(400, 500);
 		f.setVisible(true);
 	}
-
 }
-
 
 class MyPanel extends Panel{
-	
+
+	@Override
 	public Insets getInsets() {
-		return new Insets(10,10,10,10);
+		return new Insets(10, 10, 10, 10);
 	}
+	
 }
+
+
+
+
+

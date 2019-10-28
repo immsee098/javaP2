@@ -57,7 +57,7 @@ public class SwingTest extends JFrame implements ActionListener{
 		
 		bt1.setBorder(new LineBorder(Color.green, 5));
 		bt2.setBorder(new TitledBorder("테두리에 제목주기"));
-		bt3.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		bt3.setBorder(new BevelBorder(BevelBorder.RAISED));
 		bt4.setBorder(new EtchedBorder());
 		
 		setLayout(new GridLayout(1, 0));
@@ -88,6 +88,9 @@ public class SwingTest extends JFrame implements ActionListener{
 		}else if(e.getSource()==bt4) {
 			int result=JOptionPane.showConfirmDialog(this, "종료하시겠습니까?", 
 					"종료", JOptionPane.YES_NO_OPTION);
+			//public static int showConfirmDialog(Component parentComponent,
+            //Object message, String title, int optionType)
+
 			System.out.println("result="+result);
 			//예=>0, 아니오=>1
 			

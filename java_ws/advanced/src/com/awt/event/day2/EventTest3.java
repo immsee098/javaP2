@@ -6,7 +6,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EventTest3 extends Frame{
+public class EventTest3 extends Frame implements ActionListener{
 	Button bt;
 	
 	public EventTest3(){
@@ -18,12 +18,7 @@ public class EventTest3 extends Frame{
 	}
 	
 	private void addEvent() {
-		bt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);			
-			}	
-		});
+		bt.addActionListener(this);
 	}
 	
 	
@@ -38,6 +33,11 @@ public class EventTest3 extends Frame{
 		EventTest3 f = new EventTest3();
 		f.setSize(300,300);
 		f.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);		
 	}
 
 }

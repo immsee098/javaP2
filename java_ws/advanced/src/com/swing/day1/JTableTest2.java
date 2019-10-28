@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class JTableTest2 extends JFrame {
+public class JTableTest2 extends JFrame{
 	JTable table;
 	JScrollPane scrollPane;
 	String[] colNames= {"번호","이름","주소"};
@@ -15,26 +15,29 @@ public class JTableTest2 extends JFrame {
 			{"4","박길동","대치동"}
 	};
 	
-	DefaultTableModel model = new DefaultTableModel();
+	DefaultTableModel model=new DefaultTableModel();
 	
 	public JTableTest2() {
-		super("JTable연습2");
+		super("JTable 연습2");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		table = new JTable();
+		table=new JTable();
 		model.setDataVector(data, colNames);
+		//public void setDataVector(Object[][] dataVector,
+        //Object[] columnIdentifiers)
 		
-		scrollPane = new JScrollPane(table);
+		scrollPane=new JScrollPane(table);
 		table.setModel(model);
 		
 		add(scrollPane);
 	}
-
+	
 	public static void main(String[] args) {
 		JTableTest2 f = new JTableTest2();
 		f.setSize(300,300);
 		f.setVisible(true);
-
+		
 	}
 
 }

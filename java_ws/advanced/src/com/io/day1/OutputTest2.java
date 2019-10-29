@@ -15,7 +15,7 @@ public class OutputTest2 {
 			fis = new FileInputStream("text/poetry4.txt");
 			fos = new FileOutputStream("text/poetry4.bak");
 			
-			int cnt = 0, count = 0, total=0;
+			int cnt = 0, count = 0, total=0, i=0;
 			byte[] buf = new byte[1024];
 			
 			while((cnt=fis.read())!=-1) {
@@ -31,11 +31,11 @@ public class OutputTest2 {
 				 - byte배열에서 시작위치 off에서 len개 만큼 OutputStream에 출력
 				*/
 				 
-				
+				//System.out.println(buf);
 				System.out.write(buf,0,cnt);
 				count++;
 				total+=cnt;
-				System.out.println("\n=====================cnt:"+cnt);
+				//System.out.println("\n=====================cnt:"+cnt);
 			}
 			System.out.println("반복횟수:"+count);
 			System.out.println("total="+total);

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>tableTag.html</title>
+</head>
+<body>
+<h1>3행 2열 테이블</h1>
+<table border="1" style="width:300px">
+	<tr>
+		<th>제목1</th>
+		<th>제목2</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+</table>
+
+<h1>3행 4열</h1>
+<table border="1" style="width:400px">
+	<tr>
+		<th colspan="3">제목1</th>		
+		<th rowspan="3">제목4</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td rowspan="2">2</td>
+		<td>3</td>		
+	</tr>
+	<tr>
+		<td>5</td>		
+		<td>7</td>
+	</tr>	
+</table>
+
+<h1>4행 3열</h1>
+<table  border='1' style="width:400px">
+	<tr>
+		<td colspan="2">1</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>6</td>
+		<td rowspan="2">7</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<td>9</td>
+		<td>10</td>
+	</tr>
+</table>
+
+<h2>caption, col, colgroup 태그</h2>
+<table border="1" style="width:400px" summary="표의 요약정보" >
+	<caption>표의 제목</caption>
+	<col style="background: blue">
+	<colgroup span="2" style="background: skyblue"></colgroup>
+	<col>
+	<thead>
+		<tr>
+			<th>제목1</th>
+			<th>제목2</th>
+			<th>제목3</th>
+			<th>제목4</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="4">요약 부분</td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+		</tr>	
+	</tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

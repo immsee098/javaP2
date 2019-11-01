@@ -13,7 +13,7 @@ public class UDPClient {
 
 	public static void main(String[] args) {
 		try {
-			InetAddress inetAddr=InetAddress.getByName("172.16.146.1");
+			InetAddress inetAddr=InetAddress.getByName("172.16.146.29");
 			
 			Scanner sc = new Scanner(System.in);
 			System.out.println("보낼 데이터 입력!");

@@ -1,0 +1,12 @@
+@charset "EUC-KR";
+/* css/style1.css */
+h1{	
+	background: pink;
+}
+p{
+	background: gray;
+}
+div{
+	background-color:green;
+	color: red; 	
+}

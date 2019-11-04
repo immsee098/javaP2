@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	/*id가 header인 태그의 후손인 h1과 h2를 선택*/
+	/* #header h1, h2{ 
+		color:red;
+	} */
+	
+	/*id가 header인 태그의 후손인 h1과 
+				id가 header인 태그의 후손인 h2를 선택*/
+	#header h1, #header h2{
+		color:orange;
+	} 
+	
+	
+</style>
+</head>
+<body>
+	<div id="header">
+        <h1 class="title">Lorem ipsum</h1>
+        <div id="nav">
+            <h1>Navigation</h1>
+        </div>
+    </div>
+    <div id="section">
+        <h2 class="title">Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+</body>
+</html>

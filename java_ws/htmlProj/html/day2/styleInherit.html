@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>styleInherit.html</title>
+<style type="text/css">
+/*
+- 스타일시트에서는 부모 요소에 있는 속성들이 자식 요소로 전달되는데, 이것을 상속이라고 함
+- 스타일의 모든 속성이 부모 요소에서 자식 요소로 상속되는 것은 아님
+   배경색이나 배경 이미지는 상속되지 않음
+*/
+	body{
+		color:gray;
+		background-color: skyblue;
+	} 
+	ul{
+		color: blue;
+		list-style-type: square;	
+	}
+	
+	/* 스타일은 단계적으로 적용됨
+	- 하나의 요소에 여러 스타일 규칙이 정의되어 있다면 가장 나중에 정의된 스타일을 적용함
+	 */
+	.accent{
+		color: green;
+	} 
+	.accent{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h1>h1태그</h1>
+	<p>p태그</p>
+	<p class="accent">accent클래스가 적용됨</p>
+	<h2>목록</h2>
+	<ul>
+		<li>1.예약방법</li>
+		<ul>
+			<li>전화</li>
+			<li>문자</li>
+		</ul>
+		<li>2.요금</li>
+		<ol>
+			<li>1인 : 40,000원</li>
+			<li>2인 : 60,000원</li>
+			<li>3인 : 80,000원</li>
+		</ol>
+	</ul>
+	
+</body>
+</html>

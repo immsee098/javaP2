@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>cssTest1.html</title>
+<style type="text/css">
+	/* 전체 선택자 */
+	*{
+		color: blue;
+	}
+	
+	/* 태그 선택자 */
+	h2{
+		color: red;
+	}
+	div{
+		border: 1px solid green;
+	}
+	
+	/* 여러 개의 선택자를 한꺼번에 선택해서 스타일 속성을 적용할 때는 쉼표를 사용 */
+	h1, p, h2{
+		background: yellow;
+	}
+	#header{  /*id가 header인 태그 선택*/
+		border: 3px solid red;
+	}
+	.sel{  /*class가 sel인 태그 선택*/
+		color: green;
+		font-weight: bold;
+	}
+	.item{
+		border: 2px dotted blue;
+	}
+	
+	/* h3 태그 중 class 속성으로 sel를 가지는 태그 선택*/
+	h3.sel{
+		color: orange;
+		background: skyblue;
+	}
+</style>
+</head>
+<body>
+<!--  여러 개의 클래스 선택자 사용
+	  - class 속성은 공백으로 구분해서 여러 클래스를 사용할 수 있음  -->
+	<h1 class="sel item">h1태그</h1>
+	<p>p태그</p>
+	<h2>h2태그</h2>
+	<div>div태그</div>
+	
+	<p id="header">p태그2</p>
+	<ul>
+		<li class="sel">java</li>
+		<li>jsp</li>
+		<li>spring</li>
+		<li class="sel">mybatis</li>
+	</ul>
+	
+	<h3 class="sel">h3태그</h3>
+</body>
+</html>

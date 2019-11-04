@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>cssTest3.html</title>
+    <style>
+        /* img 태그 중에서 src 속성이 png로 끝나는 태그의
+           border 속성에 3px solid red를 적용*/
+        img[src$=png] { border: 3px solid red; }
+
+        /* img 태그 중에서 src 속성이 jpg로 끝나는 태그의
+           border 속성에 3px solid green를 적용*/
+        img[src$=jpg] { border: 3px solid green; }
+
+        /* img 태그 중에서 src 속성이 gif로 끝나는 태그의
+           border 속성에 3px solid blue를 적용*/
+        img[src$=gif] { border: 3px solid blue; }
+    </style>
+</head>
+<body>
+    <img src="../image/3.png" width="130"  />
+    <img src="../image/home2.jpg" width="130"  />
+    <img src="../image/bt.gif" width="130"  />
+</body>
+
+</html>

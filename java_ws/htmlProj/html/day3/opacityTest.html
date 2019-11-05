@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+/* 	opacity 속성
+	- 태그의 투명도를 조절하는 스타일 속성
+	
+	0.0 ~ 1.0 사이의 숫자를 입력할 수 있음
+	0.0 - 투명한 상태
+	1.0 - 불투명한 상태
+ */	
+	div:first-child #box{
+		background: black;
+		color: red;
+		opacity: 0.3;
+	} 
+	div:last-child #box{
+		background: rgba(0,0,0,0.3);
+		color: red;
+	} 
+	
+</style>
+</head>
+<body>
+<div>
+	<span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+<div>
+	<span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>displayTest.html</title>
+<style type="text/css">
+/* 	display:none - 실제공간을 차지하지 않음
+	visibility:hidden - 실제로는 공간을 차지하고 있음
+ */
+	.div6 #box{
+		visibility: hidden;
+	}
+	
+	.div2 #box{
+		display: none;
+	}	
+	
+	.div3 #box{
+		display: inline;
+		width: 300px;
+		height: 50px;
+		margin: 10px;
+		background: red;
+	}
+	.div4 #box{
+		display: block;
+		width: 300px;
+		height: 50px;
+		margin: 10px;
+		background: green;
+	}
+	.div5 #box{
+		display: inline-block;
+		width: 300px;
+		height: 50px;
+		margin: 10px;
+		background: blue;
+	}
+	
+	/*  
+	1) inline 을 적용한 코드는 width, height 속성이 지정되지 않음
+	또한 margin 속성이 div 태그의 좌우로만 지정됨
+ 	2) inline-block 을 적용하면 width, height 속성을 지정할 수 있고
+ 	margin 속성이 상하좌우로 적용됨
+ 	(block형식의 특성이 적용됨)
+	*/
+</style>
+</head>
+<body>
+<h1>visibility</h1>
+<div class="div6">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+
+<hr>
+<h1>display</h1>
+<div class="div1">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+<hr>
+<div class="div2">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+<hr>
+<div class="div3">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+<hr>
+<div class="div4">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+<hr>
+<div class="div5">
+    <span>Dummy</span>
+    <div id="box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </div>
+    <span>Dummy</span>
+</div>
+
+</body>
+</html>

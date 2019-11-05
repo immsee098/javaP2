@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	/* li 태그의 첫 번째 자식에 위치하는 a 태그를 선택했으니 모두 선택됨 */	
+	ul > li > a:first-child {
+		color: red;
+	}
+	
+	ol > li:first-child  > a{ /* 첫 번째 li 태그의 a 태그를 선택하려면 */	
+		color: orange;
+	}
+</style>
+</head>
+<body>
+    <ul>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+    </ul>
+    <ol>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+        <li><a href="#">Condrasa</a></li>
+    </ol>
+
+</body>
+</html>

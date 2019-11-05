@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>cssTest.html</title>
+<style type="text/css">
+	/* 자식 선택자 
+		선택자A > 선택자B
+	*/
+	#header > h1{  /* id가 header인 태그의 자식인 h1 선택 */
+		color: red;
+	}
+	
+	#section > h1{  /* id가 section인 태그의 자식인 h1 선택 */
+		color: orange;
+	}
+	
+	/* table > tr > th{  th가 선택되지 않음
+		color: blue;
+	} */
+	
+	table > tbody > tr > th{  /* table 태그 다음에 tbody가 자동으로 들어가므로*/
+		color: blue;
+	}
+	
+	/* table tr th{ 
+		color: green;
+	} */
+</style>
+</head>
+<body>
+    <div id="header">
+        <h1 class="title">Lorem ipsum</h1>
+        <div id="nav">
+            <h1>Navigation</h1>
+        </div>
+    </div>
+    <div id="section">
+        <h1 class="title">Lorem ipsum</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur </p>
+    </div>
+
+	<h1>table태그</h1>
+	<table border="1">
+	
+        <tr>
+            <th>Name</th>
+            <th>Region</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>서울특별시 강남구 역삼동</td>
+        </tr>
+    </table>
+	
+</body>
+</html>

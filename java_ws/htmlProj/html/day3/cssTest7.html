@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>cssTest7.html</title>
+<style type="text/css">
+	h2:first-child {
+		border: 2px solid red;
+	}
+	/* 같은 부모를 갖는 자식 중 첫번째 자식이 h2여야만 
+           선택됨 => 이 예제에서는 선택안됨, h1이 첫째 자식이므로 */
+	/*  FIRST-CHILD 는 주로 같은 태그들이 자식일 때 선택하는 용도로 사용됨	
+	예) 모두 li 중에 첫번째 자식을 찾거나, 모두 h1 중에 찾거나 하는 경우*/
+	
+	
+	h2:first-of-type { /*h2 중에 첫번째 태그 선택됨*/	
+		color: orange;
+	}
+	
+</style>
+
+
+</head>
+<body>
+    <h1>Header - 1</h1>
+    <h2>Header - 2</h2>
+    <h3>Header - 3</h3>
+    <h3>Header - 3</h3>
+    <h2>Header - 2</h2>
+    <h1>Header - 1</h1>
+
+</body>
+</html>

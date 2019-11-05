@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>borderTest2.html</title>
+<style type="text/css">
+	.box1{
+		width:500px;
+		height:200px;
+		border: 1px solid gray;
+		border-collapse:collapse;
+		/* border-collapse
+ 			- collapse : 셀의 테두리선을 겹쳐서 표시 
+ 			- separate: 셀의 테두리선 분리(기본값) */		 
+	}
+	.box1 th{
+		border:1px solid red;
+		background-color: yellow;
+		vertical-align: top;
+	}
+	.box1 td{
+		border: 1px solid blue;
+		vertical-align: bottom; /* middle; */
+		text-align: right;
+	}
+	
+	.box2{
+		width: 500px;
+		height: 200px;
+		border-bottom: 5px solid blue;
+		border-top: 5px solid blue;
+		border-collapse:collapse; 
+	}
+	.box2 th{
+		border-bottom: 3px solid red;		
+	}
+	.box2 td{
+		border-bottom: 3px solid green;		
+	}
+	
+</style>
+</head>
+<body>
+<h1>3행 3열</h1>
+<table class="box1">
+	<tr>
+		<th>제목1</th>
+		<th>제목2</th>
+		<th>제목3</th>
+	</tr>
+	<tr>
+		<td>내용1</td>
+		<td>내용2</td>
+		<td>내용3</td>
+	</tr>
+	<tr>
+		<td>내용4</td>
+		<td>내용5</td>
+		<td>내용6</td>
+	</tr>	
+</table>
+<h1>3행 3열</h1>
+<table class="box2">
+	<tr>
+		<th>제목1</th>
+		<th>제목2</th>
+		<th>제목3</th>
+	</tr>
+	<tr>
+		<td>내용1</td>
+		<td>내용2</td>
+		<td>내용3</td>
+	</tr>
+	<tr>
+		<td>내용4</td>
+		<td>내용5</td>
+		<td>내용6</td>
+	</tr>	
+</table>
+</body>
+</html>

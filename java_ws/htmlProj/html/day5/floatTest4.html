@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	/* float 해제
+	   clear - float로 생긴 흐름을 초기화시키는 역할 */
+	div{
+		width: 160px;
+		height: 70px;
+	}
+	.box1{
+		background: red;
+		float: left;
+	}
+	.box2{
+		background: blue;
+		float: left;
+	}
+	.box3{
+		background: green;
+		/* clear: left; */
+		clear: both;
+	}
+	.box4{
+		background: yellow;
+	}
+</style>
+</head>
+<body>
+<div class="box1">
+	box1
+</div>
+<div class="box2">
+	box2
+</div>
+<div class="box3">
+	box3
+</div>
+<div class="box4">
+	box4
+</div>
+
+</body>
+</html>

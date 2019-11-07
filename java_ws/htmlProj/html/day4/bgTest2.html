@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>bgTest2.html</title>
+<style type="text/css">
+	div{
+		width: 600px;
+		height: 300px;
+		border: 1px solid gray;
+	}
+	div:first-of-type {
+		background-image: url("../image/bt.gif");
+		/* background-repeat: repeat-x; */
+		/* background-repeat: repeat-y; */
+		background-repeat: no-repeat;			
+	}
+	div:nth-of-type(2) {
+		background-color: yellow;
+	}
+	div:nth-of-type(3) {
+		background: orange;
+	}
+	
+</style>
+</head>
+<body>
+	<h1>background-image</h1>
+	<div>div태그1</div>
+	<hr>
+	<div>div태그2</div>
+	<hr>
+	<div>div태그3</div>
+	<hr>
+	<div>div태그4</div>
+	
+</body>
+</html>

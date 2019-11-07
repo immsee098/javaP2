@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>positionTest.html</title>
+<style type="text/css">
+	.box{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+	}
+	.box:nth-child(1) {
+		background: red;
+		top: 10px;
+		left:10px;
+		z-index: 100; /*값이 크면 위로 올라옴*/
+	}
+	.box:nth-child(2) {
+		background: green;
+		top: 50px;
+		left:50px;
+		z-index: 10;
+	}
+	.box:nth-child(3) {
+		background: blue;
+		top: 90px;
+		left:90px;
+		z-index: 1
+	}
+	
+	body > div{
+		position: relative;
+		border: 1px solid gray;
+		height: 100px;
+		width: 400px;
+		/* overflow: hidden; */
+		overflow: auto;
+		
+		/* overflow 속성
+			- 내부의 요소가 부모의 범위를 벗어날 때 어떻게 처리할지 지정하는 속성 
+			
+			visible - 기본값, 내용이 영역을 바깥으로 벗어나 보이게 됨
+					=> 다른 내용과 겹칠 수 있음
+			hidden - 초과된 내용을 숨김
+			scroll - 영역에 스크롤을 부여하여 내용을 스크롤하게 함
+					(스크롤이 무조건 나타남)
+			auto - 초과되는 내용이 있을 때만 스크롤을 보여줌	*/
+	}
+</style>
+</head>
+<body>
+    <h1>Lorem ipsum dolor amet</h1>
+    <div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <h1>Lorem ipsum dolor amet</h1>
+
+</body>
+</html>

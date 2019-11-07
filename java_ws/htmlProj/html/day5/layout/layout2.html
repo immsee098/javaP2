@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>layout2.html</title>
+<link href="../../css/reset.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	body{
+		background-image: url("../../image/background.png");
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	#wrapper{
+		width: 90%;
+		margin: 0 auto;
+		border: 1px solid #ccc;
+		background: white;
+	}
+	#topbanner{
+		height: 195px;
+		background-image: url("../../image/topbg3.png");
+		background-repeat: no-repeat;
+		background-color: #e8d8a8;
+	}
+	nav{
+		background: #C51A3A;
+		height: 50px;
+		overflow: hidden;
+	}
+	nav ul{
+		float: left;
+	}
+	nav ul li{
+		float: left;
+		margin: 0 15px; 		
+	}
+	nav ul li a, nav ul li a:visited{
+		color: white;
+		font-weight: bold;
+		text-shadow: 0 0.5px 0.5px red;
+		padding: 15px 10px;
+	}
+	nav li a:hover{
+		color:red;
+		background-color: white;
+		text-shadow: 0 0.5px 1px white;
+		border-radius: 10px 10px 0 0;
+	}
+	#content{
+		/* overflow: hidden; */
+	}
+	
+	#shop{
+		width: 40%;
+		float: left;
+		margin: 1.5%;
+	}
+	#intro{
+		width: 50%;
+		float: left;
+		margin-top: 25px;
+		padding: 10px;
+	}
+	#customer{
+		clear: both;
+		width: 23%;
+		float: left;
+		margin-left: 1.7%;
+	}
+	#main_section{
+		width: 75%;
+		float: left;
+	}
+	footer{
+		clear: both;
+		height: 50px;
+		border-top: 1px solid #ccc;
+	}
+	.sub{
+		width: 30.6%;
+		float: left;
+		border: 1px dotted #2a2399;
+		border-radius: 10px;		
+		height: 200px;
+		margin-bottom: 15px;
+		margin-left: 1.9%;
+	}
+	
+	#shop img{
+		width: 100%;
+	}
+	
+	#intro > h1{
+		font-weight: bold;
+		font-size: 1.2em;
+		margin: 15px 0;
+	}
+	
+	#intro > p{
+		font-weight: bold;
+		font-size: 1.2em;
+		font-family: 바탕;
+		color: #F30;
+	}
+	
+	#customer h1{
+		background: #E66C6D;
+		color: white;
+		font-size: 1.2em;
+		padding: 10px;		
+	}
+	
+	#customer ul{
+		list-style: square;
+	}
+	#customer ul li{
+		line-height: 25px;
+		font-size: 0.9em;
+	}
+	
+	#choice1{
+		background-image: url("../../image/bg1.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	#choice2{
+		background-image: url("../../image/bg2.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	#choice3{
+		background-image: url("../../image/bg3.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	
+	.sub hgroup{
+		background-color: rgba(255,255,255,0.6);
+		margin-top: 120px;
+		text-align: right;
+		width: 95%;
+	}
+	
+	.sub hgroup h1{
+		color: #936;
+		font-weight: 600;
+		font-family: 바탕;
+		font-size: 1.5em;
+	}
+	.sub hgroup h2{
+		color: #06F;
+		font-weight: 600;
+		font-family: 바탕;
+		font-size: 1em;
+	}
+	
+	footer ul li a{
+		float: left;
+		font-size: 0.8em;
+		color: #222;
+		padding: 15px 5px;
+	}
+	
+	footer p{
+		float: right;
+		color: #222;
+		font-size: 0.8em;
+		margin: 17px;
+	}
+	footer ul{
+		margin: 0;
+	}
+</style>
+</head>
+<body>
+<div id="wrapper">
+	<!-- 사이트 로고 -->
+	<header id="topbanner"></header>
+	<nav>
+		<!-- 사이트 메인 메뉴 -->
+		<ul>
+			<li><a href="#">꽃다발</a></li>
+			<li><a href="#">꽃바구니</a></li>
+			<li><a href="#">화환</a></li>
+			<li><a href="#">화분</a></li>			
+		</ul>
+	</nav>
+	<!-- 컨텐츠 -->
+	<div id="content">
+		<div id="shop">
+			<!-- 꽃집 사진 -->
+			<img src="../../image/shop.png" alt="꽃집 전경">
+		</div>
+		<div id="intro">
+			<!-- 꽃집 소개 -->
+			<h1>향기나는 꽃집입니다.</h1>
+			<p>
+				향기나는 꽃집은 식물과 함께하는 건강한 삶, 꽃으로 전하는 사랑이야기, 
+				그리고 꽃으로 힐링하는 치유의 삶의 메신저가 되겠습니다.
+			</p>
+		</div>
+		<aside id="customer">
+			<!-- 고객 상담 정보 -->
+			<h1>고객 상담 안내</h1>
+			<ul id="contact">
+				<li><b>전화</b> 031-100-2000</li>
+				<li><b>팩스</b> 031-100-2001</li>
+				<li><b>운영시간</b> 오전 9~오후 6시 점심:12~1시</li>				
+			</ul>
+		</aside>
+		<section id="main_section">
+			<article id="choice1" class="sub">
+				<!-- 추천 제품1 -->
+				<hgroup>
+					<h1>꽃다발</h1>
+					<h2>말괄량이</h2>
+				</hgroup>
+			</article>
+			<article id="choice2" class="sub">
+				<!-- 추천 제품2 -->
+				<hgroup>
+					<h1>꽃바구니</h1>
+					<h2>장미 100송이</h2>
+				</hgroup>
+			</article>
+			<article id="choice3" class="sub">
+				<!-- 추천 제품3 -->
+				<hgroup>
+					<h1>화환</h1>
+					<h2>근조화환</h2>
+				</hgroup>
+			</article>			
+		</section>
+	</div>
+	<footer>
+		<ul>
+			<li><a href="#">홈</a></li>
+			<li><a href="#">회사소개</a></li>
+			<li><a href="#">이용약관</a></li>
+			<li><a href="#">개인정보취급방침</a></li>
+		</ul>
+		<p>copyright 2019</p>
+	</footer>
+</div>
+</body>
+</html>
+
+
+
+

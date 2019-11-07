@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>liststyleTest.html</title>
+<style type="text/css">
+	h1 + ul{
+		list-style-type: circle;
+		/* list-style-type: square; */
+		/* list-style-type:none; */
+		list-style-position: inside;
+	}
+	ol{
+		/* list-style-type: upper-roman; */
+		list-style-type: lower-alpha;		
+	}
+	ul:nth-of-type(2) {
+		list-style-image: url('../image/bullet.png')
+	}
+</style>
+</head>
+<body>
+	<h1>list-style</h1>
+	<ul>
+		<li>java</li>
+		<li>jsp</li>
+		<li>spring</li>
+	</ul>
+	<h2>ol</h2>
+	<ol>
+		<li>oracle</li>
+		<li>mysql</li>
+		<li>mssql</li>
+	</ol>
+	
+	<h2>list-style-image</h2>
+	<ul>
+		<li>java</li>
+		<li>jsp</li>
+		<li>spring</li>
+	</ul>
+	
+</body>
+</html>

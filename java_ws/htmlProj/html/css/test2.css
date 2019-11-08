@@ -1,0 +1,5 @@
+@charset "EUC-KR";
+/* css/test2.css */
+ul, ol{
+	list-style: none;	
+}

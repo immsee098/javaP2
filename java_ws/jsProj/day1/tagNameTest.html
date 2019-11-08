@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function changeColor(){
+		document.getElementById("targetId").style.color="red";
+	}
+</script>
+</head>
+<body>
+<h1>tag이름으로 접근</h1>
+	<img src="../images/1.jpg" alt="펜션이미지1">
+	<img src="../images/2.jpg" alt="펜션이미지2">
+	<img src="../images/4.jpg" alt="펜션이미지3">
+
+<h1 id="targetId">DOM이란</h1>
+	<button onclick="changeColor();">색상 변경하기</button>
+	
+<hr>
+  <ul id="lang">
+	<li>java</li>
+	<li>jsp</li>
+	<li>oracle</li>
+  </ul>
+
+<hr>
+  <ul>
+	<li>java</li>
+	<li>jsp</li>
+	<li>oracle</li>
+  </ul>
+  
+<script type="text/javascript">
+	var imgs=document.getElementsByTagName("img");
+	
+	for(var i=0;i<imgs.length;i++){
+		imgs[i].style.border="5px solid green";	
+	}	
+	
+	var langEl=document.getElementById("lang");
+	var liEls=langEl.getElementsByTagName("li");
+	
+	for(var i=0;i<liEls.length;i++){
+		liEls[i].style.color="blue";
+	}
+	
+</script>
+</body>
+</html>

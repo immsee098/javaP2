@@ -1,0 +1,11 @@
+@charset "EUC-KR";
+/* css/test3.css */
+@import url("test1.css");
+@import url("test2.css");
+
+h1{
+	background: yellow;	
+}
+p{
+	color: red;
+}

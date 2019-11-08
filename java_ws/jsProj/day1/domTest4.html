@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>domTest4.html</title>
+<script type="text/javascript">
+	function send(form){
+		if(form.name.value==''){
+			alert("이름을 입력하세요");
+			form.name.focus();
+			return false;
+		}else if(form.id.value.length==0){
+			alert("아이디를 입력하세요");
+			form.id.focus();
+			return false;			
+		}else if(!form.pwd.value){
+			alert("비밀번호를 입력하세요");
+			form.pwd.focus();
+			return false;			
+		}
+		
+		return true;
+	}
+</script>
+</head>
+<body>
+<H3>회원가입</H3>
+<FORM NAME="frm" method="post" action="test01.jsp" 
+	onsubmit="return send(this)">  
+이름 <INPUT TYPE="text" name="name"><br> 
+아이디 <INPUT TYPE="text" name="id"><br>
+비밀번호 <INPUT TYPE="password" name="pwd" id="uPwd"><br>
+<INPUT TYPE="submit"  value="전송" > 
+</FORM>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>domTest1.html</title>
+<script type="text/javascript">
+	function send(){
+		//name으로 dom객체에 접근
+		//=> window.document.form이름.입력상자이름
+		var userid=window.document.frm.userid.value;
+		
+		//id로 dom객체에 접근
+		//=> document.getElementById()
+		var tel=document.getElementById("tel").value;
+		
+		alert("아이디:"+ userid+"\n전화번호:"+ tel);
+	}
+</script>
+</head>
+<body>
+<H3>회원가입</H3>
+<FORM NAME="frm">  
+아이디 <INPUT TYPE="text" name="userid"><br>
+전화번호 <INPUT TYPE="text" name="tel" id="tel"><br>
+<INPUT TYPE="button"  value="확인" onClick="send()"> 
+</FORM>
+
+</body>
+</html>

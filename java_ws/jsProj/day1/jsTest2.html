@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>jsTest2.html</title>
+<!-- [2] 외부 파일로 만들어서 처리 -->
+<script type="text/javascript" src="../js/test.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h1>외부파일로 처리</h1>
+
+<!-- [3] 이벤트 핸들러를 자바스크립트 코드로 표현 -->
+<input type="button" value="배경색변경" 
+	onclick="document.bgColor='orange';">
+	<br><br>
+	<hr>
+<a href="#" onmouseover="document.bgColor='skyblue';"
+	onmouseout="document.bgColor='';">마우스오버/아웃</a>	
+	<br><br>
+	
+	<!-- [4] a 태그를 클릭하는 경우 -->
+<a href="#" onclick="alert('안녕하세요');">메세지창 띄우기</a>	
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+

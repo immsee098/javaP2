@@ -1,0 +1,73 @@
+@charset "EUC-KR";
+@import url("reset.css");
+
+header {
+	background: #0080c0;
+	height: 100px;
+	position: relative;
+}
+
+header h1 {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	color: white;
+}
+
+nav {
+	display: inline;
+	position: relative;
+	width: 500px;
+	right: 0;
+	background: coral;
+    top: 20px;
+    float: right;
+    color: white;
+}
+
+nav ul {
+	display: inline-block;
+	color: white;
+	position: relative;
+}
+
+nav ul>li {
+	display: inline-block;
+	
+	text-decoration: none;
+	margin: 0 10px 0 10px;
+	
+}
+
+section{
+	overflow: hidden; 
+	border:5px solid #808080; 
+	padding:5px;
+	background: url("../image/4.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+} 
+
+section article{ 
+	float:left; 
+	width:31%; 
+	height: 600px; 
+	margin:6px; 
+	padding:6px; 
+	border:1px dotted gray; 
+	background: rgba(255,255,255,0.5);
+}
+
+aside{
+	clear: both; 
+	padding:10px;
+	float: right;
+	text-align: right;
+} 
+
+footer{
+	text-align: center; 
+	padding:10px; 
+	background-color:gray; 
+	color:white;
+}

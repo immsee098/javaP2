@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>varTest1.html</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a;
+		var b,c;
+		var d=10, e;
+		
+		a=20;
+		b=30;
+		c=a+b;
+		
+		document.write("<p>a="+a+",b="+b+", c="+c+"</p>");
+		
+		var global_v=100;
+		
+		function func(){
+			var local_v=200;
+			
+			document.write("전역변수 global_v="+global_v+"<br>");
+			document.write("지역변수 local_v="+local_v+"<br>");
+		}
+		
+		func();  //함수 호출
+		
+		document.write("함수 밖에서 전역변수 global_v="+global_v+"<br>");
+		document.write("함수 밖에서 지역변수 local_v="+local_v+"<br>"); //error
+		
+		document.write("다음 줄");
+		
+	</script>
+</body>
+</html>
+
+
+

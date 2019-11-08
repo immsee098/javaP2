@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>arrayTest.html</title>
+</head>
+<body>
+<script type="text/javascript">
+	//1.
+	var arr=new Array(3);
+	arr[0]="red";
+	arr[1]="green";
+	arr[2]="blue";
+	
+	for(var i=0;i<arr.length;i++){
+		document.write(arr[i]+"<br>");
+	}
+	
+	//2.
+	var arr2 = [10,20,40,60];
+	
+	for(var i=0;i<arr2.length;i++){
+		document.write("<h1>"+arr2[i]+"</h1>");
+	}
+	
+	//3.
+	var arr3=new Array();
+	arr3[0]=3.14;
+	arr3[1]=5.88;
+	
+	for(var i=0;i<arr3.length;i++){
+		document.write(arr3[i]+"<br>");
+	}
+	
+	//4.
+	var arr4 = new Array("java","jsp","spring");
+	
+	for(var i=0;i<arr4.length;i++){
+		document.write("<h2>"+arr4[i]+"</h2>");
+	}
+	
+	//임의의 index에 해당하는 배열값 출력
+	for(var i=0;i<5;i++){
+		var index=Math.floor(Math.random()*3);
+		document.write("<hr>임의의 index="+ index+"<br><br>");
+		document.write("<h3>"+arr[index]+"</h3>");
+	}
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>forinTest.html</title>
+</head>
+<body>
+<script type="text/javascript">
+	var d = new Date();
+	document.write((1900+d.getYear())+"년" + (d.getMonth()+1)+"월"
+			+d.getDate()+"일<br><br>");
+	
+	with(document){
+		write("java<br>");
+		write("jsp<br>");
+		write("spring<br><br>");
+	}
+	
+	for(property in window){
+		document.write("window객체의 속성 : " +  property+"<br>");
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

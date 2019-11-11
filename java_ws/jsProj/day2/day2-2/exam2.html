@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		width: 200px;
+		height: 200px;border:solid gray 1px;
+		}
+	.red{background:red;}
+	.green{background:green;}
+	.blue{background:blue;}
+</style>
+
+<script type="text/javascript">
+	function changeRed() {
+		document.getElementById("targetDiv").style.background ="red";
+	}
+
+	function changeGreen() {
+		document.getElementById("targetDiv").style.background ="green";
+	}
+
+	function changeBlue() {
+		document.getElementById("targetDiv").style.background ="blue";
+	}
+
+</script>
+</head>
+<body>
+	<div id="targetDiv">
+	</div>
+	<input type="button" value="red" onclick="changeRed()">
+	<input type="button" value="green" onclick="changeGreen()">
+	<input type="button" value="blue" onclick="changeBlue()">
+</body>
+</html>

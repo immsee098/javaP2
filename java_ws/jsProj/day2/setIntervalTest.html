@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>setIntervalTest.html</title>
+<script type="text/javascript">
+	var timerId=setInterval("clock()", 1000); //1초마다 clock()함수 실행
+	
+	function clock(){
+		var d = new Date();
+		document.myForm.myClock.value=d.toLocaleString();
+	}
+</script>
+</head>
+<body>
+<FORM NAME="myForm">
+	<INPUT NAME="myClock" TYPE="Text" SIZE=30>
+</FORM>
+
+</body>
+</html>
+

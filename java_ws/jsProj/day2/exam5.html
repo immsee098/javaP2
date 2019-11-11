@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function addNum() {
+		var num1 = parseInt(document.getElementById("output").innerHTML);		
+		num1 += 3;
+		document.getElementById("output").innerHTML = num1;
+		setTimeout("addNum()", 1000);
+	}
+	
+
+</script>
+</head>
+<body onload="addNum()">
+<div id="output"> 0 </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#fboard {
+		background: blue;
+		width: 500px;
+		height: 500px;
+		position: relative;
+	}
+	
+	#fish {
+		background: white;
+		left:0;
+		top:0;
+		width: 40px;
+		height: 40px;
+		border: 1px solid black;
+		position: absolute;
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function moveFish() {
+		var x = parseInt(document.move1.xvalue.value);
+		var y = parseInt(document.move1.yvalue.value);
+		document.getElementById("fish").style.left = x+"px";
+		document.getElementById("fish").style.top = y+"px";
+	}
+
+</script>
+</head>
+<body >
+<div id="fboard">
+	<div id="fish"></div>
+</div>
+
+<form name="move1">
+	x값 입력: <input type=text name="xvalue">
+	<br>
+	y값 입력: <input type=text name="yvalue">
+	<br>
+	<input type="button" value="물고기 움직이기" onclick="moveFish()">
+</form>
+</body>
+</html>

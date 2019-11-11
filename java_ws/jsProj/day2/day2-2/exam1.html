@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+function setTime() {
+	var d = new Date();
+	
+	var hour = d.getHours(); 
+	var min = d.getMinutes(); 
+	var sec = d.getSeconds(); 
+
+	var st = "현재 시간은 "+hour+"시 "+min+"분 "+sec+"초입니다.";
+	document.getElementById("time").innerHTML= st;
+	
+	setTimeout(function(){
+		location.reload();
+	},1000);
+
+}
+</script>
+</head>
+<body onload="setTime()">
+<div id="time"></div>
+</body>
+</html>

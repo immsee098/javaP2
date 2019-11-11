@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>classNameTest.html</title>
+<style type="text/css">
+	.on{
+		color: blue;
+		background: orange;
+	}
+</style>
+<script type="text/javascript">
+	function addClass(){
+		document.getElementById("h2").className="on";
+	}
+	function removeClass(){
+		document.getElementById("h2").className="";
+	}
+	function addClass2(id, clName){
+		document.getElementById(id).className=clName;		
+	}
+</script>
+
+</head>
+<body>
+	<h1 class="on">h1태그</h1>
+	<h1 onmouseover="this.className='on'"
+		onmouseout="this.className=''">h1태그</h1>	
+	<h2 id="h2" onmouseover="addClass()" onmouseout="removeClass()">
+		h2태그</h2>
+	<h3 id="h3" onmouseover="addClass2(this.id, 'on')"
+		onmouseout="addClass2(this.id, '')">h3태그</h3>
+	
+</body>
+</html>
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>styleTest.html</title>
+<script type="text/javascript">
+	function applyStyle(){
+		var aEl=document.links[0];
+		var imgEl=document.images[0];
+		
+		aEl.style.backgroundColor="gray";
+		aEl.style.color="green";
+		aEl.style.textDecoration="none";
+		
+		imgEl.style.border="7px solid orange";
+	}
+</script>
+</head>
+<body>
+<a id="a1" href="http://www.naver.com">지식검색 네이버</a><br><br>
+<img id="img1" src="../images/1.png"><br><br>
+<input type="button" value="스타일 적용하기" onclick="applyStyle()">
+
+</body>
+</html>
+

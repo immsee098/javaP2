@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>setTimeoutTest.html</title>
+</head>
+<body>
+<script type="text/javascript">
+	var myWin;
+	
+	function myClose(){
+		myWin.close();
+	}
+	
+	myWin=open("","win",
+		"width=400,height=300,location=yes,resizable=yes");
+	myWin.document.write("<h1>2초 후에 자동으로 닫힙니다.</h1>");
+	
+	setTimeout("myClose()", 2000);
+</script>
+
+</body>
+</html>
+
+
+
+

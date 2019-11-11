@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<SCRIPT type="text/javascript">
+function greater(){
+	//인자로 두 수를 받아서 두 수중 더 큰 수를 구한 후 그 결과값을 리턴해 주는 메서드
+     var n1= Number(document.frmcal.num1.value);
+     var n2= parseInt(document.frmcal.num2.value);
+     
+     var res="";
+     if(n1 > n2){
+		res="더 큰 수는 " + n1+ " 입니다";
+     }else{
+		res="더 큰 수는 " + n2+ " 입니다";
+     }
+     
+     document.frmcal.result.value=res;
+     alert(res);
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1> 더 큰수 구하기</H1>
+<hr>
+<form name="frmcal">
+첫번째 수 입력 <INPUT TYPE="text" name="num1"><br> 
+두번째 수 입력 <INPUT TYPE="text" name="num2"><br> 
+<INPUT TYPE="button"  value="더 큰수 구하기" onClick="greater()"> 
+<br>
+결과 : <INPUT TYPE="text" name="result"><br> 
+
+</FORM>
+
+</body>
+</html>

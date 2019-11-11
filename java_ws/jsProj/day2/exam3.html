@@ -1,0 +1,70 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 9pt;
+}
+
+#panel {
+	width: 600px;
+	height: 400px;
+	border: 1px solid #999;
+	position: relative;
+}
+
+#fish {
+	position: absolute;
+	left: 50px;
+	top: 120px;
+}
+
+#nav {
+	text-align: center;
+	width: 600px;
+}
+</style>
+
+<script type="text/javascript">
+        // 버튼에 클릭 이벤트 걸기.
+        function move() {
+            // 1. 값 구하기
+			// 물고기 노드 구하기.
+			var fish =document.getElementById("fish");
+
+            var x = parseInt(document.getElementById("txtX").value);
+            var y = parseInt(document.getElementById("txtY").value);
+
+            // 2. 비교.
+            if ((x >= 0 && x <= 500) && (y >= 0 && y <= 300)) {
+                // 물고기 움직이기.
+                fish.style.left=x+"px";
+				fish.style.top=y+"px";
+				//alert(fish.style.left);
+            } else {
+                alert("입력된 값이 너무 큽니다. 다시 입력해주세요.");
+            }
+        }       
+
+</script>
+</head>
+
+<body>
+	<div>
+		<div id="panel">
+			<img src="../images/fish.png" id="fish">
+		</div>
+
+		<div id="nav">
+			<label>x값 입력 : </label> 
+			<input id="txtX"> <br> 
+			<label>y값 입력 : </label> 
+			<input id="txtY"> <br>
+			<button id="btnStart" onclick="move()">물고기 움직이기</button>
+		</div>
+	</div>
+</body>
+</html>
+

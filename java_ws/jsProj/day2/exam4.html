@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var myWin;
+	
+	function myClose() {
+		myWin.close();
+	}
+	
+
+	function myOpen() {
+		myWin=open("", "win", "width=400,height=300");
+		myWin.document.write("<h1>5초 후에 자동으로 닫힙니다.</h1>");
+		setTimeout("myClose()", 5000);
+	}
+	
+</script>
+</head>
+<body onload="myOpen();">
+
+</body>
+</html>

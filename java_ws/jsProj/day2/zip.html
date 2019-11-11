@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sam(){
+		opener.document.bgColor="orange";
+	}
+	
+	function send(){
+		opener.document.frmtest.address.value
+			= document.frm1.dong.value;
+		self.close();
+	}
+</script>
+</head>
+<body>
+<A HREF="#" onclick="sam()">원래창의 배경색 바꾸기</A>
+<form name="frm1">
+주소 입력 : <input type="text" name = "dong">
+<input type="button" value="확인" onclick="send();">
+</form>
+
+</body>
+</html>
+

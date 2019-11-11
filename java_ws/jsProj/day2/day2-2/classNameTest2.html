@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	#div1{padding:20px 30px;}
+	.s1{background:#CCFFFF;}
+	.s2{border:2px solid red;}
+	.s3{font-weight:bold;}
+ </style>
+<script type="text/javascript">
+	/* function changeClass(target){
+		var divEl=document.getElementById("div1");
+		if(target=='s4'){
+			divEl.className='';
+		}else{
+			divEl.className=target;
+		}
+	} */
+	function changeClass(target){
+		var divEl=document.getElementById("div1");
+		if(target=='s4'){
+			divEl.className='';
+		}else{
+			var prevCl=divEl.getAttribute("class");
+			var nextCl=prevCl + " "+ target
+			divEl.className=nextCl;
+		}
+	}
+</script>
+</head>
+<body>
+  <div id="div1" class="s1">element 클래스이름(className) 바꾸기 </div>
+  <button onclick="changeClass('s1');">배경색상변경</button>
+  <button onclick="changeClass('s2');">테두리만들기</button>
+  <button onclick="changeClass('s3');">글씨굵게</button>
+  <button onclick="changeClass('s4');">초기화</button>
+
+</body>
+</html>

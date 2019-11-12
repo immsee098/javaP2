@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>imageTest.html</title>
+<script type="text/javascript">
+	function information(idx){
+		var len=document.images.length;
+		
+		var str="이미지 개수:"+ len+"<br>";
+		
+		str+="이름:"+document.images[idx].name+"<br>";
+		str+="src:"+document.images[idx].src+"<br>";
+		str+="border:"+document.images[idx].border+"<br>";
+		
+		if(idx==0){
+			str+="width: " + document.getElementById("dog1").width+"<br>";			
+			str+="height: " + document.getElementById("dog1").height;			
+		}else{
+			str+="width: " + document.dog2.width+"<br>";			
+			str+="height: " + document.dog2.height;			
+		}
+		
+		document.getElementById("info").innerHTML=str;
+	}
+</script>
+</head>
+<body>
+<H1> Image 객체 예제 </H1>
+<IMG NAME="dog1" id="dog1" SRC="../images/1.png" BORDER=1 >
+<IMG NAME="dog2" id="dog2" SRC="../images/2.png" BORDER=5 ><P>
+다음 단추를 누르면 그림의 정보가 출력됩니다.<P>
+<FORM>
+	<INPUT TYPE="button" VALUE="왼쪽이미지 정보" onClick="information(0)">
+	<INPUT TYPE="button" VALUE="오른쪽이미지 정보" onClick="information(1)">
+</FORM>
+<hr>
+<div id="info"></div>
+
+</body>
+</html>
+
+
+
+
+

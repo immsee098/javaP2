@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>filterTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("tr:first").css("color","blue");
+		$("tr:eq(1)").css("color","red");
+		
+		$("li:odd").css("background","yellow");
+		$("tr:last").css("color","green");
+		$("li:gt(1)").css("color","red");
+		
+		$("tr:not(':even')").css("background","orange");
+		
+	});
+	
+</script>
+</head>
+<body>
+	<h1>필터 선택자</h1>
+	<table border="1" style="width:500px">
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>홍길동</td>			
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>			
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>홍길동</td>			
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>홍길동</td>			
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>홍길동</td>			
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>홍길동</td>			
+		</tr>		
+	</table>
+	
+	<hr>
+	<ul>
+		<li>java</li>
+		<li>jsp</li>
+		<li>spring</li>
+		<li>oracle</li>
+		<li>html</li>
+		<li>jquery</li>
+	</ul>
+</body>
+</html>
+
+

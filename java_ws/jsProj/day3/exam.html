@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	img{border:1px solid gray;}
+</style>
+
+<SCRIPT type="text/javascript">
+	function imageChange(imgfile){
+		document.bigImg.src = "../images/"+imgfile+".PNG";
+	}
+</SCRIPT>
+</head>
+<body>
+<h1>상품 이미지</h1>
+<div align="center">
+	<p>
+		<img src="../images/herb_big1.PNG" name="bigImg">
+	</p>
+	<p>
+		<img src="../images/herb_small1.PNG" onmouseover="imageChange('herb_big1')" >
+		<img src="../images/herb_small2.PNG" onmouseover="imageChange('herb_big2')" >
+		<img src="../images/herb_small3.PNG" onmouseover="imageChange('herb_big3')" >
+		<img src="../images/herb_small4.PNG" onmouseover="imageChange('herb_big4')" >
+	</p>
+</div>
+</body>
+</html>

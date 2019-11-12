@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>day3/eventTest.html</title>
+<script type="text/javascript">
+	document.onmousedown=sample1;
+	/* document.onmousedown=function(){
+		document.bgColor="pink";
+	} */
+	
+	function sample1(){
+		document.bgColor="pink";
+	}
+	function sample2(){
+		document.bgColor="green";
+	}
+	
+	window.onload=function(){
+		var btEl=document.frm.btn;
+		btEl.onclick=sample2;	
+	}
+</script>
+</head>
+<body>
+<form name="frm">
+	이름 : <input type="text" name = "str">
+	<input type="button" value = "pink" onclick="sample1()" >
+	<input type="button" value = "green" name ="btn" id="btn"><br>
+</form>
+
+<script type="text/javascript">
+	/* var btEl=document.frm.btn;
+	btEl.onclick=sample2;	 */
+		
+</script>
+</body>
+</html>

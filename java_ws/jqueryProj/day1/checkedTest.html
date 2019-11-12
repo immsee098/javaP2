@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>checkedTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			var num=$("input[name=num]:checked").val();
+			var sel=$("#sel1 > option:selected").val();
+			
+			/* $("#div1").html("<p>체크된 값:"+ num+"</p><p>선택한 값:"+
+					sel+"</p>"); */
+			$("#div1").text("<p>체크된 값:"+ num+"</p><p>선택한 값:"+
+					sel+"</p>");
+			
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<input id="rd1" type="radio" name="num" value="one" >하나
+    <input id="rd2" type="radio" name="num" value="two" checked>둘<br><br>
+    <select id="sel1">
+        <option value="1">사과</option>
+        <option value="2">귤</option>
+        <option value="3" selected>배</option>        
+    </select>
+    <input id="btn1" type="button" value="버튼" />
+    
+    <h2>결과</h2>
+    <div id="div1"></div>    
+</body>
+</html>
+
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	for(key in screen){
+		document.write(key+"=>"+screen[key]+"<br>");
+	}
+	
+	document.write("<br><hr>화면의 높이:"+screen.height+"<br>");
+	document.write("화면의 넓이:"+screen.width+"<br>");
+	document.write("사용가능한 화면의 높이:"+screen.availHeight+"<br>");
+	document.write("사용 가능한 화면의 넓이:"+screen.availWidth+"<br>");
+	document.write("사용 가능한 색상:"+screen.colorDepth+"<br>");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var ua=navigator.userAgent;	
+		console.log("ua="+ua);
+		
+		var userAgent=ua.toLowerCase();
+		document.getElementById("info").innerHTML=userAgent;
+		
+		if(userAgent.indexOf("trident")!=-1){
+			alert("Explorer입니다.");
+		}else{
+			alert("Explorer가 아닙니다.");
+		}
+	}
+</script>
+</head>
+<body>
+<h1>브라우저 정보</h1>
+<div id="info"></div>
+</body>
+</html>
+
+
+
+

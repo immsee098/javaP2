@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!-- 첫번쨰 div태그 텍스트 읽어서 메시지에 출력 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("div").each(function(idx){
+			$(this).css("color", "blue");
+			var str = "div"+((idx+1)*100);
+			$(this).html(str)
+			$(this).css("border", (idx+1)+"px solid black")
+		});
+		
+		var str2 = "";
+		$("span").each(function(){
+			str2 += $(this).html();
+		});
+		str2 += $("div").first().text();
+		alert(str2);
+		
+		var str3 = "";
+		
+		$("select[name=sel1]").click(function(){
+			str3 += $("select[name=sel1] option:selected").html()+" ";
+		});
+		
+		$(":button").click(function(){
+			$("#selInfo").html(str3);
+			$("#aa").html(str3);
+		});
+	});
+	
+	
+</script>
+</head>
+<body>
+<h1>each실습</h1>
+<div>div태그1</div>
+<div>div태그2</div>
+<div>div태그3</div>
+<div>div태그4</div> <br>
+<span>span태그1</span>
+<span>span태그1</span>
+<span>span태그1</span> <br> <hr>
+<select name='sel1' multiple="multiple">
+<option>java</option>
+<option>jsp</option>
+<option>spring</option>
+<option>oracle</option>
+</select><input type="button" value='선택'> <br>
+<div id="selInfo"></div>
+<span id="aa"></span>
+
+</body>
+</html>

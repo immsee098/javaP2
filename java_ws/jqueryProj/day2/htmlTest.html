@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>htmlTest.html.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		console.log("html() 이용 - " + $("#sp1").html()); 
+		console.log("text() 이용 - " + $("#sp1").text());
+		//=> 태그 제외하고 텍스트만 읽어옴
+
+		console.log("html() 이용 - " + $("span").html()); 
+		//=> 첫번째 요소의 값만 읽어옴
+		console.log("text() 이용 - " + $("span").text());
+		//모든 요소의 값들을 결합해서 읽어옴
+		
+		$("#sp1").html("<u>html()</u>");
+		$("span:eq(1)").text("<u>text()</u>");
+		
+		
+	});
+</script>
+</head>
+<body>
+	<span id="sp1"><b>test중</b></span><br>
+    <span><b>span 태그입니다</b></span><br>
+	
+</body>
+</html>
+
+
+
+
+
+
+

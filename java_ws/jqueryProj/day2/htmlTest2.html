@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>htmlTest.htm2.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("p").html("모두 같은 내용");
+		
+		/* $("div").html(function(idx){
+			return "문단 - " + idx;	
+		});
+		
+		$("h2").html(function(idx, html){
+			return "["+ html +"]"; //두번째 매개변수에 원래 있던 html의 내용이 들어감
+		}); */
+		
+		$("div").each(function(idx, item){
+			$(this).html("문단 : " + idx);	
+		});
+		
+		$("h2").each(function(idx, item){
+			$(item).html("[ "+ $(item).html() +" ]"); 
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+	<p></p>
+	<p></p>
+	<p></p>
+	
+	<div></div>
+    <div></div>
+    <div></div>
+    
+    <h2>제목1</h2>
+    <h2>제목2</h2>
+    <h2>제목3</h2>
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+

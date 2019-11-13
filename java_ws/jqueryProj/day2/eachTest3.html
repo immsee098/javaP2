@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>day2/eachTest3.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var str=$("p").html();
+		alert(str);
+		
+		var res="";
+		$("p").each(function(idx, item){
+			//res+=idx+"번째 p태그 - " + $(item).html()+"<br>";
+			res+=idx+"번째 p태그 - " + $(this).html()+"<br>";
+		});
+		
+		$("#result").html(res);
+	});
+</script>
+</head>
+<body>
+	<p>one</p>
+    <div>
+        <p>two</p>
+    </div>
+    <p>three</p>
+
+	<hr>
+	<div id="result"></div>
+	
+</body>
+</html>

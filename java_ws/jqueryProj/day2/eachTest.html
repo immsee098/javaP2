@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var arr=["java", "jsp", "spring"];
+		str="";
+		$.each(arr, function(index, item){
+			str+="index="+index+", 배열 요소:"+item+"<br>";
+		});
+		$("#result").append(str);
+	});
+</script>
+</head>
+<body>
+<div id="result"></div>
+</body>
+</html>

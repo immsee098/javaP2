@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>day2/eachTest1.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var arr=["java","jsp","spring"];
+		
+		/*
+		배열을 순회할 목적으로 사용됨
+		$.each(배열, function(index, item){
+						
+		} */
+		
+		var str="";
+		$.each(arr, function(index, item){
+			//str+="index="+index+", 배열요소:"+ item+"<br>";	
+			str+="index="+index+", 배열요소:"+ this+"<br>";	
+		});
+		
+		$("#result").html(str);
+		
+		var arr2=[{name:'홍길동', id:'hong'}, 
+				{name:'김길동', id:'kim'},
+				{name:'이길동', id:'lee'}];
+		
+		str="";
+		$.each(arr2, function(index, item){
+			/* str+="<p>"+index+" - 이름 : " + item.name+", 아이디:"
+				+ item["id"]+"</p>"; */ 
+			str+="<p>"+index+" - 이름:" + this.name+", 아이디:"
+				+ this["id"]+"</p>"; 
+		});
+		
+		$("#result").append(str);
+		
+	});
+</script>
+</head>
+<body>
+   <div id="result"></div>
+
+</body>
+</html>

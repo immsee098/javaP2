@@ -19,6 +19,14 @@
 			$("#result").html(str);
 			
 		});
+		
+		$("#btn2").click(function(){
+			$("input[type=checkbox]:checked").each(function(){
+				str+=$(this).next().text()+" ";
+			});
+			
+			$("#result").html(str);
+		});
 	});
 	
 </script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>day2/eachTest2.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("p").css("color","red");
+		
+		/* $(선택자).each(function(idx, item){
+			
+		} */
+		
+		$("p").each(function(idx, item){
+			//$(item).css("font-size", (idx+1)*10+"px");
+			$(this).css("font-size", (idx+1)*10+"px");
+		});		
+		
+	});
+</script>
+</head>
+<body>
+	<p>문단1</p>
+	<p>문단2</p>
+	<p>문단3</p>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+    <!-- 윤해서 -->
+<head>
+    <title>12번 문제</title>
+    <script>
+        function joinFun() {
+            var id = document.getElementById("id").value;
+            var pwd = document.getElementById("password").value;
+            
+            if(id == "" || pwd == ""){
+                alert("입력해주세요!");
+            } else {
+                location.reload();
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form1">
+        <h3>로그인</h3>
+        아이디: <input type="text" id="id">
+        <br>
+        비밀번호: <input type="password" id="password">
+        <br>
+        <input type="button" value="로그인" onclick="joinFun();">
+        <input type="button" value="회원가입" onclick="location.href='agreement.html'">
+    </form>
+</body>
+</html>

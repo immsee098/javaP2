@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>findTest.html</title>
+<script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+      $(document).ready(function() {
+          $("div").eq(1).siblings().css("border", "4px solid green")
+          	.end()
+          	.next().css("background","skyblue")
+          	.end()
+          	.nextAll().css("color", "red");
+          
+          $("div").find("p").css("border","1px solid red")
+          		.add("span").css("background","yellow");
+          
+          //$("div p, span").css("background","pink");
+      });
+</script>
+<style type="text/css">
+    div{width:60px;height:60px;float:left;
+        margin:7px;border:1px solid blue;
+        padding:7px}
+</style>
+
+<body>
+	<div>A<p>p a</p></div>
+	<div>B<p>p b</p></div>
+	<div>C<p>p c</p></div>
+	
+	<div>D <br /><span>span d</span></div>
+	<div>E <br /><span>span e</span></div>
+
+</body>
+</html>

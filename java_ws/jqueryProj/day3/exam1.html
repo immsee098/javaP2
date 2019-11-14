@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+       $("#btn1").click(function() {
+           /* var command = $('input[name=command]:checked').val();
+           if (command == "appendTo") {
+               $('#flower').appendTo('#targets p:last');
+               $('#car').appendTo('#targets p:first');
+           }else {
+               $('#targets p:last').prepend('<img src="../images/flower.png"/>');
+               $('#targets p:first').prepend('<img src="../images/car.png"/>');
+           } */
+           
+           if ($('input[name=command]:first').is(":checked")) {
+               $('#flower').appendTo('#targets p:last');
+               $('#car').appendTo('#targets p:first');
+           }else if($('input[name=command]:eq(1)').is(":checked")){
+               $('#targets p:last').prepend('<img src="../images/flower.png"/>');
+               $('#targets p:first').prepend('<img src="../images/car.png"/>');
+           }
+       });
+
+       $("#btn2").click(function() {
+           var img = $("#targets img:first").clone();
+           $("#copy1 p").append(img);
+       });
+
+       $("#btn3").click(function() {                 
+           $("#copy1 p").empty();
+       });
+       
+       $("#btn4").click(function() {
+           $("#copy1 p img:last").remove();
+       });             
+   });     
+</script>
+    
+<style type="text/css">
+	img {	width: 108px;}
+	fieldset {	width: 360px;}
+</style>
+</head>
+
+<body>
+	<h3>Move and Copy</h3>
+	<form action="a.jsp" onsubmit="return false;">
+		<fieldset id="source">
+			<legend>Source elements</legend>
+			<img id="flower" src="../images/flower.png" /> 
+			<img id="car" src="../images/car.png" />
+		</fieldset>
+		<br />
+		<fieldset id="targets">
+			<legend>Target elements</legend>
+			<p>
+				<img src="../images/dragonfly.png" />
+			</p>
+			<p>
+				<img src="../images/dragonfly.png" />
+			</p>
+			<p>
+				<img src="../images/dragonfly.png" />
+			</p>
+		</fieldset>
+
+		<fieldset id="copy1">
+			<legend>Copy elements</legend>
+			<p></p>
+		</fieldset>
+
+		<div>
+			<div>
+				<input type="radio" name="command" value="appendTo"	checked="checked" /> appendTo 
+				<input type="radio" name="command"	value="prepend" /> prepend
+			</div>
+			<button type="button" id="btn1">Execute</button>&nbsp;
+			<button type="button" id="btn2">Copy</button>&nbsp;
+			<button type="button" id="btn3">Empty</button>&nbsp;
+			<button type="button" id="btn4">Remove</button>
+		</div>
+	</form>
+
+</body>
+
+</html>

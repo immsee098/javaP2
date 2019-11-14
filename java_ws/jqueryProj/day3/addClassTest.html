@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>addClassTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("p").addClass(function(idx){
+			return "p"+(idx+1);
+		});
+		
+		$("p").each(function(idx, item){
+			$(this).addClass("p"+(idx+1));
+		});
+		
+	});
+</script>
+	<style type="text/css">
+		.p1{color:red;font-size:10pt;}
+		.p2{color:blue;font-size:20pt;}
+		.p3{color:green;font-size:30pt;}
+	</style>
+</head>
+<body>
+    <p>문단1</p>
+    <p>문단2</p>
+    <p>문단3</p>
+
+</body>
+</html>

@@ -6,8 +6,8 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var  h1="<h1>力格1<h1>";
-		var  h2="<h2>力格2<h2>";
+		var  h1="<h1>力格1</h1>";
+		var  h2="<h2>力格2</h2>";
 		
 		$("#p1").append(h1);
 		$("#p2").append(h1, h2);
@@ -16,9 +16,14 @@
 			{name:"辫辨悼", id:"kim"},
 			{name:"捞辨悼", id:"lee"}];
 		
-		$("div").append(function(idx){
+		/* $("div").append(function(idx){
 			var obj=arr[idx];
 			return obj.name+","+obj.id;
+		}); */
+		
+		$("div").each(function(idx, item){
+			var obj=arr[idx];
+			$(this).append(obj.name+" - " + obj.id);
 		});
 	});
 </script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title></title>
+<script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".error").hide();
+
+		$(".infobox").blur(function(){
+			if($(this).val().length<1){
+				$(this).parent().find(".error").show();				
+			}else{
+				$(this).next().hide();				
+			}			
+		});
+		
+		$("#signup").submit(function(){
+			if($("#userid").val()==''){
+				alert("아이디 입력!");
+				$("#userid").focus();
+				event.preventDefault();
+			}else if($("#pwd").val().length<1){
+				alert("비밀번호 입력!");
+				$("#pwd").focus();
+				event.preventDefault();				
+			}else if(!$("#name").val()){
+				alert("이름 입력!");
+				$("#name").focus();
+				event.preventDefault();				
+			}
+		});
+		
+	});
+</script>
+<style type="text/css">
+.error {
+	color: red;
+	font-size: 0.8em;
+}
+</style>
+</head>
+<body>
+
+	<form id="signup" method="post" action="a.jsp">
+		<div>
+			<label class="label" for="userid">User Id *</label> 
+			<input
+				type="text" class="infobox" id="userid" /> <span class="error">필수
+				입력항목입니다</span>
+		</div>
+		<div>
+			<label class="label" for="pwd">Password *</label> 
+			<input
+				type="password" class="infobox" id="pwd" /> <span class="error">필수
+				입력항목입니다</span>
+		</div>
+		<div>
+			<label class="label" for="name">Name *</label> 
+			<input type="text"
+				class="infobox" id="name" /> <span class="error">필수 입력항목입니다</span>
+		</div>
+		<input id="submit1" type="submit" value="전송">
+	</form>
+
+
+
+</body>
+
+
+</html>

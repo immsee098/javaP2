@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>attrTest3.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#product img").hover(function(){			
+			$("#showImage").show();
+			
+			var src=$(this).attr("src"); //../images/herb1.JPG
+			var imgName = src.substring(src.lastIndexOf("/")+1);//herb1.JPG
+			
+			$("#showImage img").attr("src","../images/big/"+imgName);			
+		}, function(){
+			$("#showImage").hide();			
+		});
+		
+	});
+</script>
+<style type="text/css">
+    #showImage{ display:none;border:1px solid gray;width:300px;height:300px; }
+</style>
+</head>
+<body>
+<div id="product">
+    <img src="../images/herb1.JPG" />
+    <img src="../images/herb2.JPG" />
+
+    <div id="showImage">
+    	<img  />        
+    </div>
+</div>
+
+	
+</body>
+</html>

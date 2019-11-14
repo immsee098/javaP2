@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>cssTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("span").css({"background":"skyblue", color:"blue", 
+			"font-weight":"bold"});
+		
+		$("img").addClass("winter").css("width","200");
+		
+		$("button:first").click(function(){
+			$("img").toggleClass("summer");
+		});
+		
+		$("button:eq(1)").click(function(){
+			$("img").removeClass("winter");
+		});
+		
+		
+	});
+</script>
+<style>
+	.winter { border:7px solid silver; }
+    .summer { border:7px solid lightblue; }
+</style>
+</head>
+<body>
+  <span>CSS 관련 메서드</span> <br /><br />  
+  <div id="Mt">
+    <img id="img1" src="../images/magnum2.jpg" />
+  </div>
+  <button>토글</button>
+  <button>removeClass</button>
+
+</body>
+</html>

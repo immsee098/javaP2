@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>attrTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		alert($("a").attr("href")); //읽기
+		
+		$("img:first").mouseover(function(){
+			$(this).attr("src","../images/magnum2.jpg");
+		}).mouseout(function(){
+			$(this).attr("src","../images/magnum1.jpg");
+		});
+		
+		$("#btnRemove").click(function(){
+			$("img:eq(1)").removeAttr("src");	
+		});
+		
+	});
+</script>
+	<style type="text/css">
+        img{width:200px;}
+    </style>
+</head>
+<body>
+<a href="http://www.naver.com/">네이버</a><br /><br />
+
+<img src="../images/magnum1.jpg" />
+<img src="../images/dog.jpg" alt="강아지" />
+<input id="btnRemove" type="button" value="src속성 제거" />
+	
+
+</body>
+</html>

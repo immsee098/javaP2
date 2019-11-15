@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>triggerTest.html</title>
+
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn").on("click", function(){
+			alert("버튼 클릭함!");	
+		});
+		
+		$("#btn").trigger("click");
+		
+		$("#img1").one("click", function(){
+			alert("이미지는 한번만 클릭!!")
+		});
+		
+	});
+</script>
+</head>
+<body>
+  <div id="my">
+    <input type="button" id="btn" value="버튼" >
+	<img id="img1" src='../images/dog.jpg'>
+</div>
+  
+
+</body>
+</html>

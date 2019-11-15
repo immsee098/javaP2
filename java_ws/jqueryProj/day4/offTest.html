@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>offTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("button").on("click",function(){
+			alert($(this).html()+"클릭됨!");			
+			$(this).html("클릭되었습니다.");
+			
+			$(this).off();  //이벤트 제거
+		});
+		
+	});
+</script>
+	
+</head>
+<body>
+	<button>버튼1</button><br>
+	<button>버튼2</button><br>
+	<button>버튼3</button><br>	
+</body>
+</html>

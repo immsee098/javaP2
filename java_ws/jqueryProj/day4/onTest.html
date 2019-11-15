@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>onTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//$(selector).on(이벤트이름, function(event){});
+
+		$("button").on("click",function(){
+			$("#div1").html($(this).text()+"클릭!");
+		});
+		
+		//$("button").click(function(){});
+		
+		$("button").on({"mouseover":function(){
+			$(this).css("background-color","skyblue");
+		}, "mouseout":function(){
+			$(this).css("background-color","");
+		}});
+		
+		$("button").hover(function(){
+			$(this).css("color","red");
+		}, function(){
+			$(this).css("color","");
+		});
+		
+		$("button").mouseenter(function(){
+			$(this).css("font-weight","bold");
+		}).mouseleave(function(){
+			$(this).css("font-weight","100");
+		});
+		
+	});
+</script>
+	
+</head>
+<body>
+	<button>버튼1</button><br>
+	<button>버튼2</button><br>
+	<button>버튼3</button><br>
+	
+	<div id="div1"></div>
+
+</body>
+</html>

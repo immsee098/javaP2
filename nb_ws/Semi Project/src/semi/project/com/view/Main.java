@@ -7,7 +7,7 @@ package semi.project.com.view;
 
 /**
  *
- * @author EZEN
+ * @author EZE0N
  */
 public class Main extends javax.swing.JFrame {
 

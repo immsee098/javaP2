@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	.error {
+		color: red;
+		font-size: 0.8em;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".error").hide();
+		
+		$("#signup").submit(function(e){
+			if($("input[type=checkbox]").is(":checked")==false){
+				$("span:eq(0)").show(".error");
+				e.preventDefault();
+			} else {
+				$("span:eq(0)").hide(".error");
+			}
+			
+			if($("#lang2 > option:selected").val() <=0) {
+				$("span:eq(1)").show(".error");
+				e.preventDefault();
+			} else {
+				$("span:eq(1)").hide(".error");
+			}
+			
+			if($("#userid").val() == "" || $("#userid").val() == undefined){
+				$("span:eq(2)").show(".error");
+				e.preventDefault();
+			} else {
+				$("span:eq(2)").hide(".error");
+			}
+			
+			
+			
+		});
+	});
+</script>
+</head>
+<body>
+	<form id="signup" method="post" action="a.jsp">
+		<div>
+			<label><input type="checkbox" name="lang" value="1">java</label>
+			<label><input type="checkbox" name="lang" value="2">jsp</label>
+			<label><input type="checkbox" name="lang" value="3">oracle</label>
+			<span class="error">하나라도 체크하셔야 합니다</span>
+		</div>
+		<div>
+			<label for="lang2">사용가능언어</label> <select id="lang2">
+				<option value="0">선택하세요</option>
+				<option value="1">java</option>
+				<option value="2">jsp</option>
+				<option value="3">c</option>
+			</select> <span class="error">언어를 선택하셔야 합니다</span>
+		</div>
+		<div>
+			<label class="label" for="userid">User Id *</label> <input
+				type="text" class="infobox" id="userid" /> <span class="error">필수
+				입력항목입니다</span>
+		</div>
+		<div>
+			<label class="label" for="pwd">Password *</label> <input
+				type="password" class="infobox" id="pwd" /> <span class="error">필수
+				입력항목입니다</span>
+		</div>
+		<div>
+			<label class="label" for="name">Name *</label> <input type="text"
+				class="infobox" id="name" /> <span class="error">필수 입력항목입니다</span>
+		</div>
+		<input id="submit" type="submit" value="전송">
+	</form>
+
+</body>
+</html>

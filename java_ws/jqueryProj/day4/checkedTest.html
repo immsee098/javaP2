@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>checkedTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".error").hide();
+		
+		$("#frm1").submit(function(){
+			if($("#userid").val().length<1){
+				$(".error").show();
+				event.preventDefault();
+			}	
+		});
+		
+		$("#chkAll").click(function(){
+			/* if(this.checked){
+				$("#chkItem > input[type=checkbox]")
+					.prop("checked",true);
+			}else{
+				$("#chkItem").children("input[type=checkbox]")
+					.prop("checked",false);
+			} */
+			
+			$("#chkItem").children("input[type=checkbox]")
+				.prop("checked", this.checked);
+			
+		});
+		
+		
+		
+	});
+</script>
+<style type="text/css">
+	.label {float: left; width: 100px; }
+	.error { color: red; padding-left: 10px; }
+	.submit { margin-left: 125px; margin-top: 10px;} 
+</style>    
+	
+</head>
+<body>
+	<form id="frm1" method="post" action="event5.jsp">
+		<div>	<label class="label" for="userid">아이디 *</label>
+			<input type="text" name="userid" id="userid"/>
+			<span class="error">반드시 값을 입력하셔야 합니다!</span>	
+		</div>
+		
+		<input type="checkbox" id="chkAll" /><label for="chkAll">All</label>
+	    
+	    <div id="chkItem">
+	        <input type="checkbox" id="chk1"/>
+	        <label for="chk1">참외</label>
+	        <input type="checkbox" id="chk2"/>
+	        <label for="chk2">자두</label>
+	        <input type="checkbox" id="chk3"/>
+	        <label for="chk3">수박</label>
+	    </div>
+		
+		<input class="submit" type="submit" value="전송">
+	</form>
+		
+</body>
+</html>

@@ -16,17 +16,19 @@
 				str+=$(el).next().text()+" ";
 			}
 			
-			$("#result").html(str);
-			
+			$("#result").html(str);			
 		});
 		
 		$("#btn2").click(function(){
+			var str="";
+			
 			$("input[type=checkbox]:checked").each(function(){
 				str+=$(this).next().text()+" ";
 			});
 			
 			$("#result").html(str);
 		});
+				
 	});
 	
 </script>
@@ -39,6 +41,7 @@
         <input id="c4" type="checkbox" /><span>야구</span>
     </p>
     <p><input id="btn1" type="button" value="선택" /></p>
+    <p><input id="btn2" type="button" value="each이용" /></p>
     <p>
         당신이 선택하신 스포츠는 <span id="result"></span> 입니다.
     </p>

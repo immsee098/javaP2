@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>keyupTest.html</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#txtPwd").keyup(function(){
+			$("#lblError").html("");	
+		});
+		
+		$("#txtPwdConfirm").keyup(function(){
+			if($("#txtPwd").val()!= $(this).val()){
+				$("#lblError").html("비밀번호가 일치하지 않습니다.");
+			}else{
+				$("#lblError").html("비밀번호가 일치합니다.");
+			}
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+        비밀번호:<input type="password" id="txtPwd" size="20"><br />
+        비밀번호 확인:<input type="password" id="txtPwdConfirm" size="20"><br />
+    <input type="button" id="btnOK" value="확인" />
+    <div id="lblError" style="color:red">암호를 입력하시오.</div>    
+
+</body>
+</html>

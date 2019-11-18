@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+	
+	$("div").eq(1).hide();
+	var bool = true;
+	$("span").click(function(){
+		
+		$("div").eq(1).slideToggle();
+		
+		$("span").hide();
+		
+	});
+	
+	
+	$("button").click(function(){
+		
+		$("div").eq(1).slideToggle();
+
+		$("span").show();
+		
+	});
+	
+});
+
+</script>
+</head>
+<body>
+<div>안녕하세요~~</div>
+<span>more...</span>
+<div>여기는 본문입니다..
+<button>click</button>
+</div>
+</body>
+</html>

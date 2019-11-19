@@ -20,7 +20,7 @@ public class DBUtil {
 	
 	public static Connection getConnection() throws SQLException {
 		//db서버와 연결하기 위한 Connection객체 생성
-		String url="jdbc:oracle:thin:@DESKTOP-BFLLBCO:1521:xe";
+		String url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe";
 		String user="testuser", upwd="testuser123";
 		Connection con=getConnection(url, user, upwd);
 		

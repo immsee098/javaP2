@@ -153,7 +153,7 @@
         <!--<Context path="/samplesite" docBase="D:\lecture\jsp\samplesite"/>-->
         <!-- or </Context> okay -->
 
-      <Context docBase="myStudy" path="/myStudy" reloadable="true" source="org.eclipse.jst.jee.server:myStudy"/></Host>
+      <Context docBase="mystudy" path="/mystudy" reloadable="true" source="org.eclipse.jst.jee.server:mystudy"/></Host>
     </Engine>
   </Service>
 </Server>

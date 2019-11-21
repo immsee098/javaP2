@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="com.thread.day2.Prac1"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.thread.day2.PracThread1"/>
 <fullyQualifiedTypeName name="com.thread.day2.PracThread2"/>
 <fullyQualifiedTypeName name="com.thread.day2.LifeCycleTest"/>
@@ -13,7 +11,6 @@
 <fullyQualifiedTypeName name="com.thread.day2.MyRunnable3"/>
 <fullyQualifiedTypeName name="com.thread.day2.Circle"/>
 <fullyQualifiedTypeName name="com.thread.day2.MyThread"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="com.thread.day2.PThread1"/>
 <fullyQualifiedTypeName name="java.lang.Runnable"/>
 <fullyQualifiedTypeName name="com.thread.day2.ProgressbarTest1"/>
@@ -60,4 +57,7 @@
 <fullyQualifiedTypeName name="com.myStudy.pd.model.PdDTO"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>

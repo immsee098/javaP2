@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+	//detail.jsp에서 [삭제]링크 클릭하면 get방식으로 이동
+	
+	String no=request.getParameter("no");
+	if(no==null || no.isEmpty()){ %>
+		<script type="text/javascript">
+			alert("잘못된 url입니다.");
+			location.href="list.jsp";
+		</script>
+		
+		<%	return;	
+	}	%>    
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
@@ -36,17 +48,33 @@
 		border:0;
 	}
 </style>
+
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	
+	$(function(){
+		$('form[name=frmDelete]').submit(function(){
+			if($('#pwd').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#pwd').focus();
+				event.preventDefault();
+			}else{			
+				if(!confirm('삭제하시겠습니까?')){
+					event.preventDefault();
+				}
+			}
+		});
+	});
 </script>
 </head>
 <body>
 <div class="divForm">
-<form name="frmDelete" method="post"	action="" >
+	<form name="frmDelete" method="post"	action="delete_ok.jsp" >
+		<!-- hidden -->
+        <input type="hidden" name="no" value="<%=no %>" />   
 		<fieldset>
 		<legend>글 삭제</legend>
 	        <div>           
-	        	<span class="sp">  번 글을 삭제하시겠습니까?</span>                        
+	        	<span class="sp"><%=no %>번 글을 삭제하시겠습니까?</span>                        
 	        </div>
 	        <div>           
 	            <label for="pwd">비밀번호</label>

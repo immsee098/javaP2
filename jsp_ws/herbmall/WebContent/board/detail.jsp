@@ -1,5 +1,42 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.herbmall.board.model.BoardVO"%>
+<%@page import="com.herbmall.board.model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+	//countUpdate.jsp에서 조회수 증가 성공하면 get방식으로 이동
+	//=> 번호에 해당하는 글을 조회해서 출력
+	//=> http://localhost:9090/herbmall/board/detail.jsp?no=4
+	
+	//1.
+	String no=request.getParameter("no");
+	if(no==null || no.isEmpty()){ %>
+		<script type="text/javascript">
+			alert("잘못된 url입니다.");
+			location.href="list.jsp";
+		</script>
+		
+	<%	return;
+	}
+	
+	//2.
+	BoardDAO dao=new BoardDAO();
+	BoardVO vo=null;
+	try{
+		vo=dao.selectByNo(Integer.parseInt(no));	
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+		
+	//3.
+	String content=vo.getContent();
+	if(content!=null && !content.isEmpty()){
+		content=content.replace("\r\n", "<br>");
+	}else{
+		content="";
+	}
+
+%>    
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
@@ -23,23 +60,23 @@
 	<h2>글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
-			<span class="sp1">제목</span> <span>안녕하세요</span>
+			<span class="sp1">제목</span> <span><%=vo.getTitle() %></span>
 		</div>
 		<div>
-			<span class="sp1">작성자</span> <span>홍길동</span>
+			<span class="sp1">작성자</span> <span><%=vo.getName() %></span>
 		</div>
 		<div>
-			<span class="sp1">등록일</span> <span>2015-04-16</span>
+			<span class="sp1">등록일</span> <span><%=vo.getRegdate() %></span>
 		</div>
 		<div>
-			<span class="sp1">조회수</span> <span>7</span>
+			<span class="sp1">조회수</span> <span><%=vo.getReadcount() %></span>
 		</div>
 		<div class="lastDiv">			
-			<p class="content">내용입니다</p>
+			<p class="content"><%=content %></p>
 		</div>
 		<div class="center">
-			<a href='edit.jsp'>수정</a> |
-        	<a href='delete.jsp'>삭제</a> |
+			<a href='edit.jsp?no=<%=no%>'>수정</a> |
+        	<a href='delete.jsp?no=<%=no%>'>삭제</a> |
         	<a href='list.jsp'>목록</a>			
 		</div>
 	</div>

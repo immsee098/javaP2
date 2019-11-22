@@ -9,11 +9,9 @@
 	//[1] write.jsp에서 글목록 클릭하면 get방식으로 이동
 	//[2] write_ok.jsp에서 글쓰기 성공하면 get방식으로 이동	
 	//[3] list.jsp에서 검색 버튼 클릭하면 post방식으로 submit
-	//[4] list.jsp에서 페이지번호 클릭하면 get방식으로 이동
 	
 	//=> 글 전체 조회해서 출력
 	//=> 검색어를 이용해서 검색
-	//=> 페이지번호에 해당하는 글 조회
 	
 	//1. 요청 파라미터 읽어오기 [ - 검색의 경우 ]
 	//post
@@ -35,31 +33,6 @@
 	//3.
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
-	//페이징 처리 관련 변수
-	int currentPage=1;
-	
-	//list.jsp?currentPage=3
-	if(request.getParameter("currentPage")!=null){
-		currentPage
-			=Integer.parseInt(request.getParameter("currentPage"));		
-	}
-	
-	//현재 페이지와 무관한 변수
-	int totalRecord=list.size(); //전체 레코드 개수  예)17
-	int pageSize=5;  //한 페이지에 보여줄 레코드 개수
-	int blockSize=10; //블럭 사이즈  [1]~[10]
-	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
-		//=> 4
-	
-	//현재 페이지를 이용해서 계산하는 변수
-	int firstPage=currentPage-((currentPage-1)% blockSize);
-	//=> 블럭의 시작번호, 1,11,21,..
-	
-	int lastPage=firstPage+(blockSize-1); //블럭의 마지막 번호, 10,20,30..
-	int curPos=(currentPage-1)*pageSize; //ArrayList에서 시작 위치
-	//=> 0, 5, 10, ...
-	int num=totalRecord-curPos; //페이지당 글 리스트 시작 번호
-	//17, 12, 7, 2
 %>
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -121,11 +94,8 @@
 	</thead> 
 	<tbody>  
 	  <!--게시판 내용 반복문 시작  -->	
-	  <%for(int i=0;i<pageSize;i++){
-		    if(num<1) break;
-		  
-			BoardVO vo=list.get(curPos++);
-			num--;
+	  <%for(int i=0;i<list.size();i++){
+			BoardVO vo=list.get(i);	  
 	  %>	
 		<tr  style="text-align:center">
 			<td><%=vo.getNo() %></td>

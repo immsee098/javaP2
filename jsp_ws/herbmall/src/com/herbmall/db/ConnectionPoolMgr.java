@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionPoolMgr {
-
 	public ConnectionPoolMgr(){
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -53,7 +52,4 @@ public class ConnectionPoolMgr {
 		if(ps!=null) ps.close();
 		if(con!=null) con.close();
 	}
-
-	
-	
 }

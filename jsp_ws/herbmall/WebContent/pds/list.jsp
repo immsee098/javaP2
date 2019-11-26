@@ -57,7 +57,7 @@
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
-<title>답변형게시판 글 목록 - 허브몰</title>
+<title>자료실 글 목록 - 허브몰</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
@@ -83,7 +83,7 @@
 </style>	
 </head>	
 <body>
-<h2>답변형 게시판</h2>
+<h2>자료실</h2>
 <%
 	if(keyword!=null && !keyword.isEmpty()){%>
 		<p>검색어 : <%=keyword %>, <%=list.size() %>건 검색되었습니다.</p>	
@@ -94,8 +94,8 @@
 
 <div class="divList">
 <table class="box2"
-	 	summary="답변형 게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>답변형 게시판</caption>
+	 	summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+	<caption>자료실</caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:50%;" />
@@ -127,10 +127,13 @@
 		<tr  style="text-align:center">
 			<td><%=vo.getNo() %></td>
 			<td style="text-align:left">
-				<%if(vo.getDelFlag().equals("Y")){ %>
-					<span style="">삭제된 글입니다</span>
-				
+				<%if(vo.getDelFlag().equals("Y")){ %>			
+					<span style="color:gray;font-size: 1em">
+						삭제된 글입니다.</span>
 				<%}else{ %>
+					<!-- 자료실-파일 첨부된 경우 파일이미지 보여주기 -->
+					<%=Utility.displayFile(vo.getFileName()) %>
+					
 					<!--답변글인 경우 re이미지 보여주기  -->
 					<%-- <%if(vo.getStep()>0){ 
 						for(int k=0;k<vo.getStep();k++){%>
@@ -150,8 +153,7 @@
 					
 					<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
 					<%=Utility.displayNew(vo.getRegdate()) %>
-				<%} %>
-				
+				<%}//if %>
 			</td>				
 			<td><%=vo.getName() %></td>
 			<td><%=sdf.format(vo.getRegdate()) %></td>

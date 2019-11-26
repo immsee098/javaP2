@@ -42,7 +42,39 @@ public class Utility {
 		return result;
 	}
 	
+	
+	public static String displayFile(String fileName) {
+		String result="";
+		
+		if(fileName!=null && !fileName.isEmpty()) {
+			result="<img src='../images/file.gif' alt='file이미지' />";
+		}
+			
+		return result;
+	}
+	
+	public static String getFileInfo(String oFileName,
+			long fSize) {
+		String fileInfo="";
+		
+		if(oFileName!=null && !oFileName.isEmpty()){
+			float fileSize=fSize/1000.f;
+			fileSize=Math.round(fileSize*10)/10f;
+			
+			fileInfo+=displayFile(oFileName);
+			fileInfo+=" "+ oFileName+" ("+fileSize+"KB)";			
+		}
+		
+		return fileInfo;
+	}
+	
+	
 }
+
+
+
+
+
 
 
 

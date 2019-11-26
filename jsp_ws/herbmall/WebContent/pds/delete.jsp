@@ -21,7 +21,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>답변형 게시판 글 삭제 - 허브몰</title>
+<title>자료실 글 삭제 - 허브몰</title>
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />

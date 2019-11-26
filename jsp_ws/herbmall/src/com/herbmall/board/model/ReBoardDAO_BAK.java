@@ -12,10 +12,10 @@ import java.util.List;
 import com.herbmall.db.ConnectionPoolMgr;
 import com.herbmall.db.ConnectionPoolMgr1;
 
-public class ReBoardDAO {
+public class ReBoardDAO_BAK {
 	private ConnectionPoolMgr1 pool;
 	
-	public ReBoardDAO(){
+	public ReBoardDAO_BAK(){
 		pool=ConnectionPoolMgr1.getInstance();
 	}
 	
@@ -35,10 +35,8 @@ public class ReBoardDAO {
 			
 			//3
 			String sql="insert into reBoard(no, name,pwd, title, email,"
-					+ " content, groupno,filename, originalfilename,"
-					+ "filesize)" + 
-					" values(reBoard_seq.nextval, ?,?,?,?,?,"
-					+ "reBoard_seq.nextval, ?,?,?)";
+					+ " content, groupno)" + 
+					" values(reBoard_seq.nextval, ?,?,?,?,?,reBoard_seq.nextval)";
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, vo.getName());
@@ -46,9 +44,6 @@ public class ReBoardDAO {
 			ps.setString(3, vo.getTitle());
 			ps.setString(4, vo.getEmail());
 			ps.setString(5, vo.getContent());
-			ps.setString(6, vo.getFileName());
-			ps.setString(7, vo.getOriginalFileName());
-			ps.setLong(8, vo.getFileSize());
 			
 			//4
 			int cnt=ps.executeUpdate();
@@ -112,17 +107,10 @@ public class ReBoardDAO {
 				int step=rs.getInt("step");
 				int sortNo=rs.getInt("sortno");
 				String delflag=rs.getString("delflag");
-
-				//자료실 추가
-				int downcount=rs.getInt("downcount");
-				long filesize=rs.getInt("filesize");
-				String filename=rs.getString("filename");
-				String originFilename=rs.getString("originalfilename");
 				
 				ReBoardVO vo = new ReBoardVO(no, name, pwd, title, email, 
-					regdate, readcount, content, groupNo, step, sortNo,
-					delflag, filename, filesize, downcount, 
-					originFilename);
+					regdate, readcount, content, groupNo, step, sortNo, 
+					delflag);
 				
 				list.add(vo);
 			}
@@ -167,12 +155,6 @@ public class ReBoardDAO {
 				vo.setStep(rs.getInt("step"));
 				vo.setSortNo(rs.getInt("sortNo"));
 				vo.setDelFlag(rs.getString("delFlag"));
-				
-				vo.setFileSize(rs.getLong("fileSize"));
-				vo.setDownCount(rs.getInt("downCount"));
-				vo.setFileName(rs.getString("fileName"));
-				vo.setOriginalFileName(rs.getString("originalFileName"));
-								
 			}
 			System.out.println("글 조회 결과 vo="+ vo+", 매개변수 no="+ no);
 			
@@ -347,30 +329,6 @@ public class ReBoardDAO {
 		
 		return cnt;
 	}
-	
-	public int updateDownCount(int no) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		
-		try {
-			con=pool.getConnection();
-			
-			String sql="update reboard" + 
-					" set downcount=downcount+1" + 
-					" where no = ?";
-			ps=con.prepareStatement(sql);
-			ps.setInt(1, no);
-			
-			int cnt=ps.executeUpdate();
-			System.out.println("다운로드수 증가 결과 cnt="+cnt
-					+", 매개변수 no="+no);
-			
-			return cnt;
-		}finally {
-			pool.dbClose(ps, con);
-		}		
-	}
-	
 	
 }
 

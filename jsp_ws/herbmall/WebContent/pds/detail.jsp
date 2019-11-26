@@ -1,3 +1,4 @@
+<%@page import="com.herbmall.common.Utility"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.herbmall.board.model.ReBoardVO"%>
 <%@page import="com.herbmall.board.model.ReBoardDAO"%>
@@ -36,12 +37,20 @@
 		content="";
 	}
 
+	String fileInfo="", downInfo="";
+	String oFileName=vo.getOriginalFileName();
+	fileInfo=Utility.getFileInfo(oFileName, vo.getFileSize());
+	
+	if(oFileName!=null && !oFileName.isEmpty()){
+		downInfo="다운 : " + vo.getDownCount();
+	}
+	
 %>    
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>답변형 게시판 상세보기 - 허브몰</title>
+<title>자료실 상세보기 - 허브몰</title>
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
@@ -71,6 +80,14 @@
 		<div>
 			<span class="sp1">조회수</span> <span><%=vo.getReadcount() %></span>
 		</div>
+		<div>
+			<span class="sp1">첨부파일</span> 
+			<span><a href="download.jsp?no=<%=no%>&fileName=<%=vo.getFileName()%>">
+				<%=fileInfo %></a>
+				<%=downInfo %>
+			</span>
+		</div>
+		
 		<div class="lastDiv">			
 			<p class="content"><%=content %></p>
 		</div>

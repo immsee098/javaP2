@@ -17,7 +17,7 @@
 	System.out.println("2. saveDir="+saveDir);
 	
 	saveDir="D:\\lecture\\workspace_list\\jsp_ws\\herbmall\\WebContent\\pds_upload";
-	System.out.println("3. 테스트 경로 savDir="+saveDir);
+	System.out.println("3. 테스트경로 saveDir="+saveDir);
 	
 	int maxSize=2*1024*1024;  //2M, 최대 업로드 용량
 	String encoding="utf-8";

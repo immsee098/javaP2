@@ -112,55 +112,63 @@
 	    <th scope="col">조회수</th>
 	  </tr>
 	</thead> 
-	<tbody>  
-	  <!--게시판 내용 반복문 시작  -->	
-	  <%
-	  int num=pageVo.getNum();
-	  int curPos=pageVo.getCurPos();
-	  
-	  for(int i=0;i<pageVo.getPageSize();i++){
-		    if(num<1) break;
+	<tbody> 
+	  <%if(list==null || list.isEmpty()){ %>
+	  	  <tr>
+	  	  	<td colspan="5" style="text-align: center">
+	  	  		해당 글이 존재하지 않습니다.
+	  	  	</td>
+	  	  </tr>	
+	  <%}else{ %>	 
+		  <!--게시판 내용 반복문 시작  -->	
+		  <%
+		  int num=pageVo.getNum();
+		  int curPos=pageVo.getCurPos();
 		  
-			ReBoardVO vo=list.get(curPos++);
-			num--;
-	  %>	
-		<tr  style="text-align:center">
-			<td><%=vo.getNo() %></td>
-			<td style="text-align:left">
-				<%if(vo.getDelFlag().equals("Y")){ %>			
-					<span style="color:gray;font-size: 1em">
-						삭제된 글입니다.</span>
-				<%}else{ %>
-					<!-- 자료실-파일 첨부된 경우 파일이미지 보여주기 -->
-					<%=Utility.displayFile(vo.getFileName()) %>
-					
-					<!--답변글인 경우 re이미지 보여주기  -->
-					<%-- <%if(vo.getStep()>0){ 
-						for(int k=0;k<vo.getStep();k++){%>
-							&nbsp;
-						<%}//for %>
+		  for(int i=0;i<pageVo.getPageSize();i++){
+			    if(num<1) break;
+			  
+				ReBoardVO vo=list.get(curPos++);
+				num--;
+		  %>	
+			<tr  style="text-align:center">
+				<td><%=vo.getNo() %></td>
+				<td style="text-align:left">
+					<%if(vo.getDelFlag().equals("Y")){ %>			
+						<span style="color:gray;font-size: 1em">
+							삭제된 글입니다.</span>
+					<%}else{ %>					
+						<!--답변글인 경우 re이미지 보여주기  -->
+						<%-- <%if(vo.getStep()>0){ 
+							for(int k=0;k<vo.getStep();k++){%>
+								&nbsp;
+							<%}//for %>
+							
+							<img src='../images/re.gif' alt='re이미지'>
+						<%}//if %>
+						 --%>
 						
-						<img src='../images/re.gif' alt='re이미지'>
+						<%=Utility.displayRe(vo.getStep()) %>
+						
+						<!-- 자료실-파일 첨부된 경우 파일이미지 보여주기 -->
+						<%=Utility.displayFile(vo.getFileName()) %>
+						
+						<!-- 제목이 긴 경우 일부만 보여주기 --> 
+						<a href="countUpdate.jsp?no=<%=vo.getNo()%>">
+							<%=Utility.cutString(vo.getTitle(), 25) %>
+						</a>
+						
+						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
+						<%=Utility.displayNew(vo.getRegdate()) %>
 					<%}//if %>
-					 --%>
-					
-					<%=Utility.displayRe(vo.getStep()) %>
-					
-					<!-- 제목이 긴 경우 일부만 보여주기 --> 
-					<a href="countUpdate.jsp?no=<%=vo.getNo()%>">
-						<%=Utility.cutString(vo.getTitle(), 25) %>
-					</a>
-					
-					<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-					<%=Utility.displayNew(vo.getRegdate()) %>
-				<%}//if %>
-			</td>				
-			<td><%=vo.getName() %></td>
-			<td><%=sdf.format(vo.getRegdate()) %></td>
-			<td><%=vo.getReadcount() %></td>		
-		</tr> 
-	  <%}//for %>	
-	  <!--반복처리 끝  -->
+				</td>				
+				<td><%=vo.getName() %></td>
+				<td><%=sdf.format(vo.getRegdate()) %></td>
+				<td><%=vo.getReadcount() %></td>		
+			</tr> 
+		  <%}//for %>	
+		  <!--반복처리 끝  -->
+	  <%}//if %>	  
 	  </tbody>
 </table>	   
 </div>

@@ -3,6 +3,12 @@ package com.herbmall.common;
 import java.util.Date;
 
 public class Utility {
+	//파일 업로드 경로
+	public static final String UPLOAD_PATH="pds_upload";
+	//테스트 경로
+	public static final String TEST_PATH
+	="D:\\lecture\\workspace_list\\jsp_ws\\herbmall\\WebContent\\pds_upload";
+	
 	public static String displayRe(int step) {
 		String str="";
 		

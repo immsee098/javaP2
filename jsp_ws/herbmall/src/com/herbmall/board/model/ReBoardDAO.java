@@ -191,16 +191,27 @@ public class ReBoardDAO {
 			//1,2
 			con=pool.getConnection();
 			
-			String sql="update reBoard"
-					+ " set name=?, title=?, email=?,content=?"
-					+ " where no=?";
+			String sql="update reBoard";
+			sql+= " set name=?, title=?, email=?,content=?";
+			if(vo.getFileName()!=null && !vo.getFileName().isEmpty()) {
+				sql+=", filename=?, originalFilename=?, filesize=?";
+			}
+					
+			sql+= " where no=?";
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getTitle());
 			ps.setString(3, vo.getEmail());
 			ps.setString(4, vo.getContent());
-			ps.setInt(5, vo.getNo());
+			if(vo.getFileName()!=null && !vo.getFileName().isEmpty()) {
+				ps.setString(5, vo.getFileName());
+				ps.setString(6, vo.getOriginalFileName());
+				ps.setLong(7, vo.getFileSize());
+				ps.setInt(8, vo.getNo());
+			}else {
+				ps.setInt(5, vo.getNo());
+			}
 			
 			int cnt=ps.executeUpdate();
 			System.out.println("글 수정  결과 cnt="+cnt+", 매개변수 vo="+vo);

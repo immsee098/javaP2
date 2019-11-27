@@ -1,3 +1,4 @@
+<%@page import="com.herbmall.common.Utility"%>
 <%@page import="java.io.BufferedOutputStream"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.BufferedInputStream"%>
@@ -29,10 +30,10 @@
 	}
 	
 	String fileName=request.getParameter("fileName");
-	System.out.println("filename="+fileName);
+	//System.out.println("filename="+fileName);
 	
-	String dir=application.getRealPath("pds_upload");
-	dir="D:\\lecture\\workspace_list\\jsp_ws\\herbmall\\WebContent\\pds_upload";
+	String dir=application.getRealPath(Utility.UPLOAD_PATH);
+	dir=Utility.TEST_PATH;
 	File file=new File(dir, fileName);
 
 	//2.

@@ -10,10 +10,14 @@
 <body>
 <h1>싱글톤 패턴 연습</h1>
 <%
-	//Person p = new Person();//error
-	Person p = Person.getInstance();
+	//Person p = new Person(); //error
+	Person p =Person.getInstance();
 	p.showInfo();
 %>
-
 </body>
 </html>
+
+
+
+
+

@@ -1,3 +1,4 @@
+<%@page import="com.herbmall.common.Utility"%>
 <%@page import="java.io.File"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -18,14 +19,14 @@
 		//write.jsp에서 post방식으로 submit
 		//=> 파라미터 읽어서 reBoard에 insert
 		//파일 업로드 처리
-		String upDir="pds_upload";
+		String upDir=Utility.UPLOAD_PATH;
 		
 		//업로드할 폴더 - 실제 물리적인 경로 구하기
 		String saveDir=config.getServletContext().getRealPath(upDir);
 		saveDir=application.getRealPath(upDir);
 		System.out.println("saveDir="+saveDir);
 		
-		saveDir="D:\\lecture\\workspace_list\\jsp_ws\\herbmall\\WebContent\\pds_upload";
+		saveDir=Utility.TEST_PATH;
 		System.out.println("테스트경로 saveDir="+saveDir);
 		
 		int maxSize=2*1024*1024; //업로드할 최대용량 2M

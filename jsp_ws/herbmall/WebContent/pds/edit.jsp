@@ -1,3 +1,4 @@
+<%@page import="com.herbmall.common.Utility"%>
 <%@page import="com.herbmall.board.model.ReBoardVO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.herbmall.board.model.ReBoardDAO"%>
@@ -31,9 +32,10 @@
 	//3
 	String email=vo.getEmail();
 	String content=vo.getContent();
+	String oldFileName=vo.getFileName();
 	if(email==null) email="";
 	if(content==null) content="";
-	
+	if(oldFileName==null) oldFileName="";
 %>    
 <!DOCTYPE html>
 <html lang="ko">
@@ -65,9 +67,12 @@
 </head>
 <body>
 <div class="divForm">
-<form name="frmEdit" method="post" action="edit_ok.jsp"> 
+<form name="frmEdit" method="post" action="edit_ok.jsp"
+	enctype="multipart/form-data"> 
     <!-- 수정처리시 no가 필요하므로 hidden 필드에 넣는다-->
     <input type="hidden" name="no" value="<%=no%>">
+	<!-- 기존 파일 삭제시 필요 -->
+    <input type="text" name="oldFileName" value="<%=oldFileName%>">
     
     <fieldset>
 	<legend>글수정</legend>
@@ -90,6 +95,19 @@
             <input type="text" id="email" name="email" 
             	value="<%=email%>"/>
         </div>
+        <div>
+            <label for="upfile">첨부파일</label>
+            <input type="file" id="upfile" name="upfile"/>
+        </div>
+        <div>
+            <label for="upfile">첨부파일 목록</label>
+            <span><%=Utility.getFileInfo(vo.getOriginalFileName(), vo.getFileSize()) %></span>
+            <br>
+            <%if(vo.getFileName()!=null && !vo.getFileName().isEmpty()){ %>
+	            <span style="color:green;font-weight: bold">
+	            	첨부파일을 새로 지정할 경우 기존 파일은 삭제됩니다.</span>
+            <%} %>	            
+        </div>        
         <div>  
         	<label for="content">내용</label>        
  			<textarea id="content" name="content" rows="12" cols="40"><%=content%></textarea>

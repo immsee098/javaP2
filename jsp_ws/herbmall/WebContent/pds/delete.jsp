@@ -15,6 +15,7 @@
 	
 	String groupNo=request.getParameter("groupNo");
 	String step=request.getParameter("step");
+	String fileName=request.getParameter("fileName");
 	
 	%>    
 <!DOCTYPE HTML>
@@ -75,9 +76,10 @@
 <div class="divForm">
 	<form name="frmDelete" method="post"	action="delete_ok.jsp" >
 		<!-- hidden -->
-        <input type="text" name="no" value="<%=no %>" />
-        <input type="text" name="groupNo" value="<%=groupNo %>" />
-        <input type="text" name="step" value="<%=step %>" />
+        <input type="hidden" name="no" value="<%=no %>" />
+        <input type="hidden" name="groupNo" value="<%=groupNo %>" />
+        <input type="hidden" name="step" value="<%=step %>" />
+        <input type="text" name="fileName" value="<%=fileName %>" />
            
 		<fieldset>
 		<legend>글 삭제</legend>

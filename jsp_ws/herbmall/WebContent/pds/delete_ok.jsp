@@ -1,3 +1,5 @@
+<%@page import="com.herbmall.common.Utility"%>
+<%@page import="java.io.File"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.herbmall.board.model.ReBoardVO"%>
 <%@page import="com.herbmall.board.model.ReBoardDAO"%>
@@ -22,6 +24,7 @@
 	String pwd=request.getParameter("pwd");
 	String groupNo=request.getParameter("groupNo");
 	String step=request.getParameter("step");
+	String fileName=request.getParameter("fileName");
 	
 	//2
 	ReBoardDAO dao=new ReBoardDAO();		
@@ -32,7 +35,21 @@
 			vo.setGroupNo(Integer.parseInt(groupNo));
 			vo.setStep(Integer.parseInt(step));
 			
-			dao.deleteReBoard(vo);%>
+			dao.deleteReBoard(vo);
+			
+			//기존 파일 삭제
+			if(fileName!=null && !fileName.isEmpty()){
+				String upPath=application.getRealPath(Utility.UPLOAD_PATH);
+				upPath=Utility.TEST_PATH;
+				
+				File file=new File(upPath, fileName);
+				if(file.exists()){
+					boolean bool=file.delete();
+					System.out.println("기존 파일 삭제 여부 : "+ bool);
+				}
+			}
+			
+			%>
 			<script type="text/javascript">
 				alert("글 삭제되었습니다.");
 				location.href="list.jsp";

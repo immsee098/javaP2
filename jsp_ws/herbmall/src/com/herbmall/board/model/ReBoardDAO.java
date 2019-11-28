@@ -325,8 +325,9 @@ public class ReBoardDAO {
 			
 			//3. [insert]
 			sql="insert into reboard(no, name, pwd, title, email, "
-				+ "content, groupno, step, sortno)" + 
-				" values(reboard_seq.nextval,?,?,?,?,?,?,?,?)"; 
+				+ "content, groupno, step, sortno,filename, "
+				+ "originalfilename,filesize)" + 
+				" values(reboard_seq.nextval,?,?,?,?,?,?,?,?,?,?,?)"; 
 				
 			ps=con.prepareStatement(sql);
 			
@@ -338,6 +339,9 @@ public class ReBoardDAO {
 			ps.setInt(6, vo.getGroupNo());
 			ps.setInt(7, vo.getStep()+1);
 			ps.setInt(8, vo.getSortNo()+1);
+			ps.setString(9, vo.getFileName());
+			ps.setString(10, vo.getOriginalFileName());
+			ps.setLong(11, vo.getFileSize());
 			
 			//4.
 			cnt=ps.executeUpdate();

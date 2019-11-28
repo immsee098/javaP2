@@ -6,38 +6,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+//톰캣 dbcp를 이용하여 커넥션 객체를 빌려오는 클래스
 public class ConnectionPoolMgr {
+	private DataSource ds;
+	
 	public ConnectionPoolMgr(){
+		Context ctx;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("드라이버 로딩 성공!");
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패!");
+			ctx = new InitialContext();
+			ds=(DataSource) ctx.lookup("java:/comp/env/jdbc/oracledb");
+			System.out.println("dbcp-DataSource 생성 성공!");
+		} catch (NamingException e) {
+			System.out.println("dbcp-DataSource 생성 실패!");
 			e.printStackTrace();
-		}		
-	}
+		}
+	}	
 	
-	public Connection getConnection(String url, String user, String upwd) 
-			throws SQLException {
-		Connection con=DriverManager.getConnection(url, user, upwd);
-		System.out.println("db연결 결과 con="+ con);
-		
+	public Connection getConnection() throws SQLException {
+		Connection con= ds.getConnection();
+		System.out.println("db연결 결과 con="+con);
 		return con;
-	}
-	
-	public Connection getConnection(String user, String upwd) 
-			throws SQLException {
-		String url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe";
-		
-		return getConnection(url, user, upwd);
-	}
-	
-	public Connection getConnection() 
-			throws SQLException {
-		String url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe";
-		String user="herb", upwd="herb123";
-		
-		return getConnection(url, user, upwd);
 	}
 	
 	public void dbClose(ResultSet rs, PreparedStatement ps,

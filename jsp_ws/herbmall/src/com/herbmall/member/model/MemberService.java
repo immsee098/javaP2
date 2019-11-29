@@ -1,0 +1,39 @@
+package com.herbmall.member.model;
+
+import java.sql.SQLException;
+
+/*
+ jsp -> DAO
+ jsp -> Service -> DAO 
+*/
+
+//DB작업 이외의 로직을 담는 클래스
+public class MemberService {
+	public static final int EXIST_ID=1;  //아이디가 이미 존재하는 경우
+	public static final int USEFUL_ID=2;  //아이디가 사용 가능한 경우
+	
+	private MemberDAO memberDao;
+	
+	public MemberService() {
+		memberDao=new MemberDAO();
+	}
+	
+	public int insertMember(MemberVO vo) throws SQLException {
+		int cnt = memberDao.insertMember(vo);
+		return cnt;
+	}
+	
+	public int duplicateUserid(String userid) throws SQLException {
+		return memberDao.duplicateUserid(userid);
+	}
+		
+}
+
+
+
+
+
+
+
+
+

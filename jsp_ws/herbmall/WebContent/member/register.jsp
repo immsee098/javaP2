@@ -4,6 +4,8 @@
 
 <script type="text/javascript">
 	$(function(){
+		$("#name").focus();
+		
 		$("#wr_submit").click(function(){
 			if($("#name").val().length<1){
 				alert("이름을 입력하세요");
@@ -28,6 +30,33 @@
 				event.preventDefault();				
 			}	
 		});
+		
+		//이메일 - 직접입력의 경우 텍스트박스가 보이도록
+		$("#email2").change(function(){
+			if($(this).val()=='etc'){
+				$("#email3").val("");
+				$("#email3").css("visibility","visible");
+				$("#email3").focus();				
+			}else{
+				$("#email3").css("visibility","hidden");
+			}
+		});
+		
+		//중복확인 버튼 클릭- 아이디 중복확인 창 띄우기
+		$("#btnChkId").click(function(){
+			var userid=$("#userid").val();
+			
+			window.open("checkUserid.jsp?userid="+userid,"chkId",
+	"width=450,height=200,left=0,top=0,location=yes,resizable=yes");
+		});
+	
+		//우편번호 찾기
+		$("#btnZipcode").click(function(){
+			window.open("../zipcode/zipcode.jsp","zip",
+	"width=500,height=600,left=0,top=0,location=yes,resizable=yes");
+				
+		});
+		
 		
 	});
 	
@@ -74,7 +103,8 @@
         <label for="userid">회원ID</label>
         <input type="text" name="userid" id="userid"
         		style="ime-mode:inactive">&nbsp;
-        <input type="button" value="중복확인" id="btnChkId" title="새창열림">
+        <input type="button" value="중복확인" id="btnChkId" 
+        	title="새창열림">
     </div>
     <div>
         <label for="pwd">비밀번호</label>
@@ -88,14 +118,16 @@
         <label for="zipcode">주소</label>
         <input type="text" name="zipcode" id="zipcode" ReadOnly  
         	title="우편번호" class="width_80">
-        <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
+        <input type="Button" value="우편번호 찾기" id="btnZipcode" 
+        	title="새창열림"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="address" ReadOnly title="주소"  class="width_350"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="addressDetail" title="상세주소"  class="width_350">
     </div>
     <div>
-        <label for="hp1">핸드폰</label>&nbsp;<select name="hp1" id="hp1" title="휴대폰 앞자리">
+        <label for="hp1">핸드폰</label>&nbsp;
+        <select name="hp1" id="hp1" title="휴대폰 앞자리">
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -127,7 +159,7 @@
     </div>
 </fieldset>
 
-    <input type ="hidden" name="chkId" id="chkId">
+    <input type ="text" name="chkId" id="chkId">
         
 </form>
 </div>

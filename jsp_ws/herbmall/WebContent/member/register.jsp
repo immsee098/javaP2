@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ include file="../inc/top.jsp" %>
 
 <script type="text/javascript">
@@ -27,8 +28,13 @@
 					|| !validate_phone($("#hp3").val())){
 				alert("휴대폰번호는 숫자만 가능!");
 				$("#hp2").focus();
-				event.preventDefault();				
-			}	
+				event.preventDefault();		
+			}else if($("#chkId").val()!='Y'){
+				alert("아이디 중복확인을 하세요");
+				$("#btnChkId").focus();
+				event.preventDefault();			
+			}
+			
 		});
 		
 		//이메일 - 직접입력의 경우 텍스트박스가 보이도록
@@ -121,7 +127,8 @@
         <input type="Button" value="우편번호 찾기" id="btnZipcode" 
         	title="새창열림"><br />
         <span class="sp1">&nbsp;</span>
-        <input type="text" name="address" ReadOnly title="주소"  class="width_350"><br />
+        <input type="text" name="address" ReadOnly title="주소"  
+        	class="width_350"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="addressDetail" title="상세주소"  class="width_350">
     </div>

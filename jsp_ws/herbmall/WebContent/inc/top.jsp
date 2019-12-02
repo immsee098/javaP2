@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String t_userid=(String)session.getAttribute("userid");
+	boolean t_login=false;
+	if(t_userid!=null && !t_userid.isEmpty()){
+		t_login=true;
+	}
+%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,12 +32,20 @@
 	<div id="wrap">
 		<!-- header -->				
 		<header id="header">
-			<h1><a href="<%=request.getContextPath()%>/index.jsp">
-			<img alt="로고 이미지" src="<%=request.getContextPath()%>/images/herbLogo7.jpg" height="95px" /></a></h1>
+			<h1><a href="<%=request.getContextPath()%>/index.jsp">			
+			<img alt="로고 이미지" src="<%=request.getContextPath()%>/images/herbLogo7.jpg" height="95px" />
+			</a></h1>
 			<nav id="headerRight">
 				<ul class="views">					
-					<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
-					<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원가입</a></li>	            
+					<%if(!t_login){%>
+						<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
+						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원가입</a></li>
+					<%}else{ %>
+						<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그아웃</a></li>
+						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원정보수정</a></li>
+						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원탈퇴</a></li>
+					<%}//if %>
+						            
 					<li><a href="<%=request.getContextPath()%>/shop/cart/cartList.jsp">장바구니</a></li>
 					<li><a href="<%=request.getContextPath()%>/shop/order/orderList.jsp">주문내역</a></li>
 					<li><a href="<%=request.getContextPath()%>/shop/mypage.jsp">마이페이지</a></li>

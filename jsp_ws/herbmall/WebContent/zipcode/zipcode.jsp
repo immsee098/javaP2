@@ -24,6 +24,8 @@
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+	} else {
+		dong = "";
 	}
 	
 	//3
@@ -57,6 +59,8 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#dong").focus();
+		
 		$("form[name=frm]").submit(function(){
 			if($("#dong").val().length<1){
 				$(".error").show();
@@ -67,6 +71,15 @@
 		
 	});
 	
+	function setAddress(zipcode, address){
+		$(opener.document).find('#zipcode').val(zipcode);
+		$(opener.document).find('input[name=address]').val(address);
+		
+		self.close();
+		
+		//부모 프레임에 넣고 닫기
+	}
+	
 </script>
 </head>
 <body>
@@ -74,7 +87,7 @@
 	<p>찾고 싶으신 주소의 동(읍, 면)을 입력하세요</p>
 	<form name="frm" method="post" action="zipcode.jsp">
 		<label for="dong">지역명</label>
-		<input type="text" name="dong" id="dong">
+		<input type="text" name="dong" id="dong" value="<%=dong%>">
 		<input type="submit" value="찾기">
 		<span class="error">지역명을 입력하세요</span>
 	</form>
@@ -100,31 +113,32 @@
 					<%}else{ %>
 						<!-- 반복시작 -->
 						<%
-							for(ZipcodeVO vo:list){
-								String address = vo.getSido()+" "+vo.getGugun()+" "+vo.getDong();
-								String sbunji = vo.getStartbunji();
-								String ebunji = vo.getEndbunji();
-								
-								if(sbunji==null) {
-									sbunji ="";	
-								}
-								String bunji="";
-								if(ebunji !=null && ebunji.isEmpty()){
-									bunji=sbunji+"~"+ebunji;
-								} else{
-									bunji=sbunji;
-								}
-								
-								
-							}
-						%>
-						
-						<tr>
-							<td></td>
-							<td></td>						
-						</tr>
+						for(int i=0;i<list.size();i++){
+							ZipcodeVO vo=list.get(i);
+							
+							String zipcode=vo.getZipcode();
+							String address=vo.getSido()+" "
+								+vo.getGugun()+" " 
+								+vo.getDong();
+							String bunji=vo.getStartbunji();
+							
+							if(vo.getEndbunji()!=null &&
+									!vo.getEndbunji().isEmpty()){
+								bunji+=" ~ " + vo.getEndbunji();
+							}%>
+							
+							<tr>
+								<td><%=zipcode%></td>
+								<td>
+									<a href="#" 
+				onclick="setAddress('<%=zipcode%>','<%=address %>')">
+									<%=address %> <%=bunji %>
+									</a>
+								</td>
+							</tr>							
+						<%}//for	%>
 						<!-- 반복끝 -->
-					<%} %>				
+					<%}//if %>				
 				</tbody>
 			</table>
 			<div id="page"></div>

@@ -96,6 +96,7 @@
 		<p>검색어 : <%=keyword %>, <%=list.size() %>건 검색되었습니다.</p>	
 <%	}else{
 		keyword="";
+		condition="";
 	}
 %>
 
@@ -143,17 +144,33 @@
 </table>	   
 </div>
 <div class="divPage">
-	<!-- 페이지 번호 추가 -->		
-						
+	<!-- 이전블럭으로 이동 -->
+	<%if(firstPage>1){%>
+		<a href="list.jsp?currentPage=<%=firstPage-1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
+			<img src="../images/first.JPG" alt="이전 블럭으로">
+		</a>
+	<%} %>
+	
+	<!-- 페이지 번호 추가 -->						
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
 	<%
 		for(int i=firstPage;i<=lastPage;i++){
-			if(i>totalPage) break;
-	%>
-			<a href="list.jsp?currentPage=<%=i%>">[<%=i %>]</a>
+			if(i>totalPage) break; //1,2  | 2
 			
+			if(i==currentPage){	%>
+				<span style="color:blue;font-weight: bold"><%=i %></span>
+			<%}else{ %>
+				<a href="list.jsp?currentPage=<%=i%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">[<%=i %>]</a>
+			<%}//if %>
 	<%	}//for %>
 	<!--  페이지 번호 끝 -->
+	
+	<!-- 다음블럭으로 이동 -->
+	<%if(lastPage < totalPage){%>
+		<a href="list.jsp?currentPage=<%=lastPage+1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
+			<img src="../images/last.JPG" alt="다음 블럭으로">
+		</a>
+	<%} %>
 </div>
 <div class="divSearch">
    	<form name="frmSearch" method="post" action='list.jsp'>

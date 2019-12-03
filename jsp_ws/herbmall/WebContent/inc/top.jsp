@@ -42,8 +42,8 @@
 						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원가입</a></li>
 					<%}else{ %>
 						<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그아웃</a></li>
-						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원정보수정</a></li>
-						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원탈퇴</a></li>
+						<li><a href="<%=request.getContextPath()%>/member/memberEdit.jsp">회원정보수정</a></li>
+						<li><a href="<%=request.getContextPath()%>/member/memberOut.jsp">회원탈퇴</a></li>
 					<%}//if %>
 						            
 					<li><a href="<%=request.getContextPath()%>/shop/cart/cartList.jsp">장바구니</a></li>

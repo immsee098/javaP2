@@ -159,8 +159,64 @@ public class MemberDAO {
 		
 	}
 	
+	public int updateMember(MemberVO vo) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="update member"
+					+ " set email=?, hp=?, zipcode=?, address=?,"
+					+ " addressDetail=?" + 
+					" where userid=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, vo.getEmail());
+			ps.setString(2, vo.getHp());
+			ps.setString(3, vo.getZipcode());
+			ps.setString(4, vo.getAddress());
+			ps.setString(5, vo.getAddressDetail());
+			ps.setString(6, vo.getUserid());
+			
+			//4
+			int cnt=ps.executeUpdate();
+			System.out.println("회원정보 수정 결과 cnt="+cnt+", 매개변수 vo="+vo);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
 	
-	
+	public int withdrawMember(String userid) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="update member"
+					+ " set outdate=sysdate" + 
+					" where userid=?";
+			ps=con.prepareStatement(sql);
+						
+			ps.setString(1, userid);
+			
+			//4
+			int cnt=ps.executeUpdate();
+			System.out.println("회원탈퇴 결과 cnt="+cnt+", 매개변수 userid="
+					+userid);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
 }
 
 

@@ -30,7 +30,7 @@
 <article id="agree">
 	<h2>회원 약관</h2>
 	<iframe src="provision.html" width="800" height="400"></iframe>
-	<form name="frmAgree" method="post" action="register2.jsp">
+	<form name="frmAgree" method="post" action="register.jsp">
 		<div class="divChk">
 			<input type="checkbox" name="chkAgree" id="chkAgree">
 			<label for="chkAgree">약관에 동의합니다.</label>

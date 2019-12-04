@@ -41,7 +41,7 @@
 						<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/member/agreement.jsp">회원가입</a></li>
 					<%}else{ %>
-						<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그아웃</a></li>
+						<li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
 						<li><a href="<%=request.getContextPath()%>/member/memberEdit.jsp">회원정보수정</a></li>
 						<li><a href="<%=request.getContextPath()%>/member/memberOut.jsp">회원탈퇴</a></li>
 					<%}//if %>

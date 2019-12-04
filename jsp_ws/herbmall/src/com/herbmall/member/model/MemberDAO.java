@@ -209,8 +209,7 @@ public class MemberDAO {
 			
 			//4
 			int cnt=ps.executeUpdate();
-			System.out.println("회원탈퇴 결과 cnt="+cnt+", 매개변수 userid="
-					+userid);
+			System.out.println("회원탈퇴 결과 cnt="+cnt+", 매개변수 userid="+userid);
 			
 			return cnt;
 		}finally {

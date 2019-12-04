@@ -81,6 +81,6 @@
 		</div>
 	</div>
 
-	
+<%@include file="../comments/writeComment.jsp" %>
 </body>
 </html>

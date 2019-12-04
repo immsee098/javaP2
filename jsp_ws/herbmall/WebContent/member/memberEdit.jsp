@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<%@ include file="../login/loginCheck.jsp" %>
 <%
 	MemberService service = new MemberService();
 	MemberVO vo=null;
@@ -176,7 +177,15 @@
         <input type="text" name="email1"  id="email1" 
         title="이메일주소 앞자리" value="<%=email1%>">@
         <select name="email2" id="email2"  title="이메일주소 뒷자리">
-            <option value="naver.com"
+        	<%for(int i=0;i<emailList.length;i++){ %>        	
+	        	<option value="<%=emailList[i] %>"
+	            	<%if(email2.equals(emailList[i])){ %>
+	            		selected="selected"
+	            	<%} %>
+	            ><%=emailList[i] %></option>
+            <%}//for %>
+        
+            <%-- <option value="naver.com"
             	<%if(email2.equals("naver.com")){ %>
             		selected="selected"
             	<%} %>
@@ -195,7 +204,7 @@
             	<%if(email2.equals("gmail.com")){ %>
             		selected="selected"
             	<%} %>
-            >gmail.com</option>
+            >gmail.com</option> --%>
             <option value="etc"
             	<%if(isEtc){ %>
             		selected="selected"
@@ -203,7 +212,13 @@
             >직접입력</option>
         </select>
         <input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
-        	style="visibility:hidden">
+        	<%if(isEtc){ %>
+        		style="visibility:visible;"
+        		value="<%=email2 %>"
+        	<%}else{ %>
+        		style="visibility:hidden"
+        	<%} %>
+        	>
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="수정">

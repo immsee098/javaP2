@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>mymvc</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- <servlet>
+  	<servlet-name>msgCont</servlet-name>
+  	<servlet-class>com.tips.controller.MessageController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>msgCont</servlet-name>
+  	<url-pattern>/msgController</url-pattern>
+  </servlet-mapping>
+   
+  <servlet>
+  	<servlet-name>travelCont</servlet-name>
+  	<servlet-class>com.tips.controller.TravelController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>travelCont</servlet-name>
+  	<url-pattern>/travel.do</url-pattern>
+  </servlet-mapping>
+   
+  <servlet>
+  	<servlet-name>bookCont</servlet-name>
+  	<servlet-class>com.tips.controller.BookController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>bookCont</servlet-name>
+  	<url-pattern>/book.do</url-pattern>
+  </servlet-mapping> 
+   -->
+
+  <servlet>
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>com.controller.DispatcherServlet</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/config/CommandPro.properties</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping> 
+   
+</web-app>
+
+
+
+

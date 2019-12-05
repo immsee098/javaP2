@@ -150,12 +150,9 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       <Context docBase="herbmall" path="/herbmall" reloadable="true" source="org.eclipse.jst.jee.server:herbmall">
-          <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" 
-          maxActive="20" maxWait="-1" name="jdbc/oracledb" password="herb123" 
-          type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe" 
-          username="herb"/>
+          <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxWait="-1" name="jdbc/oracledb" password="herb123" type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe" username="herb"/>
       </Context>
-      </Host>
+      <Context docBase="mymvc" path="/mymvc" reloadable="true" source="org.eclipse.jst.jee.server:mymvc"/></Host>
     </Engine>
   </Service>
 </Server>

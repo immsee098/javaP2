@@ -7,5 +7,5 @@ public interface Controller {
 	String requestProcess(HttpServletRequest request,
 			HttpServletResponse response) throws Throwable;
 	
-	
+	boolean isRedirect();
 }

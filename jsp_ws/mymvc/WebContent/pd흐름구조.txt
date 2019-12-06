@@ -1,0 +1,27 @@
+[모델2 흐름]
+
+1. 상품 호면 보여주기
+pdWrite.jsp
+
+/pd/pdWrite.do=>(해당 요청이 들어오면 담당자 컨트롤러 요청 필요) PdWriteController
+=>pdWrite.jsp 뷰를 보여주게됨
+
+
+2. 상품 등록 처리
+(기존으로 치자면 pdWrite_ok.jsp. 이제뷰는 필요없이 컨트롤러만 있음됨)
+/pd/pdWrite_ok.do=:PdWriteOkController
+=> message.jsp 포워드(메시지를 주는 행위)
+
+
+3. 상품 목록 보여주기 pdList.jsp
+/pd/pdWrite.do->PdListController
+=>pdList로 포워드
+
+4. 상품 상세정보 보여주기 pdDetail.jsp
+/pd/pdDetail.do=>PdDetailController
+=>pdDetail.jsp로 포워드
+
+
+5. 상품 삭제 처리 - 기존 pdDelete.jsp
+/pd/pdDelete.do=>PdDeleteController
+=>pdList.do 로 redirect(메시지 주지 않응 경우)

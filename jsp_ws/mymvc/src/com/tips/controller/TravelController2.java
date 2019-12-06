@@ -16,12 +16,17 @@ public class TravelController2 implements Controller{
 		//2. 비즈니스 로직 처리
 		TravelExpert model = new TravelExpert();
 		String result=model.getTip(city);
-		System.out.println("city="+city+", result="+result);
+		//System.out.println("city="+city+", result="+result);
 		
 		//3. 결과 저장
 		request.setAttribute("result", result);
 		
 		return "/tips/travelResult.jsp";
+	}
+
+	@Override
+	public boolean isRedirect() {
+		return false;
 	}
 
 }

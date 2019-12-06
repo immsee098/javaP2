@@ -152,7 +152,11 @@
       <Context docBase="herbmall" path="/herbmall" reloadable="true" source="org.eclipse.jst.jee.server:herbmall">
           <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxWait="-1" name="jdbc/oracledb" password="herb123" type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe" username="herb"/>
       </Context>
-      <Context docBase="mymvc" path="/mymvc" reloadable="true" source="org.eclipse.jst.jee.server:mymvc"/></Host>
+      
+      <Context docBase="mymvc" path="/mymvc" reloadable="true" source="org.eclipse.jst.jee.server:herbmall">
+          <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxWait="-1" name="jdbc/oracledb" password="herb123" type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe" username="herb"/>
+      </Context>
+      </Host>
     </Engine>
   </Service>
 </Server>

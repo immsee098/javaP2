@@ -106,7 +106,6 @@ public class DispatcherServlet extends HttpServlet {
 
 			//클래스의 인스턴스 생성
 			Controller controller=(Controller) cmdClass.newInstance();
-			//BookController2가 Controller를 implement 하기 때문
 			
 			//명령어 처리클래스의 메서드 호출
 			String viewPage

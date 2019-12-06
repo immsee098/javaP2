@@ -43,7 +43,7 @@
 
   <servlet>
   	<servlet-name>dispatcher</servlet-name>
-  	<servlet-class>com.controller.DispatcherServlet</servlet-class>
+  	<servlet-class>com.controller.DispatcherServlet2</servlet-class>
   	<init-param>
   		<param-name>configFile</param-name>
   		<param-value>/config/CommandPro.properties</param-value>

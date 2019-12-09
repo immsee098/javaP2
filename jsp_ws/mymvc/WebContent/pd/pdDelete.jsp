@@ -1,4 +1,5 @@
 <%@page import="java.sql.SQLException"%>
+<%@page import="com.mystudy.pd.model.PdDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>

@@ -25,3 +25,40 @@ pdWrite.jsp
 5. 상품 삭제 처리 - 기존 pdDelete.jsp
 /pd/pdDelete.do=>PdDeleteController
 =>pdList.do 로 redirect(메시지 주지 않응 경우)
+
+
+6. 상품 수정 화면 보여주기 - pdEdit.jsp
+/pd/pdEdit.do=>PdEditController
+=>pdEdit으로 포워드
+
+7. 상품 수정 - pdEdit_ok.jsp
+
+
+[board]
+
+1. 글쓰기 화면 보여주기 - write.jsp
+/board/write.do => BoardWriteController
+=>write.jsp로 포워드
+
+
+2. 글스기 처리 - 기존 write_ok.jsp
+/board/write_ok.do => BoardWriteOkController
+=>message.jsp로 포워드(메시지 보여주기)
+
+
+3.글 목록 보여주기 - list.jsp
+/board/list.do=>BoardListController
+=>list.jsp로 포워드
+
+
+5. 글 상세 보여주기 - detail.jsp
+/board/detail.do=>BoardDetailController
+=>detail.jsp로 이동
+
+6. 글 수정 화면 보여주기 - edit.jsp
+/board/edit.do=>BoardEditController
+=>edit.jsp로 포워드
+
+7. 글 수정 처리
+
+

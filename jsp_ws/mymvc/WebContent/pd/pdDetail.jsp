@@ -45,7 +45,8 @@
 	<p>등록일 : <%=dto.getRegdate() %></p>
 	<br>
 	<a href="<%=request.getContextPath() %>/pd/pdList.do">목록</a> | 
-	<a href="pdEdit.jsp?no=<%=no %>">수정</a> | 
+	<a href="<%=request.getContextPath() %>/pd/pdEdit.do?no=<%=no %>">
+	수정</a> | 
 	<a href="#" onclick="del(<%=no %>)">삭제</a> |
 	<a href="#" onclick="del2()">삭제</a>
 	 

@@ -59,6 +59,11 @@ pdWrite.jsp
 /board/edit.do=>BoardEditController
 =>edit.jsp로 포워드
 
-7. 글 수정 처리
+7. 글 수정 처리 - 기존 edit_ok.jsp
+/board/edit_ok.do=>BoardEditOkController
+=>message.jsp로 포워드(메시지 출력)
 
+8. 글 삭제 처리 - delete.jsp
+/board/delete.do=>BoardDeleteController
+=>delete.jsp로 포워드
 

@@ -1,26 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%
-	//detail.jsp에서 [삭제]링크 클릭하면 get방식으로 이동
-	
+	//detail.jsp에서 [삭제]링크 클릭하면 get방식으로 이동	
 	String no=request.getParameter("no");
-	if(no==null || no.isEmpty()){ %>
-		<script type="text/javascript">
-			alert("잘못된 url입니다.");
-			location.href="list.jsp";
-		</script>
-		
-		<%	return;	
-	}	%>    
+%>
+	 
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>자유게시판 글 삭제 - 허브몰</title>
-<link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
-<link rel="stylesheet" type="text/css" href="../css/clear.css" />
-<link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
-<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mainstyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/clear.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/formLayout.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mystyle.css" />
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.4.1.min.js"></script>
 <style type="text/css">
 	body{
 		padding:5px;
@@ -49,7 +43,6 @@
 	}
 </style>
 
-<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('form[name=frmDelete]').submit(function(){
@@ -68,7 +61,8 @@
 </head>
 <body>
 <div class="divForm">
-	<form name="frmDelete" method="post"	action="delete_ok.jsp" >
+	<form name="frmDelete" method="post"	
+		action="<%=request.getContextPath() %>/board/delete_ok.do" >
 		<!-- hidden -->
         <input type="hidden" name="no" value="<%=no %>" />   
 		<fieldset>
@@ -83,7 +77,8 @@
 	        <div class="center">
 	            <input type ="submit"  value="삭제" />
 	            <input type = "Button" value="글목록" 
-                	OnClick="location.href='list.jsp'" />
+                	OnClick
+      ="location.href='<%=request.getContextPath()%>/board/list.do'" />
 	        </div>
 	    </fieldset>
     </form>

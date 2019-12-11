@@ -1,23 +1,20 @@
 <%@page import="com.mymvc.board.model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	//뷰페이지
 	//request에 저장된 결과 읽어오기
-	//BoardVO vo=(BoardVO)request.getAttribute("vo");
+	BoardVO vo=(BoardVO)request.getAttribute("vo");
 
-	//String no=request.getParameter("no");
+	String no=request.getParameter("no");
 	
 	//3.
-	//String content=vo.getContent();
-	
-	//if(content!=null && !content.isEmpty()){
-	//	content=content.replace("\r\n", "<br>");
-	//}else{
-	//	content="";
-	//}
+	String content=vo.getContent();
+	if(content!=null && !content.isEmpty()){
+		content=content.replace("\r\n", "<br>");
+	}else{
+		content="";
+	}
 
 %>    
 <!DOCTYPE HTML>
@@ -44,7 +41,7 @@
 	<h2>글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
-			<span class="sp1">제목</span> <span>${vo.title }</span>
+			<span class="sp1">제목</span> <span><%=vo.getTitle() %></span>
 		</div>
 		<div>
 			<span class="sp1">작성자</span> <span><%=vo.getName() %></span>

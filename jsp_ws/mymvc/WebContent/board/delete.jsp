@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <%
 	//detail.jsp에서 [삭제]링크 클릭하면 get방식으로 이동	
-	String no=request.getParameter("no");
+	//String no=request.getParameter("no");
 %>
 	 
 <!DOCTYPE HTML>
@@ -10,11 +12,13 @@
 <head>
 <meta charset="utf-8">
 <title>자유게시판 글 삭제 - 허브몰</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mainstyle.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/clear.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/formLayout.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mystyle.css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" 
+	href="<c:url value='/css/mainstyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+<script type="text/javascript" 
+	src="<c:url value='/js/jquery-3.4.1.min.js'/>"></script>
 <style type="text/css">
 	body{
 		padding:5px;
@@ -62,13 +66,13 @@
 <body>
 <div class="divForm">
 	<form name="frmDelete" method="post"	
-		action="<%=request.getContextPath() %>/board/delete_ok.do" >
+		action="<c:url value='/board/delete_ok.do'/>" >
 		<!-- hidden -->
-        <input type="hidden" name="no" value="<%=no %>" />   
+        <input type="hidden" name="no" value="${param.no}" />   
 		<fieldset>
 		<legend>글 삭제</legend>
 	        <div>           
-	        	<span class="sp"><%=no %>번 글을 삭제하시겠습니까?</span>                        
+	        	<span class="sp">${param.no}번 글을 삭제하시겠습니까?</span>                        
 	        </div>
 	        <div>           
 	            <label for="pwd">비밀번호</label>
@@ -78,7 +82,7 @@
 	            <input type ="submit"  value="삭제" />
 	            <input type = "Button" value="글목록" 
                 	OnClick
-      ="location.href='<%=request.getContextPath()%>/board/list.do'" />
+      ="location.href='<c:url value='/board/list.do'/>'" />
 	        </div>
 	    </fieldset>
     </form>

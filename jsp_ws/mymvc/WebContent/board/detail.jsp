@@ -1,23 +1,22 @@
-<%@page import="com.mymvc.board.model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
 <%
 	//뷰페이지
 	//request에 저장된 결과 읽어오기
-	//BoardVO vo=(BoardVO)request.getAttribute("vo");
+	/* BoardVO vo=(BoardVO)request.getAttribute("vo");
 
-	//String no=request.getParameter("no");
+	String no=request.getParameter("no");
 	
 	//3.
-	//String content=vo.getContent();
-	
-	//if(content!=null && !content.isEmpty()){
-	//	content=content.replace("\r\n", "<br>");
-	//}else{
-	//	content="";
-	//}
+	String content=vo.getContent();
+	if(content!=null && !content.isEmpty()){
+		content=content.replace("\r\n", "<br>");
+	}else{
+		content="";
+	} */
 
 %>    
 <!DOCTYPE HTML>
@@ -25,11 +24,13 @@
 <head>
 <meta charset="utf-8">
 <title>자유게시판 상세보기 - 허브몰</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mainstyle.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/clear.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/formLayout.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mystyle.css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" 
+	href="<c:url value='/css/mainstyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+<script type="text/javascript" 
+	src="<c:url value='/js/jquery-3.4.1.min.js'/>"></script>
 <style type="text/css">
 	body{
 		padding:5px;
@@ -44,26 +45,31 @@
 	<h2>글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
-			<span class="sp1">제목</span> <span>${vo.title }</span>
+			<span class="sp1">제목</span> <span>${vo.title}</span>
 		</div>
 		<div>
-			<span class="sp1">작성자</span> <span><%=vo.getName() %></span>
+			<span class="sp1">작성자</span> <span>${vo.name}</span>
 		</div>
 		<div>
-			<span class="sp1">등록일</span> <span><%=vo.getRegdate() %></span>
+			<span class="sp1">등록일</span> <span>${vo.regdate}</span>
 		</div>
 		<div>
-			<span class="sp1">조회수</span> <span><%=vo.getReadcount() %></span>
+			<span class="sp1">조회수</span> <span>${vo.readcount}</span>
 		</div>
-		<div class="lastDiv">			
-			<p class="content"><%=content %></p>
+		<div class="lastDiv">	
+		<%
+			pageContext.setAttribute("newLine", "\r\n");
+		%>
+			<c:set var="content" 
+				value="${fn:replace(vo.content, newLine,'<br>') }" />		
+			<p class="content">${content }</p>
 		</div>
 		<div class="center">
 			<a href
-			='<%=request.getContextPath() %>/board/edit.do?no=<%=no%>'>수정</a> |
+			='<c:url value="/board/edit.do?no=${param.no}"/>'>수정</a> |
         	<a href
-        	='<%=request.getContextPath() %>/board/delete.do?no=<%=no%>'>삭제</a> |
-        	<a href='<%=request.getContextPath() %>/board/list.do'>
+        	='<c:url value="/board/delete.do?no=${param.no }"/>'>삭제</a> |
+        	<a href='<c:url value="/board/list.do"/>'>
         		목록</a>			
 		</div>
 	</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.pd">
+	<insert id="insertPd" parameterType="pdDto">
+		insert into pd(no, pdname, price) 
+		values(pd_seq.nextval, #{pdName},#{price})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

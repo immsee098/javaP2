@@ -30,13 +30,21 @@
 		class="com.springweb.pd.controller.PdDetailController"
 		p:pdService-ref="pdService"></bean>
 	
+	<bean id="pdEditController" 
+		class="com.springweb.pd.controller.PdEditController"
+		p:pdService-ref="pdService"></bean>
+	
+	<bean id="pdDeleteController" 
+		class="com.springweb.pd.controller.PdDeleteController"
+		p:pdService-ref="pdService"></bean>
+	
 	
     <!-- service -->
-    <bean id="pdService" class="com.springweb.pd.model.PdService"
+    <bean id="pdService" class="com.springweb.pd.model.PdServiceImpl"
     	p:pdDao-ref="pdDAO"></bean>
     
     <!-- dao -->
-    <bean id="pdDAO" class="com.springweb.pd.model.PdDAO"
+    <bean id="pdDAO" class="com.springweb.pd.model.PdDAOImpl"
     	p:pool-ref="poolMgr"></bean>
 
 	<!-- pool -->

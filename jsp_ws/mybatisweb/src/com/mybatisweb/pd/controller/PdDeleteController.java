@@ -40,11 +40,8 @@ public class PdDeleteController {
 		}
 		
 		//2
-		try {
-			int cnt=pdService.deletePd(no);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		int cnt=pdService.deletePd(no);
+		System.out.println("상품삭제 결과, cnt="+cnt);
 		
 		//3
 		mav.setViewName("redirect:/pd/pdList.do");

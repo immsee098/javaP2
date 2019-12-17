@@ -32,6 +32,10 @@
 		class="com.mybatisweb.pd.controller.PdDeleteController"
 		p:pdService-ref="pdService"></bean>
 	
+	<bean id="cmtListController" 
+		class="com.mybatisweb.cmt.controller.CmtListController"
+		p:pdService-ref="pdService"></bean>
+	
 	
     <!-- service -->
     <bean id="pdService" class="com.mybatisweb.pd.model.PdServiceImpl"

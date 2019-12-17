@@ -43,13 +43,8 @@ public class PdEditController {
 		}
 		
 		//2
-		PdDTO dto=null;
-		
-		try {
-			dto=pdService.selectByNo(no);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		PdDTO dto=pdService.selectByNo(no);
+		System.out.println("상품수정 화면 결과 dto="+dto);
 		
 		//3
 		mav.addObject("pdDto", dto);
@@ -65,16 +60,14 @@ public class PdEditController {
 		
 		//2
 		String msg="상품 수정 실패", url="/pd/pdEdit.do?no="+pdDto.getNo();
-		try {
-			int cnt=pdService.updatePd(pdDto);
-			if(cnt>0) {
-				msg="상품수정 성공!";
-				url="/pd/pdDetail.do?no="+pdDto.getNo();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		int cnt=pdService.updatePd(pdDto);
+		System.out.println("상품수정 결과, cnt="+cnt);
 		
+		if(cnt>0) {
+			msg="상품수정 성공!";
+			url="/pd/pdDetail.do?no="+pdDto.getNo();
+		}
+				
 		//3
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);

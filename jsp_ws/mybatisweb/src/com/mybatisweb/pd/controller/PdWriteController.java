@@ -49,18 +49,14 @@ public class PdWriteController {
 		
 		//2
 		String msg="상품등록 실패", url="/pd/pdWrite.do";
-		try {
-			int cnt=pdService.insertPd(pdDto);
-			System.out.println("상품등록 결과, cnt="+cnt);
-			
-			if(cnt>0) {
-				msg="상품 등록 성공";
-				url="/pd/pdList.do";
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		int cnt=pdService.insertPd(pdDto);
+		System.out.println("상품등록 결과, cnt="+cnt);
 		
+		if(cnt>0) {
+			msg="상품 등록 성공";
+			url="/pd/pdList.do";
+		}
+				
 		//3
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);

@@ -1,10 +1,13 @@
 package com.mybatisweb.pd.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mybatisweb.pd.model.PdDTO;
@@ -25,18 +28,17 @@ public class PdListController {
 	}
 
 	@RequestMapping("/pd/pdList.do")
-	public ModelAndView pdList(){
-		System.out.println("상품 목록");
-		
+	public ModelAndView pdList(
+			@RequestParam(required = false) String pdName){
 		//1
+		System.out.println("상품 목록, 파라미터 pdName="+pdName);
 		
 		//2
-		List<PdDTO> list=null;
-		try {
-			list=pdService.selectAll();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Map<String, String> paramMap=new HashMap<String, String>();
+		paramMap.put("pdName", pdName);
+		
+		List<PdDTO> list=pdService.selectAll(paramMap);
+		System.out.println("상품목록 결과, list.size="+list.size());
 		
 		//3
 		ModelAndView mav=new ModelAndView();

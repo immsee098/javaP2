@@ -25,6 +25,7 @@
 	<!-- 타입별칭 -->
 	<typeAliases>
 		<typeAlias type="com.mybatisweb.pd.model.PdDTO" alias="pdDto" />
+		<typeAlias type="com.mybatisweb.cmt.model.CommentVO" alias="commentVo" />
 	</typeAliases>
 
 	<!-- 타입핸들러 -->

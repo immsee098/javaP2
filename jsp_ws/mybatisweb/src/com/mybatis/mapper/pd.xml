@@ -4,9 +4,74 @@
 
 <mapper namespace="com.mybatis.mapper.pd">
 	<insert id="insertPd" parameterType="pdDto">
+		<selectKey resultType="int" keyProperty="no" order="BEFORE">
+			select pd_seq.nextval from dual
+		</selectKey>
+		
 		insert into pd(no, pdname, price) 
-		values(pd_seq.nextval, #{pdName},#{price})
+		values(#{no}, #{pdName},#{price})
 	</insert>
+	
+	<sql id="pdWhere">
+		no, pdname, price, regdate
+	</sql>
+	
+	<select id="selectAll" resultType="pdDto" parameterType="map">
+		select 
+			<include refid="pdWhere"></include>
+		from pd 
+		<if test="pdName!=null and pdName!=''">
+			<where>
+				pdname like '%' || #{pdName} || '%'
+			</where>
+		</if>
+		order by no desc
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="pdDto">
+		select * from pd where no=#{no}
+	</select>
+	
+	<update id="updatePd" parameterType="pdDto">
+		update pd set pdname=#{pdName}, price=#{price}
+		where no=#{no}
+	</update>
+	
+	<delete id="deletePd" parameterType="int">
+		delete from pd where no=#{no}
+	</delete>
+	
+	<!-- 컬럼명을 VO의 프로퍼티에 매핑하는 방법 
+	[1] 별칭 이용 	--> 
+	<select id="selectCmtAll" resultType="commentVo">
+		select comment_no as commentNo, user_id as userId, 
+			reg_date as regDate, comment_content as commentContent 
+		from comment2
+	</select>
+	
+	<!-- 
+	[2] resultMap 이용-->	
+	<resultMap type="commentVo" id="cmtResultMap">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<result column="user_id" jdbcType="VARCHAR" property="userId"/>
+		<result column="reg_date" jdbcType="TIMESTAMP" property="regDate"/>
+		<result column="comment_content" jdbcType="VARCHAR" 
+			property="commentContent"/>
+	</resultMap>
+	
+	<select id="selectCmtAll2" resultMap="cmtResultMap">
+		select comment_no, user_id, reg_date, comment_content 
+		from comment2
+	</select>
+	
+	<!-- 
+	[3] 설정 파일의 mapUnderscoreToCamelCase 이용
+	언더바를 카멜케이스로 매핑 	-->	
+	<select id="selectCmtAll3" resultType="commentVo">
+		select comment_no, user_id, reg_date, comment_content 
+		from comment2
+	</select>
+	
 	
 </mapper>
 

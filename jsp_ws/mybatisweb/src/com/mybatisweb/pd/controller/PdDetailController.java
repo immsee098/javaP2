@@ -40,12 +40,8 @@ public class PdDetailController {
 		}
 		
 		//2
-		PdDTO dto=null;
-		try {
-			dto=pdService.selectByNo(no);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		PdDTO dto=pdService.selectByNo(no);
+		System.out.println("상품상세보기 결과 dto="+dto);
 		
 		//3
 		mav.addObject("pdDto",dto);

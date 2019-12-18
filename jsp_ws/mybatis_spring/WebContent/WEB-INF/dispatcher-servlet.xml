@@ -70,7 +70,7 @@
 	<!-- Annotation 을 사용한 트랜잭션 사용시 활성화 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!-- @Service, @Repository, @Controller, @Component 애노테이션을 붙혀진 클래스를 빈으로 등록 / 여기 패키지를 쓰면 그 하위는 자동으로 맞춰줌-->
+	<!-- @Service, @Repository, @Controller, @Component 애노테이션을 붙혀진 클래스를 빈으로 등록 -->
 	<context:component-scan base-package="com.my">
 	</context:component-scan>
 

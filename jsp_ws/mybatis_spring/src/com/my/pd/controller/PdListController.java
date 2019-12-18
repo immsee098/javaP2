@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,18 +15,9 @@ import com.my.pd.model.PdService;
 
 @Controller
 public class PdListController {
+	@Autowired
 	private PdService pdService;
-	
-	public PdListController() {
-		System.out.println("PdListController 생성자 호출");
-	}
-	
-	//DI - setter에 의한 종속객체 주입
-	public void setPdService(PdService pdService) {
-		this.pdService = pdService;
-		System.out.println("PdListController-setPdService() 호출!");
-	}
-
+		
 	@RequestMapping("/pd/pdList.do")
 	public ModelAndView pdList(
 			@RequestParam(required = false) String pdName){

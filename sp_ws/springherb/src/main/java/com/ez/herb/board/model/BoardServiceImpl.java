@@ -1,34 +1,34 @@
 package com.ez.herb.board.model;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public class BoardServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ez.herb.common.SearchVO;
+
+@Service
+public class BoardServiceImpl implements BoardService{
+	@Autowired
 	private BoardDAO boardDao;
-	
-	public BoardServiceImpl(){
-		boardDao=new BoardDAO();
-	}
-	
-	public List<BoardVO> selectMainNotice() throws SQLException{
-		return boardDao.selectMainNotice();
-	}
 		
-	public int insertBoard(BoardVO vo) throws SQLException {
+	public int insertBoard(BoardVO vo){
 		return boardDao.insertBoard(vo);
 	}
 	
-	
-	public List<BoardVO> selectAll(String condition, String keyword) 
-			throws SQLException{
-		return boardDao.selectAll(condition, keyword);
+	public List<BoardVO> selectAll(SearchVO searchVo){
+		return boardDao.selectAll(searchVo);
 	}
 	
-	public BoardVO selectByNo(int no) throws SQLException{
+	public int updateReadCount(int no){
+		return boardDao.updateReadCount(no);
+	}
+		
+	public BoardVO selectByNo(int no){
 		return boardDao.selectByNo(no);
 	}
 	
-	
+	/*
 	public int updateBoard(BoardVO vo) throws SQLException {
 		return boardDao.updateBoard(vo);
 	}
@@ -37,10 +37,12 @@ public class BoardServiceImpl {
 		return boardDao.deleteBoard(no, pwd);
 	}
 	
-	public int updateReadCount(int no) throws SQLException {
-		return boardDao.updateReadCount(no);
-	}
 	
+	
+	public List<BoardVO> selectMainNotice() throws SQLException{
+		return boardDao.selectMainNotice();
+	}
+	*/
 }
 
 

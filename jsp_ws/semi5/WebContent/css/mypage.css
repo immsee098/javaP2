@@ -1,0 +1,115 @@
+@charset "UTF-8";
+		body {
+			
+		}
+		#center-view{
+			display: flex;
+			margin: 0 auto;
+			width: 1400px;
+		}
+
+		#main-content{
+			width:1000px;
+			margin-left: 20px;
+		}
+
+        .nav-height{
+            width: 300px;
+            height: 70px;
+            border: 1px solid blueviolet;
+        }
+        
+        .side-navi{
+			display: inline-block;
+        }
+        
+        .card-custom{
+        	background-color: skyblue;
+        	width:300px;
+        }
+        
+        
+        <!-- 마이페이지 시터부분 -->
+        <!-- 예약 -->
+        .si-rev{
+        	list-style-type: none;
+        }
+        
+        .si-rev-list{
+        	display:flex;
+        	list-style-type: none;
+        	justify-content: space-around;
+        	text-align: center;
+        }
+        
+        .rev-15 {
+        	width: 18%;
+        }
+        
+        .rev-12 {
+        	width: 12%;
+        }
+        
+        .rev-9 {
+        	width: 9%;
+        }
+        
+        .rev-6 {
+        	width: 6%;
+        }
+        
+        .rev-btn {
+        	width: 85px;
+        	border: none;
+        }
+        
+        .con-out{
+        	text-decoration: line-through;
+        }
+        
+        
+        
+        <!-- 일지 -->
+
+        .d-list{
+        	list-style-type: none;
+        	display: flex;
+        }
+        
+        .d-no{
+        	width: 9%;
+    		text-align: center;
+        }
+        
+        .d-title{
+        	width: 48%;
+        }
+        
+        .d-mem{
+        	width: 15%;
+        }
+        
+        .d-pet{
+        	width:16%;
+        }
+        
+        
+        <!-- 일지 전체 보기 -->
+        
+        #diaryL-title {
+        	width: 40%;
+    		background: purple;
+    		text-align: center;
+    		margin: 0 auto;
+  
+        }
+        
+ 
+        
+        
+        
+        
+        
+        
+        
+        

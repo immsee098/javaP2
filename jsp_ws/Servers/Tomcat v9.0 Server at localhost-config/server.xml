@@ -161,7 +161,7 @@
           <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxWait="-1" name="jdbc/oracledb" password="herb123" type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-IA9SFNU:1521:xe" username="herb"/>
       </Context>
       
-      <Context docBase="testProject" path="/testProject" reloadable="true" source="org.eclipse.jst.jee.server:testProject"/><Context docBase="mybatisweb" path="/mybatisweb" reloadable="true" source="org.eclipse.jst.jee.server:mybatisweb"/><Context docBase="mybatis_spring" path="/mybatis_spring" reloadable="true" source="org.eclipse.jst.jee.server:mybatis_spring"/><Context docBase="mybatis_book" path="/mybatis_book" reloadable="true" source="org.eclipse.jst.jee.server:mybatis_book"/></Host>
+      <Context docBase="testProject" path="/testProject" reloadable="true" source="org.eclipse.jst.jee.server:testProject"/><Context docBase="mybatisweb" path="/mybatisweb" reloadable="true" source="org.eclipse.jst.jee.server:mybatisweb"/><Context docBase="mybatis_spring" path="/mybatis_spring" reloadable="true" source="org.eclipse.jst.jee.server:mybatis_spring"/><Context docBase="mybatis_book" path="/mybatis_book" reloadable="true" source="org.eclipse.jst.jee.server:mybatis_book"/><Context docBase="semi5" path="/semi5" reloadable="true" source="org.eclipse.jst.jee.server:semi5"/></Host>
     </Engine>
   </Service>
 </Server>

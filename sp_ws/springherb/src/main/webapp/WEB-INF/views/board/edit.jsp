@@ -1,34 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%
-	//detail.jsp에서 [수정]링크 클릭하면 get방식으로 이동
-	//=> no에 해당하는 글 조회해서 출력
-	//=> http://localhost:9090/herbmall/board/edit.jsp?no=4
-	
-	//request에 저장된 결과 읽어오기
-	/* BoardVO vo=(BoardVO)request.getAttribute("boardVo");
-		
-	//3
-	String email=vo.getEmail();
-	String content=vo.getContent();
-	if(email==null) email="";
-	if(content==null) content="";  */
-	
-%>    
+   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>자유게시판 글 수정 - 허브몰</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" 
-	href="<c:url value='/css/mainstyle.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+	href="<c:url value='/resources/css/mainstyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/clear.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/formLayout.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/mystyle.css'/>" />
 <script type="text/javascript" 
-	src="<c:url value='/js/jquery-3.4.1.min.js'/>"></script>
+	src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 
 <script type="text/javascript">
 	$(function(){
@@ -50,7 +35,7 @@
 <body>
 <div class="divForm">
 <form name="frmEdit" method="post" 
-	action="<c:url value='/board/edit_ok.do'/>"> 
+	action="<c:url value='/board/edit.do'/>"> 
     <!-- 수정처리시 no가 필요하므로 hidden 필드에 넣는다-->
     <input type="hidden" name="no" value="${boardVo.no}">
     

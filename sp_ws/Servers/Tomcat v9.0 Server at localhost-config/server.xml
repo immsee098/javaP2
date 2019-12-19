@@ -157,7 +157,7 @@
 
         
 
-      <Context docBase="sptest" path="/sptest" reloadable="true" source="org.eclipse.jst.jee.server:sptest"/><Context docBase="springherb" path="/herb" reloadable="true" source="org.eclipse.jst.jee.server:springherb"/></Host>
+      <Context docBase="sptest" path="/sptest" reloadable="true" source="org.eclipse.jst.jee.server:sptest"/><Context docBase="springherb" path="/herb" reloadable="true" source="org.eclipse.jst.jee.server:springherb"/><Context docBase="myspringtest" path="/test" reloadable="true" source="org.eclipse.jst.jee.server:myspringtest"/></Host>
     </Engine>
   </Service>
 </Server>

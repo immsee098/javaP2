@@ -2,35 +2,19 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-    
-<%
-	//뷰페이지
-	//request에 저장된 결과 읽어오기
-	/* BoardVO vo=(BoardVO)request.getAttribute("vo");
-
-	String no=request.getParameter("no");
-	
-	//3.
-	String content=vo.getContent();
-	if(content!=null && !content.isEmpty()){
-		content=content.replace("\r\n", "<br>");
-	}else{
-		content="";
-	} */
-
-%>    
+ 
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>자유게시판 상세보기 - 허브몰</title>
 <link rel="stylesheet" type="text/css" 
-	href="<c:url value='/css/mainstyle.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+	href="<c:url value='/resources/css/mainstyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/clear.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/formLayout.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/mystyle.css'/>" />
 <script type="text/javascript" 
-	src="<c:url value='/js/jquery-3.4.1.min.js'/>"></script>
+	src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <style type="text/css">
 	body{
 		padding:5px;

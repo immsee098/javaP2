@@ -28,17 +28,33 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.selectByNo(no);
 	}
 	
-	/*
-	public int updateBoard(BoardVO vo) throws SQLException {
+	
+	public int updateBoard(BoardVO vo){
 		return boardDao.updateBoard(vo);
 	}
-	
-	public int deleteBoard(int no, String pwd) throws SQLException {
-		return boardDao.deleteBoard(no, pwd);
+
+	@Override
+	public boolean checkPwd(int no, String pwd) {
+		String dbPwd=boardDao.selectPwd(no);
+		
+		if(dbPwd.equals(pwd)) {
+			return true;  //비밀번호 일치
+		}else {
+			return false; //불일치
+		}
+	}
+		
+	public int deleteBoard(int no){
+		return boardDao.deleteBoard(no);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return boardDao.selectTotalRecord(searchVo);
 	}
 	
 	
-	
+	/*
 	public List<BoardVO> selectMainNotice() throws SQLException{
 		return boardDao.selectMainNotice();
 	}

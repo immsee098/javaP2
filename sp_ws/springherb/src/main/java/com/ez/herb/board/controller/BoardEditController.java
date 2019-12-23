@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,5 +41,40 @@ public class BoardEditController {
 		return "board/edit";
 	}
 	
+	@RequestMapping(value="/edit.do", method = RequestMethod.POST)
+	public String edit_post(@ModelAttribute BoardVO boardVo, Model model) {
+		//1
+		logger.info("글 수정 처리, 파라미터 vo={}", boardVo);
+		
+		//2
+		String msg="", url="/board/edit.do?no="+boardVo.getNo();
+		if(boardService.checkPwd(boardVo.getNo(), boardVo.getPwd())) {
+			int cnt=boardService.updateBoard(boardVo);
+			if(cnt>0) {
+				msg="글 수정되었습니다.";
+				url="/board/detail.do?no="+boardVo.getNo();
+			}else {
+				msg="글 수정 실패!";
+			}
+		}else {
+			msg="비밀번호가 일치하지 않습니다.";
+		}
+		
+		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	
 }
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<%
-	//detail.jsp에서 [삭제]링크 클릭하면 get방식으로 이동	
-	//String no=request.getParameter("no");
-%>
 	 
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -66,7 +61,7 @@
 <body>
 <div class="divForm">
 	<form name="frmDelete" method="post"	
-		action="<c:url value='/board/delete_ok.do'/>" >
+		action="<c:url value='/board/delete.do'/>" >
 		<!-- hidden -->
         <input type="hidden" name="no" value="${param.no}" />   
 		<fieldset>

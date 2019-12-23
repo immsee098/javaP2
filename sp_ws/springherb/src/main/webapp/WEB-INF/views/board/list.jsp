@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -42,7 +43,7 @@
 <h2>자유게시판</h2>
 <c:if test="${!empty param.searchKeyword }">
 	<p>검색어 : ${param.searchKeyword}, 
-			건 검색되었습니다.</p>	
+		${pagingInfo.totalRecord }건 검색되었습니다.</p>	
 </c:if>
 
 <!-- 페이징 처리 관련 form -->
@@ -85,10 +86,22 @@
 			<c:forEach var="vo" items="${list }">				
 				<tr  style="text-align:center">
 					<td>${vo.no}</td>
-					<td style="text-align:left">
+					<td style="text-align:left">					
+						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
+						<c:if test="${vo.newImgTerm<24 }">
+							<img src="<c:url value='/resources/images/new.gif'/>" 
+								alt="new 이미지">
+						</c:if>
+						
 						<a href
 		="<c:url value='/board/countUpdate.do?no=${vo.no}'/>">
-							${vo.title}
+							<!-- 제목이 긴 경우 일부만 보여주기-->
+							<c:if test="${fn:length(vo.title)>30}">
+								${fn:substring(vo.title, 0,30)}...
+							</c:if>
+							<c:if test="${fn:length(vo.title)<=30}">
+								${vo.title}
+							</c:if>													
 						</a></td>
 					<td>${vo.name}</td>
 					<td><fmt:formatDate value="${vo.regdate }" 
@@ -104,34 +117,32 @@
 </table>	   
 </div>
 <div class="divPage">
-	<%-- <!-- 이전블럭으로 이동 -->
-	<c:if test="${pageVo.firstPage>1 }">	
-		<a href="#" onclick="pageFunc(${pageVo.firstPage-1})">
-			<img src="<c:url value='/images/first.JPG'/>" alt="이전 블럭으로">
+	<!-- 이전블럭으로 이동 -->
+	<c:if test="${pagingInfo.firstPage>1 }">	
+		<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">
+			<img src="<c:url value='/resources/images/first.JPG'/>" alt="이전 블럭으로">
 		</a>
 	</c:if>
 	<!-- 페이지 번호 추가 -->						
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
-	<c:forEach var="i" begin="${pageVo.firstPage }" 
-		end="${pageVo.lastPage }">
-		<c:if test="${i<=pageVo.totalPage }">
-			<c:if test="${i==pageVo.currentPage }">
-				<span style="color:blue;font-weight: bold">${i}</span>
-			</c:if>
-			<c:if test="${i!=pageVo.currentPage }">
-				<a href="#" onclick="pageFunc(${i})">
-					[${i}]</a>
-			</c:if>
-		</c:if>	
+	<c:forEach var="i" begin="${pagingInfo.firstPage }" 
+		end="${pagingInfo.lastPage }">		
+		<c:if test="${i==pagingInfo.currentPage }">
+			<span style="color:blue;font-weight: bold">${i}</span>
+		</c:if>
+		<c:if test="${i!=pagingInfo.currentPage }">
+			<a href="#" onclick="pageFunc(${i})">
+				[${i}]</a>
+		</c:if>
 	</c:forEach>
 	<!--  페이지 번호 끝 -->
 	
 	<!-- 다음블럭으로 이동 -->
-	<c:if test="${pageVo.lastPage<pageVo.totalPage }">
-		<a href="#" onclick="pageFunc(${pageVo.lastPage+1})">	
-			<img src="<c:url value='/images/last.JPG'/>" alt="다음 블럭으로">
+	<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+		<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">	
+			<img src="<c:url value='/resources/images/last.JPG'/>" alt="다음 블럭으로">
 		</a>
-	</c:if>	 --%>
+	</c:if>	
 </div>
 <div class="divSearch">
    	<form name="frmSearch" method="post" 

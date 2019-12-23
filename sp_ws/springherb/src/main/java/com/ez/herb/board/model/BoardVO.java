@@ -12,23 +12,9 @@ public class BoardVO {
 	private int readcount;
 	private String content;
 	
-	public BoardVO() {
-		super();
-	}
-	
-	public BoardVO(int no, String name, String pwd, String title, String email, Timestamp regdate, int readcount,
-			String content) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.pwd = pwd;
-		this.title = title;
-		this.email = email;
-		this.regdate = regdate;
-		this.readcount = readcount;
-		this.content = content;
-	}
-	
+	//24시간 이내의 글인지 체크
+	private int newImgTerm;
+		
 	public int getNo() {
 		return no;
 	}
@@ -77,11 +63,19 @@ public class BoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+		
+	public int getNewImgTerm() {
+		return newImgTerm;
+	}
+	public void setNewImgTerm(int newImgTerm) {
+		this.newImgTerm = newImgTerm;
+	}
 	
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", name=" + name + ", pwd=" + pwd + ", title=" + title + ", email=" + email
-				+ ", regdate=" + regdate + ", readcount=" + readcount + ", content=" + content + "]";
+				+ ", regdate=" + regdate + ", readcount=" + readcount + ", content=" + content + ", newImgTerm="
+				+ newImgTerm + "]";
 	}
 	
 	

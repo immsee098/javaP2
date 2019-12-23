@@ -37,64 +37,30 @@ public class BoardDAOMybatis implements BoardDAO{
 		return vo;
 	}
 	
-	/*
-	public int updateBoard(BoardVO vo) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		
-		try {
-			//1,2
-			con=pool.getConnection();
-			
-			String sql="update board"
-					+ " set name=?, title=?, email=?,content=?"
-					+ " where no=? and pwd=?";
-			ps=con.prepareStatement(sql);
-			
-			ps.setString(1, vo.getName());
-			ps.setString(2, vo.getTitle());
-			ps.setString(3, vo.getEmail());
-			ps.setString(4, vo.getContent());
-			ps.setInt(5, vo.getNo());
-			ps.setString(6, vo.getPwd());
-			
-			int cnt=ps.executeUpdate();
-			System.out.println("글 수정  결과 cnt="+cnt+", 매개변수 vo="+vo);
-			
-			return cnt;
-		}finally {
-			pool.dbClose(ps, con);
-		}
+	public int updateBoard(BoardVO vo){
+		int cnt=sqlSession.update(namespace+"updateBoard", vo);
+		return cnt;
 	}
-	
-	public int deleteBoard(int no, String pwd) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		
-		try {
-			//1,2
-			con=pool.getConnection();
-			
-			String sql="delete from board"
-					+ " where no=? and pwd=?";
-			ps=con.prepareStatement(sql);
-			
-			ps.setInt(1, no);
-			ps.setString(2, pwd);
-			
-			int cnt=ps.executeUpdate();
-			System.out.println("글 삭제  결과 cnt="+cnt+", 매개변수 no="+no
-					+",pwd="+pwd);
-			
-			return cnt;
-		}finally {
-			pool.dbClose(ps, con);
-		}
-	}
-	
-	
-	
 
+	@Override
+	public String selectPwd(int no) {
+		String pwd=sqlSession.selectOne(namespace+"selectPwd", no);
+		return pwd;
+	}
+	
+	public int deleteBoard(int no) {
+		return sqlSession.delete(namespace+"deleteBoard", no);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalRecord",
+				searchVo);
+	}
+	
+	
+	
+/*
 	public List<BoardVO> selectMainNotice() throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;

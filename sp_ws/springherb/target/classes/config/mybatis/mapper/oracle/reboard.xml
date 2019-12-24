@@ -2,18 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="config.mybatis.mapper.oracle.board">
-	<insert id="insertBoard" parameterType="boardVo">
+<mapper namespace="config.mybatis.mapper.oracle.reboard">
+	<insert id="insertReBoard" parameterType="reBoardVo">
 		<selectKey	keyProperty="no" resultType="int" order="BEFORE">
-			select board_seq.nextval from dual
+			select reBoard_seq.nextval from dual
 		</selectKey>
-		insert into board(no, name,pwd, title, email, content)
+		insert into reBoard(no, name,pwd, title, email, content,
+			groupNo, fileName, fileSize, originalFileName)
 		values(#{no}, #{name},#{pwd}, #{title}, 
-			#{email}, #{content})
+			#{email}, #{content},
+			#{no}, #{fileName}, #{fileSize}, #{originalFileName})
 	</insert>
 	
-<!-- 	<select id="selectAll" parameterType="searchVo" resultType="boardVo">
-		select * from board
+<!-- 	<select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
+		select * from reBoard
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			where ${searchCondition} like '%' || #{searchKeyword} || '%'
 		</if>
@@ -26,7 +28,7 @@
 		</if>
 	</sql>
 	
-	<select id="selectAll" parameterType="searchVo" resultType="boardVo">
+	<select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
 		select *
 		from
 		(
@@ -35,8 +37,10 @@
 		    (
 		        select 
 		        	no, name, pwd, title, email, regdate, readcount,
-		        	content, (sysdate-regdate)*24 as newImgTerm
-		        from board
+		        	content, (sysdate-regdate)*24 as newImgTerm,
+		        	groupno, step, sortno, delflag, filename,
+					filesize, downcount, originalfilename
+		        from reBoard
 				<include refid="searchWhere"></include>
 				order by no desc
 		    )A
@@ -49,35 +53,35 @@
 	
 	<select id="selectTotalRecord" parameterType="searchVo" 
 		resultType="int">
-		select count(*) from board
+		select count(*) from reBoard
 		<include refid="searchWhere"></include>
 	</select>
 	
 	<update id="updateReadCount" parameterType="int">
-		update board
+		update reBoard
 		set readcount=readcount+1
 		where no=#{no}
 	</update>
 	
-	<select id="selectByNo" parameterType="int" resultType="boardVO">
-		select * from board where no=#{no}
+	<select id="selectByNo" parameterType="int" resultType="reBoardVO">
+		select * from reBoard where no=#{no}
 	</select>
 	
 	<select id="selectPwd" parameterType="int" resultType="string">
 		select pwd 
-		from board
+		from reBoard
 		where no=#{no}
 	</select>
 	
-	<update id="updateBoard" parameterType="boardVo">
-		update board
+	<update id="updateReBoard" parameterType="reBoardVo">
+		update reBoard
 		set name=#{name}, title=#{title}, email=#{email},
 			content=#{content}
 		where no=#{no}
 	</update>
 	
-	<delete id="deleteBoard" parameterType="int">
-		delete from board
+	<delete id="deleteReBoard" parameterType="int">
+		delete from reBoard
 		where no=#{no}
 	</delete>
 	

@@ -1,5 +1,7 @@
 package com.ez.herb.reboard.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ez.herb.common.FileUploadUtil;
 import com.ez.herb.common.PaginationInfo;
@@ -179,17 +183,49 @@ public class ReBoardController {
 	}
 	
 	@RequestMapping(value="/edit.do", method = RequestMethod.POST)
-	public String edit_post(@ModelAttribute ReBoardVO reBoardVo, Model model) {
+	public String edit_post(@ModelAttribute ReBoardVO reBoardVo, 
+			@RequestParam String oldFileName,
+			HttpServletRequest request,	Model model) {
 		//1
-		logger.info("글 수정 처리, 파라미터 vo={}", reBoardVo);
+		logger.info("글 수정 처리, 파라미터 vo={}, oldFileName={}", 
+				reBoardVo, oldFileName);
 		
 		//2
 		String msg="", url="/reBoard/edit.do?no="+reBoardVo.getNo();
 		if(reBoardService.checkPwd(reBoardVo.getNo(), reBoardVo.getPwd())) {
+			//[1] file upload
+			List<Map<String, Object>> list=fileUtil.fileUpload(request);
+			
+			String fileName="", originalFileName="";
+			long fileSize=0;
+			for(Map<String, Object> map : list) {
+				fileName=(String) map.get("fileName");
+				originalFileName=(String) map.get("originalFileName");
+				fileSize=(Long) map.get("fileSize");
+			}
+			
+			reBoardVo.setFileName(fileName);
+			reBoardVo.setOriginalFileName(originalFileName);
+			reBoardVo.setFileSize(fileSize);
+			
+			//[2] db
 			int cnt=reBoardService.updateReBoard(reBoardVo);
 			if(cnt>0) {
 				msg="글 수정되었습니다.";
 				url="/reBoard/detail.do?no="+reBoardVo.getNo();
+				
+				//[3] 기존 file delete
+				if(!list.isEmpty()) {  //새로 업로드 된 경우
+					if(oldFileName!=null && !oldFileName.isEmpty()) {
+						//기존파일이 있는 경우
+						String path=fileUtil.getFilePath(request);
+						File oldFile = new File(path, oldFileName);
+						if(oldFile.exists()) {
+							boolean bool=oldFile.delete();
+							logger.info("기존 파일 삭제 여부:{}", bool);	
+						}
+					}
+				}//if
 			}else {
 				msg="글 수정 실패!";
 			}
@@ -224,17 +260,29 @@ public class ReBoardController {
 	
 	@RequestMapping(value="/delete.do", method = RequestMethod.POST)
 	public String delete_post(@RequestParam(defaultValue = "0") int no,
-			@RequestParam String pwd, Model model) {
+			@RequestParam String pwd, @RequestParam String fileName,
+			HttpServletRequest request, Model model) {
 		//1
 		logger.info("글 삭제 처리, 파라미터 no={}, pwd={}", no, pwd);
+		logger.info("파라미터 fileName={}", fileName);
 		
 		//2
-		String msg="", url="/reBoard/delete.do?no="+no;
+		String msg="", url="/reBoard/delete.do?no="+no+"&fileName="+fileName;
 		if(reBoardService.checkPwd(no, pwd)) {
 			int cnt=reBoardService.deleteReBoard(no);
 			if(cnt>0) {
 				msg="글 삭제되었습니다.";
 				url="/reBoard/list.do";
+				
+				//파일이 첨부된 경우 파일 삭제 처리
+				if(fileName!=null && !fileName.isEmpty()) {
+					String path=fileUtil.getFilePath(request);
+					File file = new File(path , fileName);
+					if(file.exists()) {
+						boolean bool=file.delete();
+						logger.info("파일 삭제 여부:{}", bool);
+					}
+				}				
 			}else {
 				msg="글 삭제 실패!";
 			}
@@ -248,4 +296,69 @@ public class ReBoardController {
 		
 		return "common/message";
 	}
+
+	@RequestMapping("/download.do")
+	public ModelAndView download(@RequestParam(defaultValue = "0") int no,
+			@RequestParam String fileName,
+			HttpServletRequest request) {
+		//1
+		logger.info("다운로드 처리, 파라미터 no={}, fileName={}", no, fileName);
+		
+		//2
+		int cnt=reBoardService.updateDownCount(no);
+		logger.info("다운로드수 증가, 결과 cnt={}", cnt);			
+		
+		//3
+		String upPath=fileUtil.getFilePath(request);
+		logger.info("uppath={}, filename={}", upPath, fileName);
+		
+		File file = new File(upPath, fileName);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("file", file);
+		
+		//ModelAndView(String viewName, Map<String, ?> model)
+		ModelAndView mav 
+			= new ModelAndView("reBoardDownloadView", map);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/reply.do", method = RequestMethod.GET)
+	public String reply_get(@RequestParam(defaultValue = "0") int no,
+			ModelMap model) {
+		//1
+		logger.info("답변하기 화면, 파라미터 no={}", no);
+		if(no==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/reBoard/list.do");
+			
+			return "common/message";
+		}
+		
+		//2
+		ReBoardVO vo=reBoardService.selectByNo(no);
+		logger.info("답변하기 화면 결과 vo={}",vo);
+		
+		//3
+		model.addAttribute("vo", vo);
+		
+		return "reBoard/reply";
+	}
+	
+	@RequestMapping(value="/reply.do", method=RequestMethod.POST)
+	public String reply_post(@ModelAttribute ReBoardVO vo) {
+		//1
+		logger.info("답변하기 파라미터, vo={}", vo);
+		
+		//2
+		
+		//3
+	}
+	
+	
 }
+
+
+
+

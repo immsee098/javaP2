@@ -13,5 +13,6 @@ public interface ReBoardDAO {
 	public String selectPwd(int no);
 	public int deleteReBoard(int no);
 	public int selectTotalRecord(SearchVO searchVo);
+	public int updateDownCount(int no);
 	
 }

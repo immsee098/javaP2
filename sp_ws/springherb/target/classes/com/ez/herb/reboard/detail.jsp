@@ -40,6 +40,20 @@
 		<div>
 			<span class="sp1">조회수</span> <span>${vo.readcount}</span>
 		</div>
+		<div>
+			<span class="sp1">첨부파일</span> 
+			<span>
+				<c:if test="${!empty vo.originalFileName }">
+					<a href="<c:url value='/reBoard/download.do?no=${vo.no}&fileName=${vo.fileName}'/>">
+						<img src="<c:url value='/resources/images/file.gif'/>" 
+							alt="file이미지">
+						${fileInfo }
+					</a>
+					다운 : ${vo.downCount }
+				</c:if>
+			</span>
+		</div>
+		
 		<div class="lastDiv">	
 		<%
 			pageContext.setAttribute("newLine", "\r\n");

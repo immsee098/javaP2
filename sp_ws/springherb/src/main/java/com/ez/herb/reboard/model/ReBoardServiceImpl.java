@@ -52,6 +52,11 @@ public class ReBoardServiceImpl implements ReBoardService{
 	public int selectTotalRecord(SearchVO searchVo) {
 		return reBoardDao.selectTotalRecord(searchVo);
 	}
+
+	@Override
+	public int updateDownCount(int no) {
+		return reBoardDao.updateDownCount(no);
+	}
 	
 	
 	/*

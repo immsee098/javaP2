@@ -13,5 +13,5 @@ public interface ReBoardService {
 	public boolean checkPwd(int no, String pwd);
 	public int deleteReBoard(int no);
 	public int selectTotalRecord(SearchVO searchVo);
-	
+	public int updateDownCount(int no);
 }

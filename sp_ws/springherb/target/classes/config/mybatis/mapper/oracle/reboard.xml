@@ -77,6 +77,11 @@
 		update reBoard
 		set name=#{name}, title=#{title}, email=#{email},
 			content=#{content}
+			<if test="fileName!=null and fileName !=''">
+				, fileName=#{fileName}, fileSize=#{fileSize},
+				originalFileName=#{originalFileName},
+				downcount=0
+			</if>			
 		where no=#{no}
 	</update>
 	
@@ -84,6 +89,28 @@
 		delete from reBoard
 		where no=#{no}
 	</delete>
+	
+	<update id="updateDownCount" parameterType="int">
+		update reboard
+		set downcount=downcount+1
+		where no=#{no}
+	</update>
+	
+	<update id="updateSortNo" parameterType="reboardVo">
+		update reboard
+		set sortno=sortno+1
+		where groupno=#{groupNo} and sortno>#{sortNo}
+	</update>
+	
+	<insert id="reply" parameterType="reboardVo">
+		<selectKey resultType="int" keyProperty="no" order="BEFORE">
+			select reboard_seq.nextval from dual
+		</selectKey>
+		insert into reboard(no, name, pwd, title, email, content, 
+			groupno, step, sortno)
+		values(#{no}, #{name}, #{pwd}, #{title}, #{email}, #{content}, 
+			#{groupNo}, #{step}+1, #{sortNo}+1)		
+	</insert>
 	
 </mapper>
 

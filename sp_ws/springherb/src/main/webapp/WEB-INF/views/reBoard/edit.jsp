@@ -34,10 +34,11 @@
 </head>
 <body>
 <div class="divForm">
-<form name="frmEdit" method="post" 
+<form name="frmEdit" method="post" enctype="multipart/form-data"
 	action="<c:url value='/reBoard/edit.do'/>"> 
     <!-- 수정처리시 no가 필요하므로 hidden 필드에 넣는다-->
     <input type="hidden" name="no" value="${reBoardVo.no}">
+    <input type="text" name="oldFileName" value="${reBoardVo.fileName}">
     
     <fieldset>
 	<legend>글수정</legend>
@@ -60,6 +61,20 @@
             <input type="text" id="email" name="email" 
             	value="${reBoardVo.email}"/>
         </div>
+        <div>
+            <label for="upfile">첨부파일</label>
+            <input type="file" id="upfile" name="upfile"/>
+            <br>
+            <span class="sp1"></span>
+            <c:if test="${!empty reBoardVo.fileName }">
+            	<span style="color: green;font-weight: bold">
+            		첨부파일을 새로 지정할 경우 기존 파일
+            		<img src="<c:url value='/resources/images/file.gif'/>" 
+            			alt="file이미지">
+            		${reBoardVo.originalFileName }는 삭제됩니다.
+            	</span>
+            </c:if>
+        </div>        
         <div>  
         	<label for="content">내용</label>        
  			<textarea id="content" name="content" rows="12" cols="40">${reBoardVo.content}</textarea>

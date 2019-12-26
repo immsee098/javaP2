@@ -81,7 +81,7 @@ public class FileUploadUtil {
 		return list;
 	}
 
-	private String getFilePath(HttpServletRequest request) {
+	public String getFilePath(HttpServletRequest request) {
 		//업로드할 경로 구하기
 		String path="";
 		

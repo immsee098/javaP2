@@ -87,10 +87,10 @@
 				<tr  style="text-align:center">
 					<td>${vo.no}</td>
 					<td style="text-align:left">					
-						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-						<c:if test="${vo.newImgTerm<24 }">
-							<img src="<c:url value='/resources/images/new.gif'/>" 
-								alt="new 이미지">
+						<!-- 파일이 첨부된 경우 파일 이미지 보여주기-->
+						<c:if test="${!empty vo.fileName }">
+							<img src="<c:url value='/resources/images/file.gif'/>" 
+								alt="file이미지">
 						</c:if>
 						
 						<a href
@@ -102,7 +102,14 @@
 							<c:if test="${fn:length(vo.title)<=30}">
 								${vo.title}
 							</c:if>													
-						</a></td>
+						</a>
+						
+						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
+						<c:if test="${vo.newImgTerm<24 }">
+							<img src="<c:url value='/resources/images/new.gif'/>" 
+								alt="new 이미지">
+						</c:if>
+						</td>
 					<td>${vo.name}</td>
 					<td><fmt:formatDate value="${vo.regdate }" 
 						pattern="yyyy-MM-dd"/>

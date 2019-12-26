@@ -57,6 +57,11 @@ public class ReBoardDAOMybatis implements ReBoardDAO{
 		return sqlSession.selectOne(namespace+"selectTotalRecord",
 				searchVo);
 	}
+
+	@Override
+	public int updateDownCount(int no) {
+		return sqlSession.update(namespace+"updateDownCount", no);
+	}
 	
 	
 	

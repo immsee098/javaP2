@@ -66,7 +66,7 @@
 			<a href
 			='<c:url value="/reBoard/edit.do?no=${param.no}"/>'>수정</a> |
         	<a href
-        	='<c:url value="/reBoard/delete.do?no=${param.no}&fileName=${vo.fileName }"/>'>삭제</a> |
+        	='<c:url value="/reBoard/delete.do?no=${param.no}&fileName=${vo.fileName }&groupNo=${vo.groupNo}&step=${vo.step}"/>'>삭제</a> |
         	<a href
 			='<c:url value="/reBoard/reply.do?no=${param.no}"/>'>답변</a> |
         	<a href='<c:url value="/reBoard/list.do"/>'>

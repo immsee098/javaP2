@@ -1,6 +1,7 @@
 package com.ez.herb.reboard.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ez.herb.common.SearchVO;
 
@@ -11,8 +12,11 @@ public interface ReBoardDAO {
 	public ReBoardVO selectByNo(int no);
 	public int updateReBoard(ReBoardVO vo);
 	public String selectPwd(int no);
-	public int deleteReBoard(int no);
+	public void deleteReBoard(Map<String, String> map);
 	public int selectTotalRecord(SearchVO searchVo);
 	public int updateDownCount(int no);
+	public int updateSortNo(ReBoardVO vo);
+	public int reply(ReBoardVO vo);
+	
 	
 }

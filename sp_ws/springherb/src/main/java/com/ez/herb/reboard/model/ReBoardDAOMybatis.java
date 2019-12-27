@@ -1,6 +1,7 @@
 package com.ez.herb.reboard.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,8 @@ public class ReBoardDAOMybatis implements ReBoardDAO{
 		return pwd;
 	}
 	
-	public int deleteReBoard(int no) {
-		return sqlSession.delete(namespace+"deleteReBoard", no);
+	public void deleteReBoard(Map<String, String> map) {
+		sqlSession.delete(namespace+"deleteReBoard", map);
 	}
 
 	@Override
@@ -61,6 +62,16 @@ public class ReBoardDAOMybatis implements ReBoardDAO{
 	@Override
 	public int updateDownCount(int no) {
 		return sqlSession.update(namespace+"updateDownCount", no);
+	}
+
+	@Override
+	public int updateSortNo(ReBoardVO vo) {
+		return sqlSession.update(namespace+"updateSortNo", vo);
+	}
+
+	@Override
+	public int reply(ReBoardVO vo) {
+		return sqlSession.insert(namespace+"reply", vo);
 	}
 	
 	

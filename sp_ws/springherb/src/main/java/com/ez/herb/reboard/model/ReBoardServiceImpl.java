@@ -1,9 +1,11 @@
 package com.ez.herb.reboard.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ez.herb.common.SearchVO;
 
@@ -44,8 +46,8 @@ public class ReBoardServiceImpl implements ReBoardService{
 		}
 	}
 		
-	public int deleteReBoard(int no){
-		return reBoardDao.deleteReBoard(no);
+	public void deleteReBoard(Map<String, String> map){
+		reBoardDao.deleteReBoard(map);
 	}
 
 	@Override
@@ -56,6 +58,17 @@ public class ReBoardServiceImpl implements ReBoardService{
 	@Override
 	public int updateDownCount(int no) {
 		return reBoardDao.updateDownCount(no);
+	}
+
+	@Override
+	@Transactional
+	public int reply(ReBoardVO vo) {
+		//트랜잭션 처리
+		int cnt=reBoardDao.updateSortNo(vo);
+		
+		cnt=reBoardDao.reply(vo);
+		
+		return cnt;		
 	}
 	
 	

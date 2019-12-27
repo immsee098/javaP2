@@ -259,33 +259,36 @@ public class ReBoardController {
 	}
 	
 	@RequestMapping(value="/delete.do", method = RequestMethod.POST)
-	public String delete_post(@RequestParam(defaultValue = "0") int no,
-			@RequestParam String pwd, @RequestParam String fileName,
+	public String delete_post(@ModelAttribute ReBoardVO vo,
 			HttpServletRequest request, Model model) {
 		//1
-		logger.info("글 삭제 처리, 파라미터 no={}, pwd={}", no, pwd);
-		logger.info("파라미터 fileName={}", fileName);
+		logger.info("글 삭제 처리, 파라미터 vo={}", vo);
 		
 		//2
-		String msg="", url="/reBoard/delete.do?no="+no+"&fileName="+fileName;
-		if(reBoardService.checkPwd(no, pwd)) {
-			int cnt=reBoardService.deleteReBoard(no);
-			if(cnt>0) {
-				msg="글 삭제되었습니다.";
-				url="/reBoard/list.do";
-				
-				//파일이 첨부된 경우 파일 삭제 처리
-				if(fileName!=null && !fileName.isEmpty()) {
-					String path=fileUtil.getFilePath(request);
-					File file = new File(path , fileName);
-					if(file.exists()) {
-						boolean bool=file.delete();
-						logger.info("파일 삭제 여부:{}", bool);
-					}
-				}				
-			}else {
-				msg="글 삭제 실패!";
-			}
+		String msg="", url="/reBoard/delete.do?no="+vo.getNo()
+			+"&fileName="+vo.getFileName()+"&groupNo="+vo.getGroupNo()
+			+"&step="+vo.getStep();
+		if(reBoardService.checkPwd(vo.getNo(), vo.getPwd())) {
+			Map<String, String> map=new HashMap<String, String>();
+			map.put("no", vo.getNo()+"");
+			map.put("groupNo", vo.getGroupNo()+"");
+			map.put("step", vo.getStep()+"");
+						
+			reBoardService.deleteReBoard(map);
+			
+			msg="글 삭제되었습니다.";
+			url="/reBoard/list.do";
+			
+			//파일이 첨부된 경우 파일 삭제 처리
+			if(vo.getFileName()!=null && !vo.getFileName().isEmpty()) {
+				String path=fileUtil.getFilePath(request);
+				File file = new File(path , vo.getFileName());
+				if(file.exists()) {
+					boolean bool=file.delete();
+					logger.info("파일 삭제 여부:{}", bool);
+				}
+			}		
+			
 		}else {
 			msg="비밀번호가 일치하지 않습니다.";
 		}
@@ -347,13 +350,24 @@ public class ReBoardController {
 	}
 	
 	@RequestMapping(value="/reply.do", method=RequestMethod.POST)
-	public String reply_post(@ModelAttribute ReBoardVO vo) {
+	public String reply_post(@ModelAttribute ReBoardVO vo,
+			ModelMap model) {
 		//1
 		logger.info("답변하기 파라미터, vo={}", vo);
 		
 		//2
+		int cnt=reBoardService.reply(vo);
+		logger.info("답변하기 결과, cnt={}", cnt);
 		
 		//3
+		if(cnt>0) {
+			return "redirect:/reBoard/list.do";
+		}else {
+			model.addAttribute("msg", "답변하기 실패!");
+			model.addAttribute("url", "/reBoard/reply.do?no="+vo.getNo());
+			
+			return "common/message";
+		}
 	}
 	
 	

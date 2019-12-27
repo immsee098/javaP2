@@ -86,28 +86,43 @@
 			<c:forEach var="vo" items="${list }">				
 				<tr  style="text-align:center">
 					<td>${vo.no}</td>
-					<td style="text-align:left">					
-						<!-- 파일이 첨부된 경우 파일 이미지 보여주기-->
-						<c:if test="${!empty vo.fileName }">
-							<img src="<c:url value='/resources/images/file.gif'/>" 
-								alt="file이미지">
+					<td style="text-align:left">
+						<c:if test="${vo.delFlag=='Y'}">
+							<span style="color:gray">삭제된 글입니다.</span>
 						</c:if>
-						
-						<a href
-		="<c:url value='/reBoard/countUpdate.do?no=${vo.no}'/>">
-							<!-- 제목이 긴 경우 일부만 보여주기-->
-							<c:if test="${fn:length(vo.title)>30}">
-								${fn:substring(vo.title, 0,30)}...
+						<c:if test="${vo.delFlag!='Y'}">						
+							<!-- 답변글인 경우 단계별로 들여쓰고, re이미지 보여주기 -->
+							<c:if test="${vo.step>0 }">
+								<c:forEach var="k" begin="1" end="${vo.step }">
+									&nbsp;
+								</c:forEach>
+								
+								<img src="<c:url value='/resources/images/re.gif'/>" 
+									alt="re이미지">
 							</c:if>
-							<c:if test="${fn:length(vo.title)<=30}">
-								${vo.title}
-							</c:if>													
-						</a>
-						
-						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-						<c:if test="${vo.newImgTerm<24 }">
-							<img src="<c:url value='/resources/images/new.gif'/>" 
-								alt="new 이미지">
+											
+							<!-- 파일이 첨부된 경우 파일 이미지 보여주기-->
+							<c:if test="${!empty vo.fileName }">
+								<img src="<c:url value='/resources/images/file.gif'/>" 
+									alt="file이미지">
+							</c:if>
+							
+							<a href
+			="<c:url value='/reBoard/countUpdate.do?no=${vo.no}'/>">
+								<!-- 제목이 긴 경우 일부만 보여주기-->
+								<c:if test="${fn:length(vo.title)>30}">
+									${fn:substring(vo.title, 0,30)}...
+								</c:if>
+								<c:if test="${fn:length(vo.title)<=30}">
+									${vo.title}
+								</c:if>													
+							</a>
+							
+							<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
+							<c:if test="${vo.newImgTerm<24 }">
+								<img src="<c:url value='/resources/images/new.gif'/>" 
+									alt="new 이미지">
+							</c:if>
 						</c:if>
 						</td>
 					<td>${vo.name}</td>

@@ -64,7 +64,10 @@
 		action="<c:url value='/reBoard/delete.do'/>" >
 		<!-- hidden -->
         <input type="hidden" name="no" value="${param.no}" />   
-        <input type="text" name="fileName" value="${param.fileName}" />   
+        <input type="text" name="fileName" value="${param.fileName}" />
+        <input type="text" name="groupNo" value="${param.groupNo}" />
+        <input type="text" name="step" value="${param.step}" />
+           
 		<fieldset>
 		<legend>글 삭제</legend>
 	        <div>           

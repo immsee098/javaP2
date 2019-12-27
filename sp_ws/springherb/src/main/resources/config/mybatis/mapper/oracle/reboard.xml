@@ -14,14 +14,6 @@
 			#{no}, #{fileName}, #{fileSize}, #{originalFileName})
 	</insert>
 	
-<!-- 	<select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
-		select * from reBoard
-		<if test="searchKeyword!=null and searchKeyword != ''">
-			where ${searchCondition} like '%' || #{searchKeyword} || '%'
-		</if>
-		order by no desc
-	</select> -->
-	
 	<sql id="searchWhere">
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			where ${searchCondition} like '%' || #{searchKeyword} || '%'
@@ -42,7 +34,7 @@
 					filesize, downcount, originalfilename
 		        from reBoard
 				<include refid="searchWhere"></include>
-				order by no desc
+				order by groupno desc, sortno
 		    )A
 		)
 		where RNUM > #{firstRecordIndex} 
@@ -85,9 +77,22 @@
 		where no=#{no}
 	</update>
 	
-	<delete id="deleteReBoard" parameterType="int">
+	<!-- <delete id="deleteReBoard" parameterType="int">
 		delete from reBoard
 		where no=#{no}
+	</delete> -->
+	
+	<parameterMap type="map" id="deleteParam">
+		<parameter property="no" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="groupNo" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="step" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>		
+	</parameterMap>
+	
+	<delete id="deleteReBoard" parameterMap="deleteParam">
+		call delete_reboard(?,?,?)
 	</delete>
 	
 	<update id="updateDownCount" parameterType="int">
@@ -100,7 +105,7 @@
 		update reboard
 		set sortno=sortno+1
 		where groupno=#{groupNo} and sortno>#{sortNo}
-	</update>
+	</update>	
 	
 	<insert id="reply" parameterType="reboardVo">
 		<selectKey resultType="int" keyProperty="no" order="BEFORE">

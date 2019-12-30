@@ -15,6 +15,17 @@
 			#{zipcode}, #{address},#{addressDetail})
 	</insert>
 	
+	<select id="selectDup" parameterType="string" resultType="int">
+		select count(*) from member
+		where userid=#{userid}
+	</select>
+	
+	<select id="selectPwd" parameterType="string" resultType="string">
+		select pwd from member 
+		where userid=#{userid} and outdate is null
+	</select>
+	
+	
 </mapper>
 
 

@@ -3,7 +3,7 @@
  * 회원가입, 회원정보수정에서 사용
  */
 
-var j_ctxPath="/herbmall";
+var j_ctxPath="/herb";
 
 $(function(){
 	//이메일 - 직접입력의 경우 텍스트박스가 보이도록
@@ -21,13 +21,13 @@ $(function(){
 	$("#btnChkId").click(function(){
 		var userid=$("#userid").val();
 		
-		window.open(j_ctxPath+"/member/checkUserid.jsp?userid="+userid,"chkId",
+		window.open(j_ctxPath+"/member/checkUserid.do?userid="+userid,"chkId",
 "width=450,height=200,left=0,top=0,location=yes,resizable=yes");
 	});
 
 	//우편번호 찾기
 	$("#btnZipcode").click(function(){
-		window.open(j_ctxPath+"/zipcode/zipcode.jsp","zip",
+		window.open(j_ctxPath+"/zipcode/zipcode.do","zip",
 "width=500,height=600,left=0,top=0,location=yes,resizable=yes");
 			
 	});

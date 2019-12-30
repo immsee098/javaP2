@@ -11,5 +11,8 @@ public interface MemberService {
 	int NONE_USERID=3; //해당 아이디 존재하지 않음
 		
 	int insertMember(MemberVO vo);
+	public int duplicateUserid(String userid);
+	public int loginCheck(String userid, String pwd);
+	
 	
 }

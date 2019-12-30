@@ -1,6 +1,8 @@
 package com.ez.herb.zipcode.model;
 
-public class ZipcodeVO {
+import com.ez.herb.common.SearchVO;
+
+public class ZipcodeVO extends SearchVO{
 	private String zipcode;
 	private String sido;
 	private String gugun;
@@ -68,7 +70,8 @@ public class ZipcodeVO {
 	@Override
 	public String toString() {
 		return "ZipcodeVO [zipcode=" + zipcode + ", sido=" + sido + ", gugun=" + gugun + ", dong=" + dong
-				+ ", startbunji=" + startbunji + ", endbunji=" + endbunji + ", seq=" + seq + "]";
+				+ ", startbunji=" + startbunji + ", endbunji=" + endbunji + ", seq=" + seq + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 	

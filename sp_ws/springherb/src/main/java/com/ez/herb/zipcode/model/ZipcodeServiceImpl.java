@@ -1,17 +1,22 @@
 package com.ez.herb.zipcode.model;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public class ZipcodeServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ZipcodeServiceImpl implements ZipcodeService{
+	@Autowired
 	private ZipcodeDAO zipcodeDao;
 	
-	public ZipcodeService() {
-		zipcodeDao=new ZipcodeDAO();
+	public List<ZipcodeVO> selectZipcode(ZipcodeVO vo){
+		return zipcodeDao.selectZipcode(vo);
 	}
-	
-	public List<ZipcodeVO> selectZipcode(String dong) throws SQLException{
-		return zipcodeDao.selectZipcode(dong);
+
+	@Override
+	public int selectTotalRecord(String dong) {
+		return zipcodeDao.selectTotalRecord(dong);
 	}
 		
 	

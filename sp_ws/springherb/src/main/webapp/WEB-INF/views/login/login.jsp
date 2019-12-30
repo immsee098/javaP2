@@ -40,7 +40,8 @@
 	});
 </script>
 <article class="simpleForm">
-	<form name="frmLogin" method="post" action="login_ok.jsp">
+	<form name="frmLogin" method="post" 
+		action="<c:url value='/login/login.do'/>">
 		<fieldset>
 			<legend>로그인</legend>
 			<div>

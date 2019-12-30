@@ -17,74 +17,15 @@ public class MemberDAOMybatis implements MemberDAO{
 		return cnt;
 	}
 	
+	public int duplicateUserid(String userid){
+		return sqlSession.selectOne(namespace+"selectDup", userid);
+	}
+	
+	public String selectPwd(String userid){
+		return sqlSession.selectOne(namespace+"selectPwd", userid);
+	}
+	
 	/*
-	public int duplicateUserid(String userid) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-				
-		try {
-			con=pool.getConnection();
-		
-			String sql="select count(*) from member" + 
-					" where userid=?";
-			ps=con.prepareStatement(sql);
-			
-			ps.setString(1, userid);
-			
-			rs=ps.executeQuery();
-			
-			int result=0;
-			if(rs.next()) {
-				int count=rs.getInt(1);
-				if(count>0) {  //해당 아이디 이미 존재
-					result=MemberService.EXIST_ID;
-				}else { //사용가능
-					result=MemberService.USEFUL_ID;
-				}
-			}
-			System.out.println("아이디 중복확인 결과 result="+result);
-			
-			return result;
-		}finally {
-			pool.dbClose(rs, ps, con);
-		}
-	}
-	
-	public int loginCheck(String userid, String pwd) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		
-		try {
-			con=pool.getConnection();
-			
-			String sql="select pwd from member" + 
-					" where userid=? and outdate is null";
-			ps=con.prepareStatement(sql);
-			ps.setString(1, userid);
-			
-			int result=0;
-			rs=ps.executeQuery();
-			if(rs.next()) {
-				String dbPwd=rs.getString(1);
-				if(dbPwd.equals(pwd)) { //로그인 성공
-					result=MemberService.LOGIN_OK;
-				}else { //비밀번호 불일치
-					result=MemberService.DISAGREE_PWD;
-				}
-			}else { //해당아이디 존재하지 않음
-				result=MemberService.NONE_USERID;
-			}
-			System.out.println("로그인 처리 결과, result="+result
-				+", 매개변수 userid="+userid+", pwd="+pwd);
-			
-			return result;
-		}finally {
-			pool.dbClose(rs, ps, con);
-		}
-	}
-	
 	public MemberVO selectMember(String userid) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;

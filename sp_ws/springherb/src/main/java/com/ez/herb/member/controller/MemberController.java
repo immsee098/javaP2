@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,6 +86,26 @@ public class MemberController {
 		
 		return "common/message";				
 	}
+	
+	@RequestMapping("/checkUserid.do")
+	public String checkUserid(@RequestParam String userid,
+			Model model) {
+		logger.info("아이디 중복확인, 파라미터 userid={}", userid);
+		
+		int result=0;
+		
+		if(userid!=null && !userid.isEmpty()) {
+			result=memberService.duplicateUserid(userid);
+			logger.info("아이디 중복확인 결과, result={}", result);
+		}
+		
+		model.addAttribute("result", result);
+		model.addAttribute("EXIST_ID", MemberService.EXIST_ID);
+		model.addAttribute("USEFUL_ID", MemberService.USEFUL_ID);
+		
+		return "member/checkUserid";
+	}
+	
 	
 }
 

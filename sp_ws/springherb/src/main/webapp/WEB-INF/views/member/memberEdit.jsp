@@ -1,64 +1,9 @@
-<%@page import="com.herbmall.member.model.MemberVO"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="com.herbmall.member.model.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
-<%@ include file="../login/loginCheck.jsp" %>
-<%
-	MemberService service = new MemberService();
-	MemberVO vo=null;
-	
-	String userid=(String)session.getAttribute("userid");
-	
-	try{
-		vo=service.selectMember(userid);
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
 
-	String zipcode=vo.getZipcode();
-	String address=vo.getAddress();
-	String addressDetail=vo.getAddressDetail();
-	
-	if(zipcode==null) zipcode="";
-	if(address==null) address="";
-	if(addressDetail==null) addressDetail="";
-	
-	String hp=vo.getHp();
-	String hp1="", hp2="", hp3="";
-	if(hp!=null && !hp.isEmpty()){  //010-100-2000
-		String[] hpArr=hp.split("-");
-		hp1=hpArr[0]; //010
-		hp2=hpArr[1]; //100
-		hp3=hpArr[2]; //2000		 
-	}
-	
-	String email=vo.getEmail();
-	String email1="", email2="";
-	String[] emailList={"naver.com","hanmail.net","nate.com","gmail.com"};
-	boolean isEtc=false;
-	int count=0;
-	if(email!=null && !email.isEmpty()){ //h@nate.com
-		String[] emailArr=email.split("@");
-		email1=emailArr[0]; //h
-		email2=emailArr[1]; //nate.com
-		
-		for(String s : emailList){
-			if(email2.equals(s)){
-				count++;
-				break;
-			}
-		}//for
-		
-		if(count==0){  //직접입력 
-			isEtc=true;
-		}
-	}
-	
-%>
-
-<script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript" 
+	src="<c:url value='/resources/js/member.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#pwd").focus();
@@ -97,16 +42,17 @@
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="memberEdit_ok.jsp">
+<form name="frm1" method="post" 
+	action="<c:url value='/member/memberEdit.do'/>">
 <fieldset>
 	<legend>회원 정보 수정</legend>
     <div>        
         <label for="name">성명</label>
-        <span><%=vo.getName() %></span>
+        <span>${vo.name}</span>
     </div>
     <div>
         <label for="userid">회원ID</label>
-        <span><%=userid %></span>
+        <span>${sessionScope.userid}</span>
     </div>
     <div>
         <label for="pwd">비밀번호</label>
@@ -120,104 +66,110 @@
         <label for="zipcode">주소</label>
         <input type="text" name="zipcode" id="zipcode" ReadOnly  
         	title="우편번호" class="width_80"
-        	value="<%=zipcode%>">
+        	value="${vo.zipcode}">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" 
         	title="새창열림"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="address" ReadOnly title="주소"  
         	class="width_350"
-        	value="<%=address%>"><br />
+        	value="${vo.address}"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="addressDetail" title="상세주소"  
         	class="width_350"
-        	value="<%=addressDetail%>" >
+        	value="${vo.addressDetail}" >
     </div>
     <div>
         <label for="hp1">핸드폰</label>&nbsp;
         <select name="hp1" id="hp1" title="휴대폰 앞자리">
             <option value="010"
-            	<%if(hp1.equals("010")){ %>
+            	<c:if test="${vo.hp1=='010'}">
             		selected
-            	<%} %>
+            	</c:if>
             >010</option>
             <option value="011"
-            	<%if(hp1.equals("011")){ %>
+            	<c:if test="${vo.hp1=='011'}">
             		selected
-            	<%} %>
+            	</c:if>
             >011</option>
             <option value="016"
-            	<%if(hp1.equals("016")){ %>
+            	<c:if test="${vo.hp1=='016'}">
             		selected
-            	<%} %>
+            	</c:if>
             >016</option>
             <option value="017"
-            	<%if(hp1.equals("017")){ %>
+            	<c:if test="${vo.hp1=='017'}">
             		selected
-            	<%} %>
+            	</c:if>
             >017</option>
             <option value="018"
-            	<%if(hp1.equals("018")){ %>
+            	<c:if test="${vo.hp1=='018'}">
             		selected
-            	<%} %>
+            	</c:if>
             >018</option>
             <option value="019"
-            	<%if(hp1.equals("019")){ %>
+            	<c:if test="${vo.hp1=='019'}">
             		selected
-            	<%} %>
+            	</c:if>
             >019</option>
        	</select>
         -
         <input type="text" name="hp2" id="hp2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80" value="<%=hp2%>">-
+        	class="width_80" value="${vo.hp2}">-
         <input type="text" name="hp3" id="hp3" maxlength="4" title="휴대폰 뒷자리"
-        	class="width_80" value="<%=hp3%>">
+        	class="width_80" value="${vo.hp3}">
     </div>
     <div>
+    	<!-- 직접 입력 처리 -->
+    	<c:set var="etcYn" value="" />
+    	<c:choose>
+    		<c:when test="${vo.email2=='naver.com' || 
+    			vo.email2=='hanmail.net' || vo.email2=='nate.com'
+    			|| vo.email2=='gmail.com' || empty vo.email2}">
+		    	<c:set var="etcYn" value="N" />    			
+    		</c:when>
+    		<c:otherwise>
+		    	<c:set var="etcYn" value="Y" />    			
+    		</c:otherwise>
+    	</c:choose>
+    	
         <label for="email1">이메일 주소</label>
         <input type="text" name="email1"  id="email1" 
-        title="이메일주소 앞자리" value="<%=email1%>">@
-        <select name="email2" id="email2"  title="이메일주소 뒷자리">
-        	<%for(int i=0;i<emailList.length;i++){ %>        	
-	        	<option value="<%=emailList[i] %>"
-	            	<%if(email2.equals(emailList[i])){ %>
-	            		selected="selected"
-	            	<%} %>
-	            ><%=emailList[i] %></option>
-            <%}//for %>
-        
-            <%-- <option value="naver.com"
-            	<%if(email2.equals("naver.com")){ %>
+        title="이메일주소 앞자리" value="${vo.email1}">@
+        <select name="email2" id="email2"  title="이메일주소 뒷자리">        	        
+            <option value="naver.com"
+            	<c:if test="${vo.email2=='naver.com' }">            	
             		selected="selected"
-            	<%} %>
+            	</c:if>
             >naver.com</option>
             <option value="hanmail.net"
-            	<%if(email2.equals("hanmail.net")){ %>
+            	<c:if test="${vo.email2=='hanmail.net' }">            	
             		selected="selected"
-            	<%} %>
+            	</c:if>
             >hanmail.net</option>
             <option value="nate.com"
-            	<%if(email2.equals("nate.com")){ %>
+            	<c:if test="${vo.email2=='nate.com' }">            	
             		selected="selected"
-            	<%} %>
+            	</c:if>
             >nate.com</option>
             <option value="gmail.com"
-            	<%if(email2.equals("gmail.com")){ %>
+            	<c:if test="${vo.email2=='gmail.com' }">            	
             		selected="selected"
-            	<%} %>
-            >gmail.com</option> --%>
+            	</c:if>
+            >gmail.com</option>
             <option value="etc"
-            	<%if(isEtc){ %>
+            	<c:if test="${etcYn=='Y'}">            	
             		selected="selected"
-            	<%} %>            	
+            	</c:if>            	         	
             >직접입력</option>
         </select>
         <input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
-        	<%if(isEtc){ %>
+        	<c:if test="${etcYn=='Y'}">    
         		style="visibility:visible;"
-        		value="<%=email2 %>"
-        	<%}else{ %>
+        		value="${vo.email2}"
+        	</c:if>
+        	<c:if test="${etcYn!='Y'}">    
         		style="visibility:hidden"
-        	<%} %>
+        	</c:if>
         	>
     </div>
     <div class="center">

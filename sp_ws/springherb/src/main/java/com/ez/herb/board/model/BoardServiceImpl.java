@@ -53,12 +53,10 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.selectTotalRecord(searchVo);
 	}
 	
-	
-	/*
-	public List<BoardVO> selectMainNotice() throws SQLException{
+	public List<BoardVO> selectMainNotice(){
 		return boardDao.selectMainNotice();
 	}
-	*/
+	
 }
 
 

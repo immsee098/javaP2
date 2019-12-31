@@ -25,6 +25,25 @@
 		where userid=#{userid} and outdate is null
 	</select>
 	
+	<select id="selectMember" parameterType="string" resultType="memberVo">
+		select * from member
+		where userid=#{userid} and outdate is null
+	</select>
+	
+	<update id="updateMember" parameterType="memberVo">
+		update member
+		set email1=#{email1},email2=#{email2}, 
+			hp1=#{hp1},hp2=#{hp2},hp3=#{hp3}, zipcode=#{zipcode}, 
+			address=#{address},	
+			addressDetail=#{addressDetail}
+		where userid=#{userid}
+	</update>
+	
+	<update id="withdrawMember" parameterType="string">
+		update member
+		set outdate=sysdate 
+		where userid=#{userid}
+	</update>
 	
 </mapper>
 

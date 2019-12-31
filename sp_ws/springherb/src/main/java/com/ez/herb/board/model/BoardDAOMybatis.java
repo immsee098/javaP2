@@ -58,52 +58,10 @@ public class BoardDAOMybatis implements BoardDAO{
 				searchVo);
 	}
 	
-	
-	
-/*
-	public List<BoardVO> selectMainNotice() throws SQLException{
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		
-		List<BoardVO> list=new ArrayList<BoardVO>();		
-		try {
-			con=pool.getConnection();
-			
-			String sql="select *" + 
-					" from" + 
-					" (" + 
-					"    select * from board order by no desc" + 
-					" )" + 
-					" where rownum<=6";
-			ps=con.prepareStatement(sql);
-			
-			rs=ps.executeQuery();
-			while(rs.next()) {
-				int no=rs.getInt("no");
-				int readcount=rs.getInt("readcount");
-				String name=rs.getString("name");
-				String title=rs.getString("title");
-				String pwd=rs.getString("pwd");
-				String email=rs.getString("email");
-				String content=rs.getString("content");
-				Timestamp regdate=rs.getTimestamp("regdate");
-				
-				BoardVO vo = new BoardVO(no, name, pwd, title, email, 
-						regdate, readcount, content);
-				
-				list.add(vo);
-			}
-			System.out.println("최근 공지사항 조회 결과 list.size="
-					+list.size());
-			
-			return list;
-		}finally {
-			pool.dbClose(rs, ps, con);
-		}
+	public List<BoardVO> selectMainNotice(){
+		return sqlSession.selectList(namespace+"selectMainNotice");
 	}
 	
-	*/
 }
 
 

@@ -33,27 +33,30 @@ public class MemberServiceImpl implements MemberService{
 		String dbPwd = memberDao.selectPwd(userid);
 		
 		int result=0;
-		String dbPwd2 = memberDao.selectPwd(userid);
-		if(dbPwd2==null || dbPwd2.isEmpty()) {
-			result=ID_NONE;
-		} 
+		if(dbPwd==null || dbPwd.isEmpty()) {
+			result=NONE_USERID;  //해당 아이디가 없다
+		}else {
+			if(dbPwd.equals(pwd)) {
+				result=LOGIN_OK;  //로그인 성공
+			}else {
+				result=DISAGREE_PWD; //비밀번호 불일치
+			}
+		}
 		
 		return result;
 	}
-	
-	/*
-	public MemberVO selectMember(String userid) throws SQLException {
+		
+	public MemberVO selectMember(String userid){
 		return memberDao.selectMember(userid);
 	}
-		
-	public int updateMember(MemberVO vo) throws SQLException {
+			
+	public int updateMember(MemberVO vo){
 		return memberDao.updateMember(vo);
 	}
-		
-	public int withdrawMember(String userid) throws SQLException {
+	
+	public int withdrawMember(String userid) {
 		return memberDao.withdrawMember(userid);
 	}
-		*/
 }
 
 

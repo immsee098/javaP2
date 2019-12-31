@@ -13,5 +13,6 @@ public interface BoardDAO {
 	public String selectPwd(int no);
 	public int deleteBoard(int no);
 	public int selectTotalRecord(SearchVO searchVo);
+	public List<BoardVO> selectMainNotice();
 	
 }

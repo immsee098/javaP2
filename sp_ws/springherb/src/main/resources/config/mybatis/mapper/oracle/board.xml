@@ -81,6 +81,15 @@
 		where no=#{no}
 	</delete>
 	
+	<select id="selectMainNotice" resultType="boardVo">
+		select *
+		from 
+		( 
+			select * from board order by no desc 
+		) 
+		<![CDATA[ where rownum<=6 ]]>
+	</select>
+	
 </mapper>
 
 

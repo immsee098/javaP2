@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
-<%@ include file="../login/loginCheck.jsp" %>
 
 <style type="text/css">
 	.error{
@@ -29,7 +28,8 @@
 	});
 </script>
 <article class="simpleForm">
-	<form name="frmOut" method="post" action="memberOut_ok.jsp">
+	<form name="frmOut" method="post" 
+		action="<c:url value='/member/memberOut.do'/>">
 		<fieldset>
 			<legend>회원탈퇴</legend>
 			<p class="p">회원탈퇴하시겠습니까?</p>

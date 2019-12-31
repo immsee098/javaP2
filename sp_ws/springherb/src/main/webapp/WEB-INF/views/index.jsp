@@ -8,7 +8,7 @@
 </article>
 <article id="rightCon">
 	<!-- 공지사항 -->
-	
+	<c:import url="/notice/mainNotice.do"></c:import>
 </article>
 <article id="listCon">
 	<p>상품 목록</p>

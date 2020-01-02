@@ -11,7 +11,7 @@
 	<c:import url="/notice/mainNotice.do"></c:import>
 </article>
 <article id="listCon">
-	<p>상품 목록</p>
+	<c:import url="shop/product/productCatalog.jsp"></c:import>
 </article>
 
 

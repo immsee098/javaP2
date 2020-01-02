@@ -1,25 +1,8 @@
-<%@page import="com.herbmall.board.model.BoardVO"%>
-<%@page import="java.util.List"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="com.herbmall.board.model.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	//1
-	
-	//2
-	BoardService service = new BoardService();
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 
-	List<BoardVO> list=null;
-	try{
-		list=service.selectMainNotice();	
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
-	
-	//3
-	
-%>    
 <style type="text/css">
 	#divNotice{
 		width: 310px;
@@ -38,43 +21,47 @@
 
 <div id="divNotice">
 	<div>
-		<img src="<%=request.getContextPath() %>/images/notice2.JPG" 
+		<img src="${pageContext.request.contextPath}/resources/images/notice2.JPG" 
 			alt="공지사항 이미지">
 		<span>
-			<a href="<%=request.getContextPath()%>/board/list.jsp">
-				<img src="<%=request.getContextPath() %>/images/more.JPG" 
+			<a href="<c:url value='/board/list.do'/>">
+				<img src="${pageContext.request.contextPath}/resources/images/more.JPG" 
 					alt="more이미지">
 			</a>	
 		</span>
 	</div>
 	<div class="line">
-		<img src="<%=request.getContextPath() %>/images/Line.JPG" 
+		<img src="${pageContext.request.contextPath}/resources/images/Line.JPG" 
 			alt="line 이미지">
 	</div>
 	<div>
 		<table class="tblNotice" summary="최근 공지사항 6건을 보여주는 표입니다.">
 			<tbody>
-				<%if(list==null || list.isEmpty()){ %>
+				<c:if test="${empty list }">				
 					<tr>
 						<td>공지사항이 없습니다.</td>
 					</tr>
-				<%}else{ %>
-					<!-- 반복 시작 -->		
-					<%/* for(int i=0;i<list.size();i++){ 
-						BoardVO vo=list.get(i); */
-						for(BoardVO vo : list){	
-					%>	
+				</c:if>	
+				<c:if test="${!empty list }">				
+					<!-- 반복 시작 -->	
+					<c:forEach var="vo" items="${list }">	
 						<tr>
 							<td>
-								<img src="<%=request.getContextPath()%>/images/dot.JPG">
+								<img src="${pageContext.request.contextPath}/resources/images/dot.JPG">
 								<a href
-="<%=request.getContextPath()%>/board/detail.jsp?no=<%=vo.getNo()%>">
-									<%=vo.getTitle() %></a>
+					="<c:url value='/board/detail.do?no=${vo.no}'/>">
+									<c:if test="${fn:length(vo.title)>30}">
+										${fn:substring(vo.title, 0,30) }...
+									</c:if>
+									<c:if test="${fn:length(vo.title)<=30}">
+										${vo.title}
+									</c:if>	
+								</a>
 							</td>	
 						</tr>
 					<!-- 반복 끝 -->
-					<%}//for %>
-				<%}//if %>	
+					</c:forEach>
+				</c:if>
 			</tbody>			
 		</table>
 	</div>

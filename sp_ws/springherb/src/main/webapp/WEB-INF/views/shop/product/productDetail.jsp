@@ -58,18 +58,25 @@
 		width:20%;
 	}
 </style>
+
+<script>
+
+</script>
+
 <h2>상품 상세 보기</h2>
 <div id="info">
 	<div id="viewImg">
 		<!-- 상품 이미지 -->
 		<p class="center">
-		<a >
-			<img src=""
+		<a href="#">
+			<img src
+				="<c:url value='/resources/pd_images/${vo.imageURL}'/>" 
+				alt="${vo.productName }"
 		 		border="0" width="150">
-		</a>	
+		</a>
 		</p>
 		<p class="center">
-		<a>
+		<a href="#">
 		 	큰이미지 보기</a></p>
 	</div>
 	<div id="viewPd">
@@ -77,36 +84,46 @@
 			<!-- 상품명 -->
 			<p class="line2">
 				<span class="boldF">
-					상품명 출력
+					${vo.productName}
 				</span>
 			</p>
-			<p class="line"><span class="sp1"><img src="../../images/dot2.JPG"> 판매가격</span>				
-				<span>가격 출력 </span>
+			<p class="line"><span class="sp1">
+			<img src="<c:url value='/resources/images/dot2.JPG'/>"> 판매가격</span>				
+				<span>
+					<fmt:formatNumber value="${vo.sellPrice}"
+						pattern="#,###" />원 </span>
 			</p>
-			<p class="line"><span class="sp1"><img src="../../images/dot2.JPG"> 적립금</span>
-				<span>적립금 출력</span>
+			<p class="line"><span class="sp1">
+			<img src="<c:url value='/resources/images/dot2.JPG'/>"> 적립금</span>
+				<span>
+					<fmt:formatNumber value="${vo.mileage}"
+						pattern="#,###" />원 
+				</span>
 			</p>
-			<p class="line"><span class="sp1"><img src="../../images/dot2.JPG"> 제조사</span>
-				<span>제조사 출력</span>
+			<p class="line"><span class="sp1">
+				<img src="<c:url value='/resources/images/dot2.JPG'/>"> 제조사</span>
+				<span>${vo.company}</span>
 			</p>
 		
-			<p class="line"><span class="sp1"><img src="../../images/dot2.JPG"> 구매수량</span>
+			<p class="line"><span class="sp1">
+				<img src="<c:url value='/resources/images/dot2.JPG'/>"> 구매수량</span>
 				<label for="qty"><input type="text" name="qty" id="qty" value="1" ></label>
 			</p>
 			<p class="center">
 				<input type="button" value="바로구매" >
 				<input type="button" value="장바구니담기">
 			</p>
+			
 		</form>
 	</div>
 </div>
 <div id="desc">
-	<img src="../../images/dot6.JPG">
+	<img src="<c:url value='/resources/images/dot6.JPG'/>">
 	<span style="font-size:12pt;font-weight:bold">
 		상품상세정보</span>
 	<br><br>
-	<p>Explain</p>
-	<p>Description</p>	
+	<p>${vo.explains}</p>
+	<p>${vo.description}</p>	
 </div>
 
 

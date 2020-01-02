@@ -157,10 +157,10 @@ and e.eventName = 'MD';
 --------------------------------
 --ºä »ý¼º
 create or replace view productEventView
-  as
-  select p.*, e.eventName
-     from products p, eventProduct e
-     where p.productno=e.productno;
-     
-  select * from productEventView
-  where eventName='NEW';
+as
+select p.*, e.eventname
+from products p join eventproduct e
+on p.productno=e.productno;
+ 
+select * from productEventView
+where eventName='NEW';

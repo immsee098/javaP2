@@ -59,7 +59,29 @@ public class ProductController {
 		return "shop/product/productDetail";		
 	}
 	
+	@RequestMapping("/bigImage.do")
+	public void bigImage(@RequestParam String imageURL,
+			@RequestParam String productName) {
+		logger.info("큰 이미지 화면, 파라미터 imageURL={}, productName={}",
+				imageURL, productName);		
+	}
 	
+	@RequestMapping("/productByCategory.do")
+	public void productByCategory(@RequestParam(defaultValue = "0") 
+			int categoryNo,
+			@RequestParam String categoryName, Model model) {
+		//1
+		logger.info("카테고리별 상품 조회, 파라미터 categoryNo={}, categoryName={}",
+				categoryNo, categoryName);	
+		
+		//2
+		List<ProductVO> list
+			=productService.selectProductByCategory(categoryNo);
+		logger.info("카테고리별 상품조회 결과, list.size={}", list.size());
+		
+		//3
+		model.addAttribute("list", list);		
+	}
 }
 
 

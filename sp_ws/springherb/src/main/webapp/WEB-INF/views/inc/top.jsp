@@ -59,8 +59,8 @@
 		<nav id="top_navi">
 			<div id='cssmenu'>
 				<ul>			   
-				   <li><a href="#"><span>베스트</span></a></li>
-				   <li><a href="#"><span>자유게시판</span></a></li>
+				   <li><a href="${pageContext.request.contextPath}/admin/manager/join.do"><span>베스트</span></a></li>
+				   <li><a href="${pageContext.request.contextPath}/admin/manager/authList.do"><span>자유게시판</span></a></li>
 				   <li><a href="#"><span>이용후기</span></a></li>
 				   <li><a href="#"><span>Q&A</span></a></li>
 				   <li><a href="#"><span>FAQ</span></a></li>

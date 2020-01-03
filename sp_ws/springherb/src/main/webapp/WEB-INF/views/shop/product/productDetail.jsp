@@ -59,8 +59,15 @@
 	}
 </style>
 
-<script>
-
+<script type="text/javascript">
+	$(function(){
+		$("#viewImg a").click(function(){
+			window.open(
+"<c:url value='/shop/product/bigImage.do?imageURL=${vo.imageURL}&productName=${vo.productName}'/>",
+					"bigImg",
+			"width=400,height=500,left=0,top=0,location=yes,resizable=yes");
+		});
+	});
 </script>
 
 <h2>상품 상세 보기</h2>
@@ -73,7 +80,7 @@
 				="<c:url value='/resources/pd_images/${vo.imageURL}'/>" 
 				alt="${vo.productName }"
 		 		border="0" width="150">
-		</a>
+		</a>	
 		</p>
 		<p class="center">
 		<a href="#">
@@ -113,7 +120,6 @@
 				<input type="button" value="바로구매" >
 				<input type="button" value="장바구니담기">
 			</p>
-			
 		</form>
 	</div>
 </div>

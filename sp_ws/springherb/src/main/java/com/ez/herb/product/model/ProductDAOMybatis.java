@@ -24,5 +24,11 @@ public class ProductDAOMybatis implements ProductDAO{
 		return sqlSession.selectOne(namespace+"selectProduct", productNo);
 	}
 
+	@Override
+	public List<ProductVO> selectProductByCategory(int categoryNo) {
+		return sqlSession.selectList(namespace+"selectProductByCategory",
+				categoryNo);
+	}
+
 	
 }

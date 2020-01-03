@@ -9,7 +9,7 @@
 	<c:forEach var="vo" items="${list }">
 		<dd>
 			<a href
-="<c:url value='/shop/product/productByCategory.do?categoryNo=${vo.categoryNo}'/>">		
+="<c:url value='/shop/product/productByCategory.do?categoryNo=${vo.categoryNo}&categoryName=${vo.categoryName}'/>">		
 				${vo.categoryName }
 			</a>
 		</dd>

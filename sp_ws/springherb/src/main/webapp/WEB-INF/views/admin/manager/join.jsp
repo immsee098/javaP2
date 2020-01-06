@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="../../inc/top.jsp" %>
+<%@ include file="../../inc/adminTop.jsp" %>
 
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/member.js'/>"></script>
@@ -26,15 +26,14 @@
 			}else if($("#pwd").val()!=$("#pwd2").val()){
 				alert("비밀번호가 일치하지 않습니다!");
 				$("#pwd2").focus();
-				event.preventDefault();				
-			}else if(!validate_phone($("#hp2").val()) 
-					|| !validate_phone($("#hp3").val())){
-				alert("휴대폰번호는 숫자만 가능!");
-				$("#hp2").focus();
-				event.preventDefault();		
+				event.preventDefault();	
 			}else if($("#chkId").val()!='Y'){
 				alert("아이디 중복확인을 하세요");
 				$("#btnChkId").focus();
+				event.preventDefault();			
+			}else if($("#level").val().length<1){
+				alert("레벨을 선택하셔야 합니다!");
+				$("#level").focus();
 				event.preventDefault();			
 			}
 			
@@ -57,7 +56,7 @@
 <article>
 <div class="divForm">
 <form name="frm1" method="post" 
-	action="<c:url value=''/>">
+	action="<c:url value='/admin/manager/join.do'/>">
 <fieldset>
 	<legend>관리자 등록</legend>
     <div>        
@@ -68,7 +67,7 @@
         <label for="userid">관리자ID</label>
         <input type="text" name="userid" id="userid"
         		style="ime-mode:inactive">&nbsp;
-        <input type="button" value="중복확인" id="btnChkId" 
+        <input type="button" value="중복확인" id="btChkAdminId" 
         	title="새창열림">
     </div>
     <div>
@@ -81,7 +80,16 @@
     </div>    
     <div>
         <label for="level">레벨</label>
-        <input type="text" name="authCode"  id="level" value="ADMIN">        
+        <select id="level" name="authCode">
+        	<option value="">선택하세요</option>
+        	<!-- 반복 시작 -->
+        	<c:forEach var="map" items="${list }">
+        		<option value="${map['AUTHCODE']}">
+        			${map['AUTHNAME']}
+        		</option>
+        	</c:forEach>
+        	<!-- 반복 끝 -->
+        </select>   
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="등록">
@@ -94,5 +102,5 @@
 </div>
 </article>
 
-<%@ include file="../../inc/bottom.jsp"%>
+<%@ include file="../../inc/adminBottom.jsp"%>
     

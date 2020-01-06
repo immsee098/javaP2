@@ -84,7 +84,9 @@ public class LoginController {
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
-		session.invalidate();
+		//session.invalidate();
+		session.removeAttribute("userid");
+		session.removeAttribute("userName");
 		
 		return "redirect:/index.do";
 	}

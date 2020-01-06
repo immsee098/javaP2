@@ -1,11 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/adminTop.jsp" %>
-
+<script type="text/javascript">
+	$(function(){
+		$("form[name=frm1]").submit(function(){
+			if($("#productName").val().length<1){
+				alert("상품명을 입력하세요");
+				$("#productName").focus();
+				event.preventDefault();
+			}else if($("#categoryNo").val().length<1){
+				alert("카테고리를 선택하세요");
+				$("#categoryNo").focus();
+				event.preventDefault();
+			}else if($("#imageUpload").val().length<1){
+				alert("상품이미지를 선택하세요");
+				$("#imageUpload").focus();
+				event.preventDefault();
+			}
+			
+		});	
+	});
+	
+</script>
 
 <div class="divForm">
-<form name="frm1" method="post" action=""
-	enctype="multipart/form-data" onsubmit="return validate(this)">
+<form name="frm1" method="post" 
+	action="<c:url value='/admin/product/productWrite.do'/>"
+	enctype="multipart/form-data" >
 	<fieldset>
 		<legend>상품 등록</legend>
         <div>
@@ -17,7 +38,10 @@
             <select name="categoryNo" id="categoryNo" title="카테고리">
             	<option value="">선택하세요</option>
             	<!-- 반복문 시작 -->	
-            	  	
+            	<c:forEach var="vo" items="${list }">
+            		<option value="${vo.categoryNo }">
+            			${vo.categoryName }</option>
+            	</c:forEach>  	
  				<!-- 반복문 끝 -->	         
             </select>            
         </div>

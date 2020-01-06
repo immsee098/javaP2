@@ -24,7 +24,15 @@ $(function(){
 		window.open(j_ctxPath+"/member/checkUserid.do?userid="+userid,"chkId",
 "width=450,height=200,left=0,top=0,location=yes,resizable=yes");
 	});
+	
+	$("#btChkAdminId").click(function(){
+		var userid=$("#userid").val();
+		
+		window.open(j_ctxPath+"/admin/manager/checkUserid.do?userid="+userid,"chkId",
+		"width=450,height=200,left=0,top=0,location=yes,resizable=yes");
+	});
 
+		
 	//우편번호 찾기
 	$("#btnZipcode").click(function(){
 		window.open(j_ctxPath+"/zipcode/zipcode.do","zip",

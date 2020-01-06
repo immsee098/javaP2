@@ -21,6 +21,9 @@
 		where categoryno=#{categoryNo}
 	</select>
 	
+	<insert id="">
+	</insert>
+	
 	
 </mapper>
 

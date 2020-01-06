@@ -25,10 +25,15 @@ public class FileUploadUtil {
 	private static final Logger logger
 		=LoggerFactory.getLogger(FileUploadUtil.class);
 	
+	public static final int FILE_UPLOAD=1;  //자료실 파일 업로드
+	public static final int IMAGE_UPLOAD=2; //상품 등록-이미지 업로드
+	
+	
 	@Resource(name = "fileUpProperties")
 	private Properties props;
 	
-	public List<Map<String, Object>> fileUpload(HttpServletRequest request) {
+	public List<Map<String, Object>> fileUpload(HttpServletRequest request,
+			int uploadPathType) {
 		//파일 업로드 처리
 		MultipartHttpServletRequest multiReq
 			=(MultipartHttpServletRequest)request;
@@ -63,7 +68,7 @@ public class FileUploadUtil {
 				
 				//업로드 처리
 				//업로드할 경로 구하기
-				String upPath=getFilePath(request);
+				String upPath=getFilePath(request, uploadPathType);
 				
 				File file=new File(upPath, fileName);
 				
@@ -81,7 +86,7 @@ public class FileUploadUtil {
 		return list;
 	}
 
-	public String getFilePath(HttpServletRequest request) {
+	public String getFilePath(HttpServletRequest request, int uploadPathType) {
 		//업로드할 경로 구하기
 		String path="";
 		
@@ -89,9 +94,19 @@ public class FileUploadUtil {
 		logger.info("type={}", type);
 		
 		if(type.equals("test")) {  //테스트 경로
-			path=props.getProperty("file.upload.path.test");
+			if(uploadPathType==FILE_UPLOAD) {
+				path=props.getProperty("file.upload.path.test");
+			}else if(uploadPathType==IMAGE_UPLOAD) {
+				path=props.getProperty("imageFile.upload.path.test");
+			}
 		}else { //배포시 실제 경로
-			String upDir=props.getProperty("file.upload.path");
+			String upDir="";
+			if(uploadPathType==FILE_UPLOAD) {			
+				upDir=props.getProperty("file.upload.path");
+			}else if(uploadPathType==IMAGE_UPLOAD) {
+				upDir=props.getProperty("imageFile.upload.path");
+			}
+			
 			path
 			=request.getSession().getServletContext().getRealPath(upDir);
 			

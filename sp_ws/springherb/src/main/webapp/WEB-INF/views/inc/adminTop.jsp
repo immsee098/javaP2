@@ -34,7 +34,7 @@
 			<nav id="headerRight">
 				<ul class="views">	
 					<c:if test="${!empty sessionScope.adminUserid }">
-						<li><span style="color:gray;font-size:1em">관리자 (${sessionScope.adminUserName}) 님 </span></li>
+						<li><span style="color:gray;font-size:1em">관리자 (${sessionScope.adminUserid}) 님 </span></li>
 						<li><a href="<c:url value='/admin/login/logout.do' />">로그아웃</a> | </li>
 					</c:if>
 					<li><a href="<c:url value='/index.do' />">내쇼핑몰 가기</a></li>
@@ -54,7 +54,7 @@
 					<!-- category list -->
 					<dt>관리자 메뉴</dt>
 					<!-- 좌측 메뉴 -->
-	 				<dd><a href="<c:url value='/admin/member/memberWrite.do' />">관리자등록</a></dd>
+	 				<dd><a href="<c:url value='/admin/manager/join.do' />">관리자등록</a></dd>
 	 				<dd><a href="<c:url value='/admin/product/productWrite.do' />">상품등록</a></dd>
 					<dd><a href="<c:url value='/admin/product/productList.do' />">상품목록</a></dd>
 				</dl>

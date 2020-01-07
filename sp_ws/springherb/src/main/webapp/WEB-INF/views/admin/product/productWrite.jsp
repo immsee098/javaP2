@@ -18,6 +18,13 @@
 				event.preventDefault();
 			}
 			
+			if($("#sellPrice").val().length<1){
+				$("#sellPrice").val("0");
+			}
+			if($("#mileage").val().length<1){
+				$("#mileage").val("0");
+			}
+							
 		});	
 	});
 	

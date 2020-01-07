@@ -21,8 +21,56 @@
 		where categoryno=#{categoryNo}
 	</select>
 	
-	<insert id="">
+	<insert id="insertProduct" parameterType="productVo">
+		<selectKey resultType="int" keyProperty="productNo" order="BEFORE">
+			select products_seq.nextval from dual
+		</selectKey>
+		insert into products(productno, categoryno, productname,
+			sellprice, company, imageurl, explains, description,mileage)
+		values(#{productNo}, #{categoryNo}, #{productName},
+			#{sellPrice}, #{company}, #{imageURL}, #{explains}, 
+			#{description},#{mileage})
 	</insert>
+	
+	<select id="selectProductAll" parameterType="eventProductVo"
+		resultType="productVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from
+		    (
+		    	<if test="eventName!=null and eventName!=''">
+			    	select * from productEventView
+					where eventName=#{eventName}
+		    	</if>
+		    	<if test="eventName==null or eventName==''">
+			        select * from products
+				</if>      
+				order by productno desc  
+		    )A
+		)
+		where RNUM > #{firstRecordIndex} 
+		<![CDATA[
+		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalRecord" resultType="int" 
+		parameterType="eventProductVo">
+		<if test="eventName!=null and eventName!=''">
+	    	select count(*) from productEventView
+			where eventName=#{eventName}
+    	</if>
+    	<if test="eventName==null or eventName==''">
+	        select count(*) from products
+		</if>   
+	</select>
+	
+	<delete id="deleteProduct" parameterType="int">
+		delete from products
+		where productNo=#{productNo}
+	</delete>
 	
 	
 </mapper>

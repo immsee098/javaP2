@@ -1,5 +1,7 @@
 package com.ez.herb.product.model;
 
+import java.sql.Timestamp;
+
 public class ProductVO {
 	private int productNo;
 	private int categoryNo;
@@ -9,7 +11,7 @@ public class ProductVO {
 	private String imageURL;
 	private String explains;
 	private String description;
-	private String regDate;
+	private Timestamp regDate;
 	private int mileage;
 	
 	public int getProductNo() {
@@ -60,10 +62,10 @@ public class ProductVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getRegDate() {
+	public Timestamp getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
 	public int getMileage() {

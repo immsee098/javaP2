@@ -67,6 +67,28 @@
 					"bigImg",
 			"width=400,height=500,left=0,top=0,location=yes,resizable=yes");
 		});
+		
+		$("input[type=button]").click(function(){
+			if($("#qty").val().length<1){
+				alert("수량을 입력하세요");
+				$("#qty").focus();
+				return;	
+			}
+			
+			var mode="";
+			if($(this).attr("id")=="btOrder"){
+				mode="order";
+			}else{
+				mode="cart";
+			}
+			
+			$("input[name=mode]").val(mode);			
+			$("form[name=frmPd]").submit();	
+		});
+		
+		
+		
+		
 	});
 </script>
 
@@ -87,7 +109,8 @@
 		 	큰이미지 보기</a></p>
 	</div>
 	<div id="viewPd">
-		<form name="frmPd">			
+		<form name="frmPd" method="post" 
+			action="<c:url value='/shop/cart/cartAdd.do'/>">			
 			<!-- 상품명 -->
 			<p class="line2">
 				<span class="boldF">
@@ -114,11 +137,17 @@
 		
 			<p class="line"><span class="sp1">
 				<img src="<c:url value='/resources/images/dot2.JPG'/>"> 구매수량</span>
-				<label for="qty"><input type="text" name="qty" id="qty" value="1" ></label>
+				<label for="qty">
+				<input type="text" name="quantity" id="qty" value="1" >
+				</label>
+				<input type="text" name="productNo" 
+					value="${vo.productNo }" >
+				<input type="text" name="mode">
+					
 			</p>
 			<p class="center">
-				<input type="button" value="바로구매" >
-				<input type="button" value="장바구니담기">
+				<input type="button" id="btOrder" value="바로구매" >
+				<input type="button" id="btCart" value="장바구니담기">
 			</p>
 		</form>
 	</div>

@@ -67,15 +67,3 @@ public class ProductServiceImpl implements ProductService{
 
 	
 }
-
-if(productNo!=0){
-	//업로드 경로
-	String upPath
-	=fileUtil.getUploadPath(request, fileUtil.IMAGE_UPLOAD);
-	//File객체 생성 후 파일 삭제
-	File delFile = new File(upPath, imageURL);
-	if(delFile.exists()){
-	boolean bool = delFile.delete();
-	logger.info("파일 삭제 결과={}", bool);
-	}
-	} //if

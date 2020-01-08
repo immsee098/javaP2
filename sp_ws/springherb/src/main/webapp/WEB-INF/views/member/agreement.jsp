@@ -28,8 +28,6 @@
 </script>
 
 <article id="agree">
-<a href="<c:url value='/email/send.do' />">이메일 보내기</a>
-
 	<h2>회원 약관</h2>
 	<iframe src="<c:url value='/agree/provision.html'/>" 
 		width="800" height="400"></iframe>

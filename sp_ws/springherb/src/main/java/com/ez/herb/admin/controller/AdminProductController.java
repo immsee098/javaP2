@@ -1,5 +1,6 @@
 package com.ez.herb.admin.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.herb.category.model.CategoryService;
 import com.ez.herb.category.model.CategoryVO;
@@ -20,6 +22,7 @@ import com.ez.herb.common.FileUploadUtil;
 import com.ez.herb.common.PaginationInfo;
 import com.ez.herb.common.SearchVO;
 import com.ez.herb.common.Utility;
+import com.ez.herb.event.model.EventProductService;
 import com.ez.herb.event.model.EventProductVO;
 import com.ez.herb.product.model.ProductListVO;
 import com.ez.herb.product.model.ProductService;
@@ -39,6 +42,9 @@ public class AdminProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private EventProductService eventProductService;
 	
 	@RequestMapping(value="/productWrite.do", method=RequestMethod.GET)
 	public void pdWrite_get(Model model) {
@@ -116,7 +122,7 @@ public class AdminProductController {
 	
 	@RequestMapping("/deleteMulti.do")
 	public String delMulti(@ModelAttribute ProductListVO pdListVo,
-			Model model) {
+			HttpServletRequest request, Model model) {
 		logger.info("선택한 상품 삭제, 파라미터 pdListVo={}", pdListVo);
 		List<ProductVO> list=pdListVo.getPdItems();
 		
@@ -128,14 +134,24 @@ public class AdminProductController {
 			//파일 삭제
 			for(int i=0;i<list.size();i++) {
 				ProductVO pdVo=list.get(i);
+				int productNo=pdVo.getProductNo();
 				
 				logger.info("i={}, pdVo.productNo={}", i, pdVo.getProductNo());
 				logger.info("pdVo.imageURL={}", pdVo.getImageURL());
 				
-				if() {
+				if(productNo!=0) {
+					String path
+					=fileUtil.getFilePath(request, FileUploadUtil.IMAGE_UPLOAD);
 					
+					File file
+					=new File(path, pdVo.getImageURL());
+					if(file.exists()) {
+						boolean bool=file.delete();
+						logger.info("이미지 삭제 여부 : {}", bool);
+					}
 				}
-			}
+			}//for
+			
 			msg="선택한 상품들을 삭제하였습니다.";
 		}else {
 			msg="선택한 상품 삭제 중 문제가 발생했습니다.";
@@ -146,6 +162,27 @@ public class AdminProductController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/eventMulti.do")
+	public String eventMulti(@ModelAttribute ProductListVO pdListVo,
+			@RequestParam String eventSel, Model model) {
+		logger.info("선택한 상품 이벤트로 등록, 파라미터 pdListVo={}", pdListVo);
+		
+		List<ProductVO> list=pdListVo.getPdItems();
+		int cnt =eventProductService.insertEventProduct(list, eventSel);
+		String msg="", url="/admin/product/productList.do";
+		if(cnt>0) {
+			msg="선택한 상품들을 해당 이벤트로 등록하였습니다.";
+		}else {
+			msg="선택한 상품들을 해당 이벤트로 등록하는 중 문제가 발생하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	
 }
 

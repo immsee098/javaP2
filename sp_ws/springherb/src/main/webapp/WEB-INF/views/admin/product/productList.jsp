@@ -26,15 +26,40 @@
 <script type="text/javascript">
 	$(function(){
 		$("#btDelMulti").click(function(){
-			$('form[name=frmList]').prop("action",
-					"<c:url value='/admin/product/deleteMulti.do'/>");	
-			$('form[name=frmList]').submit();	
-			
-			//document.frmList.action="";
-			//document.frmList.submit();
+			if($("tbody input[type=checkbox]:checked").length>0){			
+				$('form[name=frmList]').prop("action",
+						"<c:url value='/admin/product/deleteMulti.do'/>");	
+				$('form[name=frmList]').submit();	
+				
+				//document.frmList.action="";
+				//document.frmList.submit();
+			}else{
+				alert("삭제할 상품들을 체크하세요");
+			}
+		});
+		
+		$("#btEventMulti").click(function(){
+			if($("tbody input[type=checkbox]:checked").length>0){	
+				if($("select[name=eventSel]").val().length>0){
+					$('form[name=frmList]').prop("action",
+						"<c:url value='/admin/product/eventMulti.do'/>");	
+					$('form[name=frmList]').submit();	
+					
+					//document.frmList.action="";
+					//document.frmList.submit();
+				}else{
+					alert("등록할 이벤트를 선택하세요");					
+				}
+			}else{
+				alert("이벤트로 등록할 상품들을 체크하세요");
+			}
 		});
 		
 		
+		$("thead input[type=checkbox]").click(function(){
+			$("tbody input[type=checkbox]")
+				.prop("checked", this.checked);
+		});
 	});
 	
 	
@@ -54,8 +79,8 @@
 <!-- 페이징 처리를 위한 form 시작-->
 <form name="frmPage" method="post" 
 	action="<c:url value='/admin/product/productList.do'/>">
-	<input type="text" name="eventName" 	value="${param.eventName }">
-	<input type="text" name="currentPage">	
+	<input type="hidden" name="eventName" 	value="${param.eventName }">
+	<input type="hidden" name="currentPage">	
 </form>
 <!-- 페이징 처리 form 끝 -->
 
@@ -125,7 +150,7 @@
 					<input type="checkbox" id="chk_${idx }" 
 						name="pdItems[${idx }].productNo" 
 						value="${vo.productNo }">
-					<input type="text" name="pdItems[${idx }].imageURL" 
+					<input type="hidden" name="pdItems[${idx }].imageURL" 
 						value="${vo.imageURL }">					
 				</td>
 				<td>

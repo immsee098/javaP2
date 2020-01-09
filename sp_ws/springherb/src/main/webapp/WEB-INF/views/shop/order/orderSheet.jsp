@@ -55,43 +55,36 @@
 		}		
 </style>
 
+<script type="text/javascript" 
+	src="<c:url value='/resources/js/member.js'/>"></script>
 <script type="text/javascript">
-	window.onload = function(){
-		setAddress();	
-	}
+	$(function(){
+		$.setAddress();			
+		
+		$("input[name=delivery]").click(function(){
+			$.setAddress();			
+		});	
+	});
 	
-	function send(frm){
-		if(!frm.customerName.value){
-			alert("이름을 입력하세요");
-			frm.customerName.focus();
-			return false;
+	$.setAddress=function(){
+		if($("#delivery1").is(":checked")){
+			$("#customerName").val($("#oName").text());
+			$("#zipcode").val($("#oZipcode").text());
+			$("input[name=address]").val($("#oAddress1").html());
+			$("input[name=addressDetail]").val($("#oAddress2").html());
+			
+			if($("#oHp1").text()!=null && $("#oHp1").text()!=''){
+				$("#hp").val($("#oHp1").text()+"-"+$("#oHp2").text()+"-"
+					+$("#oHp3").text());
+			}
+		}else{
+			$("#customerName").val("");
+			$("#zipcode").val("");
+			$("input[name=address]").val('');
+			$("input[name=addressDetail]").val('');
+			$("#hp").val("");			
 		}
-		if(!frm.zipcode.value){
-			alert("주소를 입력하세요");
-			frm.zipcode.focus();
-			return false;
-		}
-		if(!frm.hp.value){
-			alert("휴대폰번호를 입력하세요");
-			frm.hp.focus();
-			return false;
-		}
-				
-		return true;
 	}
-	
-	
-	
-	function getZipcode(){
-		//우편번호 찾기 창 띄우기
-		//window.open("url", "name", "option");
-		window.open(
-	"${pageContext.request.contextPath}/member/zipcode.do", 
-	"zipWin", 
-"left=50, top=20, width=500, height=500, scrollbars=yes,resizable=yes");
-	}
-	
-	
 	
 </script>
 <p class="titleP">  
@@ -118,30 +111,66 @@
 		</tr>
 	</thead>
 	<tbody>
-	
-		<!--반복 시작 -->	
-		
-		<!-- 반복 끝 -->
-		
-		
-		<tr>
-			<td colspan="3" align="right" style="border-right:none">
-				총 구매금액 : <br>
-				   + 배송비 : <br>
-				총 주문합계 :    
-			</td>
-			<td align="right" style="border-left:none">
+		<c:if test="${empty list }">
+			<tr class="align_center">
+				<td colspan="4">장바구니가 비었습니다.</td>
+			</tr>
+		</c:if>
+		<c:if test="${!empty list }">
+			<c:set var="buyPrice" value="0" />
+			<c:set var="delivery" value="0" />
+			<c:set var="sumPrice" value="0" />
+			
+			<!--반복 시작 -->	
+			<c:forEach var="map" items="${list }">	
+				<c:set var="sum" value="${map['SELLPRICE']* map['QUANTITY']}" />
+				<tr class="align_right">
+					<td class="align_left">
+						<img src=
+						"<c:url value='/resources/pd_images/${map["IMAGEURL"]}'/>" 
+							alt="${map['PRODUCTNAME']}" width="50"
+							align="absmiddle">
+						${map['PRODUCTNAME']}</td>
+					<td><fmt:formatNumber value="${map['SELLPRICE']}" 
+						pattern="#,###"/>원 </td>
+					<td>${map['QUANTITY']}</td>
+					<td><fmt:formatNumber value="${sum}" 
+						pattern="#,###"/>원 </td>							
+				</tr>
 				
-			</td>
-		</tr>
-
+				<c:set var="buyPrice" value="${buyPrice+sum }" />				
+			</c:forEach>
+			<!-- 반복 끝 -->			
+			<c:if test="${buyPrice<30000 }">
+				<c:set var="delivery" value="3000" />
+			</c:if>
+			
+			<c:set var="sumPrice" value="${buyPrice+delivery }" />
+			
+			<tr>
+				<td colspan="3" align="right" style="border-right:none">
+					총 구매금액 : <br>
+					   + 배송비 : <br>
+					총 주문합계 :    
+				</td>
+				<td align="right" style="border-left:none">
+					<fmt:formatNumber value="${buyPrice}" 
+						pattern="#,###"/>원<br>
+					<fmt:formatNumber value="${delivery}" 
+						pattern="#,###"/>원<br>
+					<fmt:formatNumber value="${sumPrice}" 
+						pattern="#,###"/>원<br>
+						
+				</td>
+			</tr>
+		</c:if>
 	</tbody>
 </table>
 </div>       
 <br />
 <div class="divForm">    
-	<form name="frm1" method="post" action="" 
-	    	onsubmit="return send(this)">
+	<form name="frm1" method="post" 
+		action="<c:url value='/shop/order/orderSheet.do'/>" >
 	<fieldset>
 		<legend>상품 받으시는 분</legend>
 
@@ -151,23 +180,27 @@
 	    </p>
     
        <p><span class="sp1">이름</span>
-         <span id="oName" ></span>
+         <span id="oName" >${memberVo.name }</span>
 	   </p>
        <p>
            <span class="sp1">주소</span>
-           <span id="oZipcode"></span>
-           <span id="oAddress1"></span>
-           <span id="oAddress2"></span>
+           <span id="oZipcode">${memberVo.zipcode }</span>
+           <span id="oAddress1">${memberVo.address }</span>
+           <span id="oAddress2">${memberVo.addressDetail }</span>
        </p>
        <p>
            <span class="sp1">연락처</span>
-           <span id="oHp1"></span>
-           -<span id="oHp2"></span>
-           -<span id="oHp3"></span>
+           <c:if test="${!empty memberVo.hp1}">
+	           <span id="oHp1">${memberVo.hp1 }</span>
+	           - <span id="oHp2">${memberVo.hp2 }</span>
+	           - <span id="oHp3">${memberVo.hp3 }</span>
+           </c:if>
 		</p>
        <p>
            <span class="sp1">이메일</span>
-           <span></span>
+           <c:if test="${!empty memberVo.email1 }">
+	           <span>${memberVo.email1 }@${memberVo.email2 }</span>           
+           </c:if>           
        </p>
     
     	<br /> 
@@ -177,9 +210,9 @@
 	    </p>	
 	    <p>        
 	        <span class="sp1">배송지 선택</span>    	       
-	        <input type="radio" name="delivery" id="delivery1" onclick="setAddress()" checked> 
+	        <input type="radio" name="delivery" id="delivery1" checked> 
 	        <label for="delivery1" class="lbl">주문고객과 동일 주소</label>                 
-	        <input type="radio" name="delivery"	id="delivery2" onclick="setAddress()" > 
+	        <input type="radio" name="delivery"	id="delivery2" > 
 	        <label for="delivery2" class="lbl">새로운 주소 입력</label>
 	    </p>
         <p>
@@ -189,7 +222,7 @@
         <p>
             <label for="zipcode">주소</label>                           
             <input type="Text" name="zipcode" id="zipcode" size="15" title="우편번호">
-&nbsp;		<input type="Button" value="우편번호찾기" OnClick="getZipcode()" />
+&nbsp;		<input type="Button" value="우편번호찾기" id="btnZipcode"/>
             <br />
             <span class="sp1">&nbsp;</span>
             <input type="Text" name="address"  size="60" title="주소">
@@ -213,14 +246,16 @@
     </p>	
     <p>
         <span class="sp1">결제금액</span>
-        <span>원</span>
+        <span><fmt:formatNumber value="${sumPrice}" 
+						pattern="#,###"/>원</span>
     </p>
     <p class="center">
         <input type="submit" value="결제하기"  />
     </p>
     
     <!-- 주문 총 금액 hidden field -->
-    <input type="hidden" name="totalPrice" value="" >
+    <input type="text" name="totalPrice" value="${sumPrice }" >
+    
     </fieldset>
 </form>
 

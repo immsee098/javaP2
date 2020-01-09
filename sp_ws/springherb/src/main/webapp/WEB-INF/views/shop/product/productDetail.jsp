@@ -140,9 +140,9 @@
 				<label for="qty">
 				<input type="text" name="quantity" id="qty" value="1" >
 				</label>
-				<input type="text" name="productNo" 
+				<input type="hidden" name="productNo" 
 					value="${vo.productNo }" >
-				<input type="text" name="mode">
+				<input type="hidden" name="mode">
 					
 			</p>
 			<p class="center">

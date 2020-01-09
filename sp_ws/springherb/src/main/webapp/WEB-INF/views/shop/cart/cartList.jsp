@@ -10,6 +10,16 @@
 	}
 </style>
 <script type="text/javascript">
+	$(function(){
+		$("form[name=frm]").submit(function(){
+			if($(this).find("input[name=quantity]").val().length<1){
+				alert("수량을 입력하세요");
+				$(this).find("input[name=quantity]").focus();
+				event.preventDefault();
+			}	
+		});
+		
+	});
 	
 </script>
 
@@ -62,16 +72,23 @@
 					<fmt:formatNumber value='${map["SELLPRICE"] }'
 						pattern="#,###"/>원</td>
 					<td>
-						<form name="frm" method="post">
+						<form name="frm" method="post" 
+							action="<c:url value='/shop/cart/cartEdit.do'/>">
 							<input type="text" name="quantity"
 								value='${map["QUANTITY"] }'
 								size="5">
+							<input type="hidden" name="cartNo"
+								value='${map["CARTNO"] }'>
+								
+							<input type="submit" value="수정">	
 						</form>
 					</td>
 					<td class="align_right">
 					<fmt:formatNumber value='${sum}'
 						pattern="#,###"/>원</td>
-					<td><a href="#">삭제</a></td>					
+					<td><a href
+="<c:url value='/shop/cart/cartDelete.do?cartNo=${map["CARTNO"]}'/>">
+						삭제</a></td>					
 				</tr>
 				
 				<c:set var="buyPrice" value="${buyPrice+sum }" />
@@ -107,7 +124,8 @@
 
 	<div class="align_center" style="margin:10px 0">
 		<c:if test="${!empty list }">
-			<a href="">[주문하기]</a>
+			<a href="<c:url value='/shop/order/orderSheet.do'/>">
+				[주문하기]</a>
 		</c:if>
 		
 		<a href="<c:url value='/index.do'/>">[계속 쇼핑하기]</a>

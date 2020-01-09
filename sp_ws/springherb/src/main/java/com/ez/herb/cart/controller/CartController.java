@@ -67,6 +67,27 @@ public class CartController {
 		model.addAttribute("list", list);		
 	}
 	
+	@RequestMapping("/cartEdit.do")
+	public String cardEdit(@ModelAttribute CartVO cartVo) {
+		logger.info("장바구니 수정, 파라미터 vo={}", cartVo);
+		
+		int cnt=cartService.updateCart(cartVo);
+		logger.info("장바구니 수정, 결과 cnt={}", cnt);
+		
+		return "redirect:/shop/cart/cartList.do";
+	}
+	
+	@RequestMapping("/cartDelete.do")
+	public String cartDelete(@RequestParam(defaultValue = "0") 
+		int cartNo) {
+		logger.info("장바구니 삭제, 파라미터 cartNo={}", cartNo);
+		
+		int cnt=cartService.deleteCart(cartNo);
+		logger.info("장바구니 삭제, 결과 cnt={}", cnt);
+		
+		return "redirect:/shop/cart/cartList.do";
+	}
+	
 	
 }
 

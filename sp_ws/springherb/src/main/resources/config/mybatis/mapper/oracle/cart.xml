@@ -29,7 +29,21 @@
 		where customerid=#{customerId}
 	</select>
 	
+	<update id="updateCart" parameterType="cartVo">
+		update cart
+		set quantity=#{quantity}
+		where cartno=#{cartNo}
+	</update>
 	
+	<delete id="deleteCart" parameterType="int">
+		delete from cart
+		where cartno=#{cartNo}
+	</delete>
+	
+	<delete id="deleteCartByUserid" parameterType="string">
+		delete from cart
+		where customerid=#{customerId}
+	</delete>
 	
 </mapper>
 

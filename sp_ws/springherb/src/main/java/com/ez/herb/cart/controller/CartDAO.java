@@ -8,6 +8,9 @@ public interface CartDAO {
 	int updateCartQty(CartVO vo);
 	int selectCartCount(CartVO vo);
 	List<Map<String, Object>> selectCart(String userid);
+	int updateCart(CartVO cartVo);
+	int deleteCart(int cartNo);
+	int deleteCartByUserid(String userid);
 	
 	
 }

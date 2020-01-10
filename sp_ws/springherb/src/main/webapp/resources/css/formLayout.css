@@ -19,7 +19,7 @@
 		margin:10px 0;
 		font-size: 1.3em;
 		}	
-	.divForm div	{
+	.divForm div, .divForm p{
 		clear: both;
 		border-bottom: 1px solid #eee;
 		padding: 5px 0;

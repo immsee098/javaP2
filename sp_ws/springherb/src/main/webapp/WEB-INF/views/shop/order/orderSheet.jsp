@@ -64,6 +64,22 @@
 		$("input[name=delivery]").click(function(){
 			$.setAddress();			
 		});	
+		
+		$("form[name=frm1]").submit(function(){
+			$(".infobox").each(function(idx, item){
+				if($(this).val().length<1){
+					var str=$(this).prev().html();
+					if(str==null || str==''){
+						str=$(this).attr("title");						
+					} 
+					alert(str+"를 입력하세요");
+					$(this).focus();
+					event.preventDefault();
+					return false;
+				}
+			});	
+		});
+		
 	});
 	
 	$.setAddress=function(){
@@ -217,22 +233,22 @@
 	    </p>
         <p>
             <label for="customerName">성명</label> 
-            <input type="Text" name="customerName" id="customerName">
+            <input type="Text" name="customerName" id="customerName" class="infobox">
         </p>
         <p>
             <label for="zipcode">주소</label>                           
-            <input type="Text" name="zipcode" id="zipcode" size="15" title="우편번호">
+            <input type="Text" name="zipcode" id="zipcode" size="15" title="우편번호" >
 &nbsp;		<input type="Button" value="우편번호찾기" id="btnZipcode"/>
             <br />
-            <span class="sp1">&nbsp;</span>
-            <input type="Text" name="address"  size="60" title="주소">
+            <span class="sp1"></span>
+            <input type="Text" name="address"  size="60" title="주소"  class="infobox">
             <br />
-            <span class="sp1">&nbsp;</span>
-            <input type="Text" name="addressDetail"  size="60" title="상세주소">           
+            <span class="sp1"></span>
+            <input type="Text" name="addressDetail"  size="60" title="상세주소"  class="infobox">           
         </p>
         <p>
             <label for="hp">연락처</label>
-            <input type="Text" name="hp" id="hp" size="17">
+            <input type="Text" name="hp" id="hp" size="17"  class="infobox">
         </p>
         <p>
             <label for="message">배송시 요청사항</label>
@@ -254,7 +270,7 @@
     </p>
     
     <!-- 주문 총 금액 hidden field -->
-    <input type="text" name="totalPrice" value="${sumPrice }" >
+    <input type="hidden" name="totalPrice" value="${sumPrice }" >
     
     </fieldset>
 </form>

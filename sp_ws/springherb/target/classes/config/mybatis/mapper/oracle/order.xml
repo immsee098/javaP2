@@ -20,6 +20,82 @@
 		where customerid=#{customerId}	
 	</insert>
 	
+	<select id="selectOrderDetailsView" parameterType="int"
+		resultType="map">
+		select * from orderDetailsView
+		where orderNo=#{orderNo}
+	</select>
+	
+	<select id="selectOrdersView" parameterType="int"
+		resultType="map">
+		select * from ordersView
+		where orderNo=#{orderNo}
+	</select>
+	
+	<resultMap type="orderAllVo" id="orderListResultMap">
+		<association property="orderVo" column="ordNo" 
+			javaType="OrderVO">
+			<id column="orderNo" property="orderNo" 
+				jdbcType="BIGINT"/>
+			<result column="customerId" property="customerId" 
+				jdbcType="VARCHAR"/>
+			<result column="totalPrice" property="totalPrice" 
+				jdbcType="BIGINT"/>
+			<result column="deliveryStatus" property="deliveryStatus" 
+				jdbcType="VARCHAR"/>
+			<result column="orderDate" property="orderDate" 
+				jdbcType="TIMESTAMP"/>
+			<result column="deliveryDate" property="deliveryDate" 
+				jdbcType="TIMESTAMP"/>
+			<result column="paymentEndDate" property="paymentEndDate" 
+				jdbcType="TIMESTAMP"/>
+			<result column="message" property="message" 
+				jdbcType="VARCHAR"/>
+			<result column="customerName" property="customerName" 
+				jdbcType="VARCHAR"/>
+			<result column="hp" property="hp" jdbcType="VARCHAR"/>
+			<result column="zipcode" property="zipcode" jdbcType="VARCHAR"/>
+			<result column="address" property="address" jdbcType="VARCHAR"/>
+			<result column="addressDetail" property="addressDetail" 
+				jdbcType="VARCHAR"/>			
+		</association>
+		
+	</resultMap>
+	
+	<select id="selectOrderList" parameterType="dateSearchVo"
+		resultMap="orderListResultMap">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from
+		    (
+		        select * from orders 
+				where orderdate>=#{startDay}
+				<![CDATA[ and orderdate < to_Date(#{endDay})+1]]>
+				<if test="customerId!=null and customerId!=''">
+					and customerid = #{customerId}
+				</if>
+				order by orderno desc
+		    )A
+		)
+		where RNUM > #{firstRecordIndex} 
+		<![CDATA[
+		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
+		]]>	
+	</select>
+
+	<select id="getTotalRecord" parameterType="dateSearchVo"
+		resultType="int">
+		select count(*) from orders 
+		where orderdate>=#{startDay}
+		<![CDATA[ and orderdate < to_Date(#{endDay})+1]]>
+		<if test="customerId!=null and customerId!=''">
+			and customerid = #{customerId}
+		</if>
+	</select>
+	
+	
 </mapper>
 
 

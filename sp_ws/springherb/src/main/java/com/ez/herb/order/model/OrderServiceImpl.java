@@ -48,4 +48,9 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.getTotalRecord(dateSearchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectBestProducts(int productNo) {
+		return orderDao.selectBestProducts(productNo);
+	}
+
 }

@@ -119,7 +119,8 @@ public class OrderController {
 		dateSearchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		
 		List<OrderAllVO> list=orderService.selectOrderList(dateSearchVo);
-		logger.info("주문내역 조회 결과, list.size={}", list.size());
+		logger.info("주문내역 조회 결과, list.size={}, list={}", 
+				list.size(), list);
 		
 		//[3]
 		int totalRecord=orderService.getTotalRecord(dateSearchVo);
@@ -127,9 +128,39 @@ public class OrderController {
 		
 		pagingInfo.setTotalRecord(totalRecord);
 		
+		//
+		/*for(OrderAllVO allVo : list) {
+			OrderVO orderVo=allVo.getOrderVo();
+			int orderNo=orderVo.getOrderNo();
+			
+			List<Map<String, Object>> detailsList
+				=orderService.selectOrderDetailsView(orderNo);
+			logger.info("주문 상세내역 orderNo={}, list={}", orderNo, list);
+			
+			allVo.setOrderDetailsList(detailsList);
+		}*/
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 	}
 	
+	@RequestMapping("/best5.do")
+	public String best5(@RequestParam(defaultValue = "0") 
+		int productNo, Model model) {
+		logger.info("카테고리별 판매가 많은 상품, 파라미터 productNo={}", productNo);
+		
+		List<Map<String, Object>> list
+			=orderService.selectBestProducts(productNo);
+		logger.info("판매가 많은 상품 조회 결과, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return "shop/product/best5";
+	}
 	
 }
+
+
+
+
+

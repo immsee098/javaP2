@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.herb.member.model.MemberService;
 import com.ez.herb.member.model.MemberVO;
@@ -236,6 +237,27 @@ public class MemberController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/ajaxCheckId.do")
+	@ResponseBody
+	public boolean ajaxCheckId(@RequestParam String userid) {
+		logger.info("ajax방식-아이디 중복확인, 파라미터 userid={}", userid);
+		
+		int result=0;
+		
+		result=memberService.duplicateUserid(userid);
+		logger.info("ajax 아이디 중복확인 결과, result={}", result);
+				
+		boolean bool=false;
+		if(result==MemberService.EXIST_ID) {
+			bool=false; //이미 존재
+		}else if(result==MemberService.USEFUL_ID) {
+			bool=true;  //사용 가능
+		}
+		
+		return bool;
+	}
+	
 	
 }
 

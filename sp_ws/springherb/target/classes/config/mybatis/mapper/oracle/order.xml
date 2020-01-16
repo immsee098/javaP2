@@ -59,7 +59,10 @@
 			<result column="addressDetail" property="addressDetail" 
 				jdbcType="VARCHAR"/>			
 		</association>
-		
+		<collection property="orderDetailsList" column="orderNo" 
+			javaType="ArrayList"
+			ofType="map" select="selectOrderDetailsView">		
+		</collection>
 	</resultMap>
 	
 	<select id="selectOrderList" parameterType="dateSearchVo"
@@ -95,6 +98,21 @@
 		</if>
 	</select>
 	
+	<select id="selectBestProducts" parameterType="int"
+	 resultType="map">
+		select *
+		from
+		(
+		    select o.productno, p.productname, sum(quantity) as total
+		    from orderdetails o join products p
+		    on o.PRODUCTNO = p.PRODUCTNO
+		    and p.categoryno=(select categoryno from products
+		                        where productno=#{productNo})
+		    group by o.productno,p.productname 
+		    order by total desc
+		)
+		<![CDATA[ where rownum<=5]]>
+	</select>
 	
 </mapper>
 

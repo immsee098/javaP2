@@ -12,7 +12,7 @@ public interface OrderDAO {
 	Map<String, Object> selectOrdersView(int orderNo);
 	List<OrderAllVO> selectOrderList(DateSearchVO dateSearchVo);
 	int getTotalRecord(DateSearchVO dateSearchVo);
-	
+	List<Map<String, Object>> selectBestProducts(int productNo);
 	
 	
 	

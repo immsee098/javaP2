@@ -48,4 +48,10 @@ public class OrderDAOMybatis implements OrderDAO{
 		return sqlSession.selectOne(namespace+"getTotalRecord", dateSearchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectBestProducts(int productNo) {
+		return sqlSession.selectList(namespace
+				+"selectBestProducts", productNo);
+	}
+
 }

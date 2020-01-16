@@ -1,17 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/top.jsp" %>
-
 <script type="text/javascript">
-	function pageFunc(){
+	$(function(){		
+		$("form[name=frm1]").submit(function(){
+			if($("#startDay").val().length<1){
+				alert("시작일을 입력하세요");
+				$("#startDay").focus();
+				event.preventDefault();
+			}else if($("#endDay").val().length<1){
+				alert("종료일을 입력하세요");
+				$("#endDay").focus();
+				event.preventDefault();
+			}
+		});
 		
+		
+	});
+	
+	function pageFunc(curPage){
+		$("input[name=currentPage]").val(curPage);
+		$("form[name=frmPage]").submit();
 	}
 </script>
 
 <!-- 페이징 처리를 위한 form 시작-->
-<form name="frmPage" method="post">
-	<input type="hidden" name="startDay" value="">
-	<input type="hidden" name="endDay" value="">
+<form name="frmPage" method="post" 
+	action="<c:url value='/shop/order/orderList.do'/>">
+	<input type="hidden" name="startDay" value="${dateSearchVO.startDay }">
+	<input type="hidden" name="endDay" value="${dateSearchVO.endDay }">
 	<input type="hidden" name="currentPage">	
 </form>
 <!-- 페이징 처리 form 끝 -->
@@ -21,14 +38,8 @@
 <form name="frm1" method="post" 
 	action="<c:url value='/shop/order/orderList.do'/>" >
 	<!-- 조회기간 include -->
-	조회기간
-	<input type="button" value="1주일" >
-	<input type="button" value="1개월" >
-	<input type="button" value="3개월" >
-		
-	<input type="text" name="startDay" id="startDay"> 
-	~ 
-	<input type="text" name="endDay" id="endDay">
+	<c:import url="../../inc/dateTerm.jsp"></c:import>
+	
 	<input type="submit" value="조회" >
 </form>
 <br>
@@ -68,7 +79,20 @@
 					<td>${orderAllVo.orderVo.orderNo }</td>
 					<td><fmt:formatDate value="${orderAllVo.orderVo.orderDate }"
 						pattern="yyyy-MM-dd"/></td>
-					<td></td>
+					
+					<td>
+						<c:forEach var="map" 
+							items="${orderAllVo.orderDetailsList }">
+							<img src="<c:url value='/resources/pd_images/${map["IMAGEURL"] }' />" 
+								alt="${map['PRODUCTNAME'] }" width="50"
+								align="absmiddle">
+							${map['PRODUCTNAME'] }
+							<B><fmt:formatNumber value="${map['SELLPRICE'] }" 
+								pattern="#,###"/></B>원 / ${map['QUANTITY'] }개
+							<BR>	
+						</c:forEach>
+					</td>				
+					
 					<td class="align_right">
 						<fmt:formatNumber value="${orderAllVo.orderVo.totalPrice }"
 							pattern="#,###"/>원</td>

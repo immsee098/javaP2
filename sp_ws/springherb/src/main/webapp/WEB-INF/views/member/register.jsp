@@ -35,9 +35,45 @@
 				alert("아이디 중복확인을 하세요");
 				$("#btnChkId").focus();
 				event.preventDefault();			
-			}
-			
+			}			
 		});
+		
+		$("#userid").keyup(function(){
+			if(validate_userid($(this).val()) 
+					&& $(this).val().length>=3){
+				//정규식을 통과하고, 길이도 3글자 이상인 경우
+				//=> ajax 로 아이디 중복확인 처리
+				$.ajax({
+					url:"<c:url value='/member/ajaxCheckId.do'/>",
+					type:"post",
+					data:{"userid":$(this).val()},					
+					success:function(res){
+						//alert(res);
+						var str="";
+						if(res){
+							//사용 가능
+							str="사용가능한 아이디";
+							$("#chkId").val("Y");
+						}else{
+							//이미 존재
+							str="이미 등록된 아이디";							
+							$("#chkId").val("N");
+						}
+						$("#error").html(str);
+						$("#error").show;						
+					},
+					error:function(xhr, status, error){
+						alert("Error : "+ status+"=>"+ error);
+					}
+				});
+			}else{
+				$("#error").html("아이디 규칙에 맞지 않습니다.");
+				$("#error").show();
+				$("#chkId").val("N");
+			}	
+		});
+		
+		
 		
 	});
 	
@@ -51,6 +87,10 @@
 	}
 	.width_350{
 		width:350px;
+	}
+	#error{
+		color: red;
+		display: none;
 	}	
 </style>
 <article>
@@ -66,9 +106,8 @@
     <div>
         <label for="userid">회원ID</label>
         <input type="text" name="userid" id="userid"
-        		style="ime-mode:inactive">&nbsp;
-        <input type="button" value="중복확인" id="btnChkId" 
-        	title="새창열림">
+        		style="ime-mode:inactive">
+        <span id="error"></span>		        
     </div>
     <div>
         <label for="pwd">비밀번호</label>

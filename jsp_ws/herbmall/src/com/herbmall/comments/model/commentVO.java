@@ -1,10 +1,12 @@
 package com.herbmall.comments.model;
 
+import java.sql.Timestamp;
+
 public class commentVO {
 	private int no;
 	private String name;
 	private String pwd;
-	private String regdate;
+	private Timestamp regdate;
 	private String content;
 	private int bdno;
 	
@@ -12,7 +14,7 @@ public class commentVO {
 		super();
 	}
 	
-	public commentVO(int no, String name, String pwd, String regdate, String content, int bdno) {
+	public commentVO(int no, String name, String pwd, Timestamp regdate, String content, int bdno) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -40,10 +42,10 @@ public class commentVO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getRegdate() {
+	public Timestamp getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
 	public String getContent() {
